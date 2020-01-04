@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.milkpointapi.model.UserInfo;
 import com.milkpointapi.service.SecurityService;
 import com.milkpointapi.service.UserService;
 
 @Controller
+@RequestMapping("/administrador")
 public class RegistrationController {
 
 	@Autowired
@@ -29,7 +31,7 @@ public class RegistrationController {
 	@PostMapping(value = "/register")
 	public String registration(@ModelAttribute UserInfo userInfo, HttpServletRequest request, Model model) {
 		String password = userInfo.getPassword();
-		userInfo.setRole("USER");
+		userInfo.setRole("ADMIN");
 		UserInfo dbUser = userService.save(userInfo);
 		securityService.autoLogin(dbUser.getEmail(), password, dbUser.getRole(), request);
 		model.addAttribute("user", dbUser);

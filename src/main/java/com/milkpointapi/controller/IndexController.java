@@ -11,7 +11,7 @@ import com.milkpointapi.model.UserInfo;
 import com.milkpointapi.service.SessionService;
 
 @Controller
-public class HomeController {
+public class IndexController {
 
 	@Autowired
 	private SessionService<UserInfo> sessionService;
@@ -19,7 +19,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("user", new UserInfo());
-		return "index";
+		return "login";
 	}
 
 	@RequestMapping("/home")
@@ -31,9 +31,8 @@ public class HomeController {
 	public String loginfailure(ModelMap model) {
 		model.addAttribute("user", new UserInfo());
 		model.addAttribute("alerta", "erro");
-		model.addAttribute("titulo", "Credenciais inválidas!");
 		model.addAttribute("texto", "Login ou senha incorretos, tente novamente.");
-		return "index";
+		return "login";
 	}
 
 	@GetMapping("/logout")

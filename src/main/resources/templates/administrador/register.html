@@ -10,11 +10,11 @@
 		<main role="main">
 
 		<section class="jumbotron text-center">
-			<img class="d-block mx-auto" th:src="@{/image/spring-security.png}"
+			<img class="d-block mx-auto" th:src="@{/image/logo_mp.png}"
 				width="72" height="72">
 			<div class="container">
-				<h1 class="jumbotron-heading">Clínica Spring Security</h1>
-				<p class="lead text-muted">Médicos e Especialistas</p>
+				<h1 class="jumbotron-heading">Milk Point</h1>
+				<p class="lead text-muted">Administradores</p>
 			</div>
 		</section>
 
@@ -26,11 +26,11 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 
-						<form th:action="@{/u/cadastro/salvar}"
-								th:object="${usuario}" method="POST" class="was-validated">
+						<form th:action="@{'/register'}"
+								th:object="${user}" method="post" class="was-validated">
 							
 							<div class="mb-3">
-								<label for="email">Email</label>
+								<label for="email">E-mail</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text" 
@@ -46,29 +46,8 @@
 							<div class="mb-3">
 								<label for="senha">Senha</label> 
 								<input type="password" class="form-control" id="senha" maxlength="6"
-										th:field="*{senha}" placeholder="Insira sua senha de acesso" required />
+										th:field="*{password}" placeholder="Insira sua senha de acesso" required />
 								<div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
-							</div>
-
-							<div class="mb-3">
-								<label for="perfis">Perfil</label>
-								<select id="perfis" class="custom-select" size="4"
-										th:field="*{perfis}" multiple required>
-									<option value="1">Administrador</option>
-									<option value="2">Médico</option>
-									<option value="3">Paciente</option>
-								</select>
-
-								<div class="invalid-feedback">Pelo menos um perfil é requerido.</div>
-							</div>
-							
-							<div class="mb-3">
-								<div class="custom-control custom-switch">
-								  <input type="checkbox" class="custom-control-input" 
-								  			th:field="*{ativo}" id="ativo" 
-								  			th:if="${ativo == true ? 'checked=checked' : ''}" />
-								  <label class="custom-control-label" for="ativo">Cadastro Ativo</label>
-								</div>
 							</div>
 
 							<input type="hidden" th:field="*{id}"> 
