@@ -3,6 +3,7 @@ package com.milkpointapi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,22 +22,24 @@ public class HomeController {
 		return "index";
 	}
 
+	@RequestMapping("/home")
+	public String home() {
+		return "home";
+	}
+
 	@GetMapping("/loginfailure")
-	public String loginfailure(Model model) {
+	public String loginfailure(ModelMap model) {
 		model.addAttribute("user", new UserInfo());
-		model.addAttribute("errormessage", "Verifique se seu e-mail ou senha estão corretos!");
-		return "login/login_register_modal";
+		model.addAttribute("alerta", "erro");
+		model.addAttribute("titulo", "Credenciais inválidas!");
+		model.addAttribute("texto", "Login ou senha incorretos, tente novamente.");
+		return "index";
 	}
 
 	@GetMapping("/logout")
 	public String logout() {
 		sessionService.clearSession();
 		return "index";
-	}
-
-	@RequestMapping("/home")
-	public String home() {
-		return "home";
 	}
 
 }

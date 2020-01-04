@@ -6,7 +6,7 @@
 <body>
 	<header th:fragment="cabecalho">
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" th:href="@{/}">MILK POINT</a>
+			<a class="navbar-brand" th:href="@{/home}">MILK POINT</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarCollapse" aria-controls="navbarCollapse"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item dropdown"><a
 						class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admistrador</a>
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tanque</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
 							<a class="dropdown-item" th:href="@{/especialidades}">Especialidades</a> 
 							<div class="dropdown-divider"></div>
@@ -26,7 +26,7 @@
 					</li>
 					<li class="nav-item dropdown"><a
 						class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médicos</a>
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtor</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown02">
 							<a class="dropdown-item" th:href="@{/medicos/dados}">Dados Cadastrais</a>
 							<a class="dropdown-item" th:href="@{/u/editar/senha}">Editar Senha</a>
@@ -36,7 +36,7 @@
 					</li>
 					<li class="nav-item dropdown"><a
 						class="btn btn-dark dropdown-toggle" href="#" id="dropdown03"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pacientes</a>
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Responsável</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown03">
 							<a class="dropdown-item" th:href="@{/pacientes}">Cadastrar Dados</a>
 							<a class="dropdown-item" th:href="@{/u/editar/senha}">Editar Senha</a>
@@ -44,18 +44,27 @@
 							<a class="dropdown-item" th:href="@{/agendamentos/agendar}">Agendar Consulta</a>
 							<a class="dropdown-item" th:href="@{/agendamentos/historico/paciente}">Histórico de Consultas</a>
 						</div>
-					</li>					
+					</li>
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laticínio</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" th:href="@{/especialidades}">Especialidades</a> 
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/u/novo/cadastro/usuario}">Cadastro de Usuários</a>
+							<a class="dropdown-item" th:href="@{/u/lista}">Lista de Usuários</a>
+						</div>
+					</li>
 				</ul>
 
 				<form class="form-inline mt-2 mt-md-0">
 					<div class="form-check mb-2 mr-sm-2">
-						<a class="btn btn-outline-success my-2 my-sm-0" role="button"
-							th:href="@{/login}">Login</a>
+						<a class="btn btn-outline-light my-2 my-sm-0" role="button"
+							th:href="@{/u/novo/cadastro}">GUIA DE USO DA API</a>
 					</div>
-
 					<div class="form-check mb-2 mr-sm-2">
 						<a class="btn btn-outline-success my-2 my-sm-0" role="button"
-							th:href="@{/u/novo/cadastro}">Cadastrar-se</a>
+							th:href="@{/u/novo/cadastro}">CADASTRAR NOVO ADMIN</a>
 					</div>
 				</form>
 
@@ -64,7 +73,7 @@
 					<div class="btn-group mb-2 mr-sm-2">
 						<button type="button" class="btn btn-light">
 							<i class="fas fa-user"></i> <span class=""
-								>Bob</span>
+								sec:authentication="name">Bob</span>
 						</button>
 						<button type="button"
 							class="btn btn-danger dropdown-toggle dropdown-toggle-split"
