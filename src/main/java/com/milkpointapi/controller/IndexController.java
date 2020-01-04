@@ -22,10 +22,10 @@ public class IndexController {
 		return "login";
 	}
 	
-	@GetMapping("/administrador")
+	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("user", new UserInfo());
-		return "register";
+		return "/administrador/register";
 	}
 
 	@RequestMapping("/home")
