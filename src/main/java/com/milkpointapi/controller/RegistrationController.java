@@ -12,14 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.milkpointapi.model.UserInfo;
 import com.milkpointapi.service.SecurityService;
 import com.milkpointapi.service.UserService;
 
 @Controller
-@RequestMapping("/administrador")
 public class RegistrationController {
 
 	@Autowired

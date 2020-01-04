@@ -21,6 +21,12 @@ public class IndexController {
 		model.addAttribute("user", new UserInfo());
 		return "login";
 	}
+	
+	@GetMapping("/administrador")
+	public String register(Model model) {
+		model.addAttribute("user", new UserInfo());
+		return "register";
+	}
 
 	@RequestMapping("/home")
 	public String home() {
