@@ -24,14 +24,21 @@
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2>Produtores Cadastrados</h2>
-
+						<h2 style="float: left;">Produtores Cadastrados</h2>
+						<form class="form-inline" method="get" th:action="@{/produtor/buscar/nome}">
+	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do produtor"
+	                    		th:name="nome" style="margin-left: auto;"/>
+	                        <button class="btn btn-dark"data-toggle="tooltip" data-placement="right" title="Buscar">
+								<i class="fas fa-search"></i>
+							</button>
+	                    </form>
+	                    
 						<table id="table-produtores"
 							class="table table-sm table-striped table-bordered nowrap"
 							style="width: 100%">
 							<thead class="thead-dark">
 								<tr class="text-center">
-									<th scope="col">#</th>
+									<th scope="col">ID</th>
 									<th scope="col">Nome Completo</th>
 									<th scope="col">Apelido</th>
 									<th scope="col">CPF</th>
@@ -62,10 +69,12 @@
 									</td>
 								</tr>
 							</tbody>
-							
 						</table>
 					</div>
-				</div>
+				</div>				
+				<div class="panel-footer">
+					<a class="btn btn-sm btn-success" th:href="@{/produtor/add}" >Adicionar Novo</a>
+				</div>				
 			</div>
 		</div>
 

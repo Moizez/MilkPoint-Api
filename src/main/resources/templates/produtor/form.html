@@ -27,8 +27,7 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 
-						<form th:action="${produtor.id == null} ? @{/produtor/save} : @{/produtor/editar}" 
-								th:object="${produtor}" method="POST" class="was-validated">
+						<form th:action="@{/produtor/save}" th:object="${produtor}" method="POST" class="was-validated">
 							
 							<div class="mb-3">
 								<label for="nome">Nome Completo</label>
@@ -63,10 +62,10 @@
 							<hr/>
 							
 							<div class="mb-3">
-								<label for="descricao">Descrição</label>
+								<label for="textarea">Descrição</label>
 								<div class="input-group">
-									<textarea type="text" class="form-control" id="apelido" placeholder="Insira suas observações, se assim desejar" 
-										    th:field="*{descricao}"/></textarea>
+									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
+										th:field="*{descricao}"/></textarea>
 								</div>
 							</div>
 							
@@ -98,7 +97,7 @@
 										data-toggle="tooltip" data-placement="right" title="Salvar">
 										<i class="fas fa-save"></i>
 									</button>
-									<button type="submit" class="btn btn-danger" onClick="window.location='http://localhost:8080/home';"  
+									<button type="button" class="btn btn-danger" onClick="window.location='javascript:history.back()';"  
 										data-toggle="tooltip" data-placement="right" title="Cancelar">						
 										<i class="fas fa-window-close"></i>
 									</button>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.milkpointapi.model.Produtor;
@@ -58,6 +59,13 @@ public class ProdutorController {
 	private ModelAndView delete(@PathVariable("id") Long id) {
 		produtorService.delete(id);
 		return findAll();
+	}
+
+	@GetMapping("/buscar/nome")
+	public ModelAndView findByFilme(@RequestParam("nome") String nome) {
+		ModelAndView mv = new ModelAndView("produtor/listar");
+		mv.addObject("produtores", produtorService.findByNome(nome));
+		return mv;
 	}
 
 }

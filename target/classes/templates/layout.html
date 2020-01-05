@@ -23,8 +23,6 @@
 <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous" rel="stylesheet" />
 <!-- Custom styles for this template -->
 <link th:href="@{/css/home.css(v=${version}) }" rel="stylesheet" />
-<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.mask.min.js"></script>
 
 </head>
 <body>
@@ -80,10 +78,17 @@
 			url = '';
 		});
 		
-		$(document).ready(function){
-			$("#cpf").mask("000.000.000-00")
-		})
+		var url = '';
 		
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+		
+		$(document).ready(function(){
+		    $(".navbar-toggle").click(function(){
+		        $(".sidebar").toggleClass("sidebar-open");
+		    })
+		});
 	</script>
 	
 </body>

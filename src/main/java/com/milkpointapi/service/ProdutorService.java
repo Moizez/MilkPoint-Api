@@ -33,5 +33,9 @@ public class ProdutorService {
 	public Produtor buscaLogin(String email) {
 		return repository.findByEmailIgnoreCaseContaining(email);
 	}
+	
+	public List<Produtor> findByNome(String nome) {
+		return repository.findByNomeIgnoreCaseContaining(nome);
+	}
 
 }

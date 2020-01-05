@@ -22,15 +22,21 @@ public class IndexController {
 		return "login";
 	}
 	
+	@RequestMapping("/home")
+	public String home() {
+		return "home";
+	}
+	
+	@GetMapping("/guiaapi")
+	public String guiaApi(Model model) {
+		model.addAttribute("user", new UserInfo());
+		return "/api/guiaapi";
+	}
+	
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("user", new UserInfo());
 		return "/administrador/register";
-	}
-
-	@RequestMapping("/home")
-	public String home() {
-		return "home";
 	}
 
 	@GetMapping("/loginfailure")
