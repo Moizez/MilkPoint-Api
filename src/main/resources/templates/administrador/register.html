@@ -14,7 +14,7 @@
 				width="72" height="72">
 			<div class="container">
 				<h1 class="jumbotron-heading">Milk Point</h1>
-				<p class="lead text-muted">Administradores</p>
+				<p class="lead text-muted">CADASTRO DE ADMINISTRADORES</p>
 			</div>
 		</section>
 
@@ -28,28 +28,40 @@
 
 						<form th:action="@{/register}"
 								th:object="${user}" method="post" class="was-validated">
+								
+							<div class="input-group">
+							 	<div class="input-group-prepend">
+							    	<span class="input-group-text">Nome e sobrenome</span>
+							  	</div>
+							  		<input type="text" aria-label="First name" class="form-control"
+							  			th:field="*{firstName}" placeholder="Insira seu nome" required />
+							  		<input type="text" aria-label="Last name" class="form-control"
+							  			th:field="*{lastName}" placeholder="Insira seu sobrenome" required />
+							</div>
 							
 							<div class="mb-3">
-								<label for="email">E-mail</label>
+								<label for="email"></label>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text" 
-												id="validationTooltipUsernamePrepend">@</span>
+												id="validationTooltipUsernamePrepend">E-mail</span>
 									</div>
 									<input type="email" class="form-control" id="email"
-										    th:field="*{email}" placeholder="Email"
+										    th:field="*{email}" placeholder="Exemplo: nome@provedor.com"
 										    aria-describedby="validationTooltipUsernamePrepend" required />
 									<div class="invalid-feedback">Email é requerido.</div>
 								</div>
 							</div>
 							
-							<div class="mb-3">
-								<label for="senha">Senha</label> 
-								<input type="password" class="form-control" id="senha" maxlength="6"
-										th:field="*{password}" placeholder="Insira sua senha de acesso" required />
-								<div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
+							<div class="input-group mb-3">
+  								<div class="input-group-prepend">
+    								<span class="input-group-text" id="senha">Senha</span>
+  								</div>
+							  	<input type="password" id="senha" maxlength="8" class="form-control"
+							  		th:field="*{password}" placeholder="Insira sua senha de acesso" required />
+							  		<div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
 							</div>
-
+							
 							<input type="hidden" th:field="*{id}"> 
 							<div class="form-group row">
 								<div class="col-sm-10">
@@ -57,6 +69,12 @@
 										data-toggle="tooltip" data-placement="right" title="Salvar">
 										<i class="fas fa-save"></i>
 									</button>
+									
+									<button type="submit" class="btn btn-danger" onClick="window.location='http://localhost:8080/home';"  
+										data-toggle="tooltip" data-placement="right" title="Cancelar">						
+										<i class="fas fa-window-close"></i>
+									</button>									
+									
 								</div>
 							</div>
 						</form>

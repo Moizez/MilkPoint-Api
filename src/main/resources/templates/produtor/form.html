@@ -3,6 +3,7 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
+
 </head>
 <body>
 
@@ -14,7 +15,7 @@
 				width="72" height="72">
 			<div class="container">
 				<h1 class="jumbotron-heading">Milk Point</h1>
-				<p class="lead text-muted">Produtores</p>
+				<p class="lead text-muted">CADASTRO DE PRODUTORES</p>
 			</div>
 		</section>
 
@@ -40,6 +41,36 @@
 							</div>
 							
 							<div class="mb-3">
+								<label for="nome">Apelido</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="apelido" placeholder="insira seu apelido" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{apelido}" required />
+									<div class="invalid-feedback">Apelido é requerido.</div>
+								</div>
+							</div>
+							
+							<div class="mb-3">
+								<label for="nome">CPF</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="cpf" placeholder="insira seu CPF" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{cpf}" required />
+									<div class="invalid-feedback">CPF é requerido.</div>
+								</div>
+							</div>
+							
+							<hr/>
+							
+							<div class="mb-3">
+								<label for="descricao">Descrição</label>
+								<div class="input-group">
+									<textarea type="text" class="form-control" id="apelido" placeholder="Insira suas observações, se assim desejar" 
+										    th:field="*{descricao}"/></textarea>
+								</div>
+							</div>
+							
+							<div class="mb-3">
 								<label for="email">E-mail</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -47,9 +78,9 @@
 												id="validationTooltipUsernamePrepend">@</span>
 									</div>
 									<input type="email" class="form-control" id="email"
-										placeholder="Email" aria-describedby="validationTooltipUsernamePrepend"
-										   th:field="*{email}" required readonly/>
-									<div class="invalid-feedback">Email é requerido.</div>
+										    th:field="*{email}" placeholder="E-mail"
+										    aria-describedby="validationTooltipUsernamePrepend" required />
+									<div class="invalid-feedback">E-mail é requerido.</div>
 								</div>
 							</div>
 							
@@ -67,10 +98,14 @@
 										data-toggle="tooltip" data-placement="right" title="Salvar">
 										<i class="fas fa-save"></i>
 									</button>
+									<button type="submit" class="btn btn-danger" onClick="window.location='http://localhost:8080/home';"  
+										data-toggle="tooltip" data-placement="right" title="Cancelar">						
+										<i class="fas fa-window-close"></i>
+									</button>
 								</div>
 							</div>
 						</form>
-
+						
 					</div>
 				</div>
 			</div>
