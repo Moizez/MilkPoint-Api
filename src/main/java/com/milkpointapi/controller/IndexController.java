@@ -30,7 +30,7 @@ public class IndexController {
 	@GetMapping("/guiaapi")
 	public String guiaApi(Model model) {
 		model.addAttribute("user", new UserInfo());
-		return "/api/guiaapi";
+		return "/guiadaapi/guiaapi";
 	}
 	
 	@GetMapping("/register")
