@@ -127,7 +127,7 @@ public class Produtor implements Serializable {
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
 	}
-
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

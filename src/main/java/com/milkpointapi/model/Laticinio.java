@@ -1,6 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,8 +36,32 @@ public class Laticinio implements Serializable {
 	@Column
 	private String nomeFantasia;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataCriacao;
+
 	@Column(length = 18)
 	private String cnpj;
+
+	@Column
+	private String cep;
+
+	@Column
+	private String logradouro;
+	
+	@Column
+	private int numero;
+
+	@Column
+	private String complemento;
+
+	@Column
+	private String bairro;
+
+	@Column
+	private String localidade;
+
+	@Column
+	private String uf;
 
 	@Column
 	private String email;
@@ -45,7 +71,7 @@ public class Laticinio implements Serializable {
 
 	@Column
 	private int perfil = 3;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "laticinio")
 	private List<Retirada> retiradas;
@@ -112,6 +138,78 @@ public class Laticinio implements Serializable {
 
 	public void setPerfil(int perfil) {
 		this.perfil = perfil;
+	}
+
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public List<Retirada> getRetiradas() {
+		return retiradas;
+	}
+
+	public void setRetiradas(List<Retirada> retiradas) {
+		this.retiradas = retiradas;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+	
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public static long getSerialversionuid() {

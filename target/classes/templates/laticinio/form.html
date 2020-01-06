@@ -3,7 +3,92 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
+<script type="text/javascript" >
+function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('logradouro').value=("");
+        document.getElementById('bairro').value=("");
+        document.getElementById('cidade').value=("");
+        document.getElementById('uf').value=("");
+}
 
+function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+        //Atualiza os campos com os valores.
+        document.getElementById('logradouro').value=(conteudo.logradouro);
+        document.getElementById('bairro').value=(conteudo.bairro);
+        document.getElementById('localidade').value=(conteudo.localidade);
+        document.getElementById('uf').value=(conteudo.uf);
+    } //end if.
+    else {
+        //CEP não Encontrado.
+        limpa_formulário_cep();
+        alert("CEP não encontrado.");
+    }
+}
+
+function pesquisacep(valor) {
+
+    //Nova variável "cep" somente com dígitos.
+    var cep = valor.replace(/\D/g, '');
+
+
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if(validacep.test(cep)) {
+
+            //Preenche os campos com "..." enquanto consulta webservice.
+            document.getElementById('logradouro').value="...";
+            document.getElementById('bairro').value="...";
+            document.getElementById('localidade').value="...";
+            document.getElementById('uf').value="...";
+
+            //Cria um elemento javascript.
+            var script = document.createElement('script');
+
+            //Sincroniza com o callback.
+            script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+            //Insere script no documento e carrega o conteúdo.
+            document.body.appendChild(script);
+
+        } //end if.
+        else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+        }
+    } //end if.
+    else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+    }
+};
+
+</script>
+<script type="text/javascript">
+	
+	function fMasc(objeto, mascara) {
+		obj = objeto
+		masc = mascara
+		setTimeout("fMascEx()", 1)
+	}
+	function fMascEx() {
+		obj.value = masc(obj.value)
+	}
+	function mCEP(cep) {
+		cep = cep.replace(/\D/g, "")
+		cep = cep.replace(/(\d{5})(\d)/, "$1-$2")
+		return cep
+	}
+		
+</script>
 </head>
 <body>
 
@@ -27,10 +112,12 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 
+						<p class="lead text-muted">Dados Cadastrais</p>
+						<hr/>
 						<form th:action="@{/laticinio/save}" th:object="${laticinio}" method="POST" class="was-validated">
 							
-							<div class="mb-3">
-								<label for="nome">Nome Completo</label>
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="nome">Nome</label>
 								<div class="input-group">
 									<input type="text" class="form-control" id="nome" placeholder="insira seu nome completo" 
 											aria-describedby="validationTooltipUsernamePrepend"
@@ -39,7 +126,7 @@
 								</div>
 							</div>
 							
-							<div class="mb-3">
+							<div class="form-group row col-md-5" style="margin-left: auto;">
 								<label for="nome">Nome Fantasia</label>
 								<div class="input-group">
 									<input type="text" class="form-control" id="nomeFantasia" placeholder="insira seu nome fantasia" 
@@ -49,7 +136,7 @@
 								</div>
 							</div>
 							
-							<div class="mb-3">
+							<div class="form-group row col-md-7" style="float: left;">
 								<label for="nome">CPF/CNPJ</label>
 								<div class="input-group">
 									<input type="text" class="form-control" id="cnpj" placeholder="insira seu CPF/CNPJ" 
@@ -58,8 +145,76 @@
 									<div class="invalid-feedback">CPF/CNPJ é requerido.</div>
 								</div>
 							</div>
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+	                        	<label for="dataNascimento">Data da Fundação</label>
+		                        <input type="date" class="form-control" id="dataCriacao" th:field="*{dataCriacao}"
+		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'" required />
+		                        <div class="invalid-feedback">A data de fundação é requerido.<span th:errors="*{dataCriacao}"></span>
+	                        	</div>
+	            			</div>
+							
+							<p class="lead text-muted">Endereço</p>
 							<hr/>
-							<div class="mb-3">
+							
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="cep">CEP</label>
+								<div class="input-group">
+								<input type="text" class="form-control" id="cep" autofocus="autofocus" onkeydown="javascript: fMasc( this, mCEP );"
+									onblur="pesquisacep(this.value);" placeholder="insira seu CEP" maxlength="9" th:field="*{cep}" required />
+									<div class="invalid-feedback">CEP é requerido.</div>
+								</div>
+							</div>							
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+								<label for="uf">Estado</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="uf" placeholder="insira seu estado" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{uf}" required />
+									<div class="invalid-feedback">O estado é requerido.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="cidade">Cidade</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="localidade" placeholder="insira sua cidade" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{localidade}" required />
+									<div class="invalid-feedback">A cidade é requerida.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+								<label for="bairro">Bairro</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="bairro" placeholder="insira seu bairro" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{bairro}" required />
+									<div class="invalid-feedback">O bairro é requerido.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="logradouro">Rua</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="logradouro" placeholder="insira sua rua" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{logradouro}" required />
+									<div class="invalid-feedback">A rua é requerida.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+								<label for="complemento">Complemento</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="complemento" placeholder="insira um complemento" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{complemento}" required/>
+									<div class="invalid-feedback">O complemento é requerido</div>
+								</div>
+							</div>
+							
+							<p class="lead text-muted">E-mail e Senha</p>
+							<hr/>
+							
+							<div class="form-group row col-md-7" style="float: left;">
 								<label for="email">E-mail</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -73,7 +228,7 @@
 								</div>
 							</div>
 							
-							<div class="mb-3">
+							<div class="form-group row col-md-5" style="margin-left: auto;">
 								<label for="senha">Senha</label> 
 								<input type="password" class="form-control" id="senha" maxlength="6"
 									placeholder="Insira sua senha de acesso" th:field="*{password}" required />
@@ -111,6 +266,8 @@
 		</main>
 
 	</section>
+	<script th:src="@{/js/maskcpf.js}"></script>
+	<script th:src="@{/js/buscacep.js}"></script>
 	<script	th:src="~{}" th:fragment="js"></script>
 	<script th:inline="javascript" th:fragment="inlinescript"></script>
 </body>
