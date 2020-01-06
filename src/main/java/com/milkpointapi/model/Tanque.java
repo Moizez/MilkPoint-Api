@@ -31,7 +31,7 @@ public class Tanque implements Serializable {
 	@Column(nullable = false, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
-
+	
 	@Column
 	private String descricao;
 
@@ -39,7 +39,7 @@ public class Tanque implements Serializable {
 	private String localizacao;
 
 	@Column
-	private float qtdAtual;
+	private float qtdAtual = 0;
 
 	@Column
 	private float qtdRestante;
@@ -150,6 +150,14 @@ public class Tanque implements Serializable {
 
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
+	}
+	
+	public List<Retirada> getRetiradas() {
+		return retiradas;
+	}
+
+	public void setRetiradas(List<Retirada> retiradas) {
+		this.retiradas = retiradas;
 	}
 
 	public static long getSerialversionuid() {

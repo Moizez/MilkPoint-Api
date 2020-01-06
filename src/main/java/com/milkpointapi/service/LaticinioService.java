@@ -33,5 +33,9 @@ public class LaticinioService {
     public Laticinio buscaLogin(String email) {
     	return repository.findByEmailIgnoreCaseContaining(email);
     }
+    
+    public List<Laticinio> findByNome(String nome) {
+		return repository.findByNomeIgnoreCaseContaining(nome);
+	}
 
 }

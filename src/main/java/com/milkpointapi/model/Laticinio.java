@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -32,11 +31,8 @@ public class Laticinio implements Serializable {
 	@Column
 	private String descricao;
 
-	@Lob
-	private byte[] imagem;
-
 	@Column
-	private String apelido;
+	private String nomeFantasia;
 
 	@Column(length = 18)
 	private String cnpj;
@@ -86,20 +82,12 @@ public class Laticinio implements Serializable {
 		this.cnpj = cnpj;
 	}
 
-	public byte[] getImagem() {
-		return imagem;
+	public String getNomeFantasia() {
+		return nomeFantasia;
 	}
 
-	public void setImagem(byte[] imagem) {
-		this.imagem = imagem;
-	}
-
-	public String getApelido() {
-		return apelido;
-	}
-
-	public void setApelido(String apelido) {
-		this.apelido = apelido;
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
 	}
 
 	public String getEmail() {

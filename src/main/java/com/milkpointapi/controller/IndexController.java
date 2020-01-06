@@ -36,7 +36,7 @@ public class IndexController {
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("user", new UserInfo());
-		return "/administrador/register";
+		return "/admin/register";
 	}
 
 	@GetMapping("/loginfailure")
@@ -50,7 +50,7 @@ public class IndexController {
 	@GetMapping("/logout")
 	public String logout() {
 		sessionService.clearSession();
-		return "index";
+		return "login";
 	}
 
 }

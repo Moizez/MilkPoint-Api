@@ -15,7 +15,7 @@
 				width="72" height="72">
 			<div class="container">
 				<h1 class="jumbotron-heading">Milk Point</h1>
-				<p class="lead text-muted">CADASTRO DE PRODUTORES</p>
+				<p class="lead text-muted">CADASTRO DE TANQUES</p>
 			</div>
 		</section>
 
@@ -27,12 +27,12 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 
-						<form th:action="@{/produtor/save}" th:object="${produtor}" method="POST" class="was-validated">
+						<form th:action="@{/tanque/save}" th:object="${tanque}" method="POST" class="was-validated">
 							
 							<div class="mb-3">
-								<label for="nome">Nome Completo</label>
+								<label for="nome">Nome</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="nome" placeholder="insira seu nome completo" 
+									<input type="text" class="form-control" id="nome" placeholder="Insira seu nome" 
 											aria-describedby="validationTooltipUsernamePrepend"
 										    th:field="*{nome}" required />
 									<div class="invalid-feedback">Nome é requerido.</div>
@@ -40,52 +40,52 @@
 							</div>
 							
 							<div class="mb-3">
-								<label for="nome">Apelido</label>
+								<label for="nome">Localização</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="apelido" placeholder="insira seu apelido" 
+									<input type="text" class="form-control" id="localizacao" placeholder="Insira o local" 
 											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{apelido}" required />
-									<div class="invalid-feedback">Apelido é requerido.</div>
+										    th:field="*{localizacao}" required />
+									<div class="invalid-feedback">A localização é requerida.</div>
 								</div>
 							</div>
 							
-							<div class="mb-3">
-								<label for="nome">CPF</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="cpf" placeholder="insira seu CPF" 
+							<div class="form-group row col-md-6" style="float: left;">
+								<label for="nome">Capacidade</label>
+								<input type="number" class="form-control" id="capacidade" placeholder="Insira a capacidade" 
 											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{cpf}" required />
-									<div class="invalid-feedback">CPF é requerido.</div>
-								</div>
+										    th:field="*{capacidade}" required />
 							</div>
-							<hr/>
+							
+							<div class="form-group row col-md-6" style="margin-left: auto;">
+								<label for="nome">Qtd. Atual</label>
+								<input type="number" class="form-control" id="qtdAtual" placeholder="Insira a quantidade atual, caso aja" 
+									aria-describedby="validationTooltipUsernamePrepend" th:field="*{qtdAtual}"/>
+							</div>
+							
+							<div class="form-group row col-md-6" style="float: left;">
+	                        	<label for="dataNascimento">Data da Criação</label>
+		                        <input type="date" class="form-control" id="dataCriacao" th:field="*{dataCriacao}"
+		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'" />
+		                        <div class="invalid-feedback">
+									<span th:errors="*{dataCriacao}"></span>
+	                        	</div>
+	            			</div>
+	            			
+	            			<div class="form-group row col-md-6" style="margin-left: auto;">
+	            			<label for="responsavel">Responsável pelo Tanque</label>
+								<select th:field="*{responsavel}" class="form-control">
+									<option selected value="-1">Selecione um Responsável</option>
+									<option th:each="responsavel : ${responsaveis}"
+										th:value="${responsavel.id}" th:text="${responsavel.nome}"></option>
+								</select>
+							</div>
+							
 							<div class="mb-3">
 								<label for="textarea">Descrição</label>
 								<div class="input-group">
 									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
 										th:field="*{descricao}"/></textarea>
 								</div>
-							</div>
-							
-							<div class="mb-3">
-								<label for="email">E-mail</label>
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<span class="input-group-text" 
-												id="validationTooltipUsernamePrepend">@</span>
-									</div>
-									<input type="email" class="form-control" id="email"
-										    th:field="*{email}" placeholder="E-mail"
-										    aria-describedby="validationTooltipUsernamePrepend" required />
-									<div class="invalid-feedback">E-mail é requerido.</div>
-								</div>
-							</div>
-							
-							<div class="mb-3">
-								<label for="senha">Senha</label> 
-								<input type="password" class="form-control" id="senha" maxlength="6"
-									placeholder="Insira sua senha de acesso" th:field="*{password}" required />
-								<div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
 							</div>							
 
 							<input type="hidden" th:field="*{id}"> 

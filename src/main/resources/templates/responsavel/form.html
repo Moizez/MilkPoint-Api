@@ -3,6 +3,7 @@
 	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
+
 </head>
 <body>
 
@@ -10,11 +11,11 @@
 		<main role="main">
 
 		<section class="jumbotron text-center">
-			<img class="d-block mx-auto" th:src="@{/image/spring-security.png}"
+			<img class="d-block mx-auto" th:src="@{/image/logo_mp.png}"
 				width="72" height="72">
 			<div class="container">
-				<h1 class="jumbotron-heading">Clínica Spring Security</h1>
-				<p class="lead text-muted">Médicos e Especialistas</p>
+				<h1 class="jumbotron-heading">Milk Point</h1>
+				<p class="lead text-muted">CADASTRO DE RESPONSÁVEIS</p>
 			</div>
 		</section>
 
@@ -26,8 +27,7 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 
-						<form th:action="${paciente.id == null} ? @{/pacientes/salvar} : @{/pacientes/editar}" 
-								th:object="${paciente}" method="POST" class="was-validated">
+						<form th:action="@{/responsavel/save}" th:object="${responsavel}" method="POST" class="was-validated">
 							
 							<div class="mb-3">
 								<label for="nome">Nome Completo</label>
@@ -40,47 +40,69 @@
 							</div>
 							
 							<div class="mb-3">
-								<label for="nome">Data de Nascimento</label>
+								<label for="nome">Apelido</label>
 								<div class="input-group">
-									<input type="date" class="form-control" id="dtNascimento"
-										   aria-describedby="validationTooltipUsernamePrepend"
-										   th:field="*{dtNascimento}" required />
-									<div class="invalid-feedback">Data de nascimento é requerida.</div>
+									<input type="text" class="form-control" id="apelido" placeholder="insira seu apelido" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{apelido}" required />
+									<div class="invalid-feedback">Apelido é requerido.</div>
 								</div>
-							</div>							
-															
+							</div>
+							
 							<div class="mb-3">
-								<label for="email">Email</label>
+								<label for="nome">CPF</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="cpf" placeholder="insira seu CPF" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{cpf}" required />
+									<div class="invalid-feedback">CPF é requerido.</div>
+								</div>
+							</div>
+							<hr/>
+							<div class="mb-3">
+								<label for="textarea">Descrição</label>
+								<div class="input-group">
+									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
+										th:field="*{descricao}"/></textarea>
+								</div>
+							</div>
+							
+							<div class="mb-3">
+								<label for="email">E-mail</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text" 
 												id="validationTooltipUsernamePrepend">@</span>
 									</div>
 									<input type="email" class="form-control" id="email"
-										placeholder="Email" aria-describedby="validationTooltipUsernamePrepend"
-										   th:field="*{usuario.email}" required readonly/>
-									<div class="invalid-feedback">Email é requerido.</div>
+										    th:field="*{email}" placeholder="E-mail"
+										    aria-describedby="validationTooltipUsernamePrepend" required />
+									<div class="invalid-feedback">E-mail é requerido.</div>
 								</div>
 							</div>
 							
 							<div class="mb-3">
 								<label for="senha">Senha</label> 
 								<input type="password" class="form-control" id="senha" maxlength="6"
-									placeholder="Insira sua senha de acesso" th:field="*{usuario.senha}" required />
+									placeholder="Insira sua senha de acesso" th:field="*{password}" required />
 								<div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
 							</div>							
 
 							<input type="hidden" th:field="*{id}"> 
 							<div class="form-group row">
 								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary"
+									<button type="submit" class="btn btn-dark"
 										data-toggle="tooltip" data-placement="right" title="Salvar">
 										<i class="fas fa-save"></i>
+									</button>
+									<button type="button" class="btn btn-danger" onClick="window.location='javascript:history.back()';"  
+										data-toggle="tooltip" data-placement="right" title="Cancelar">						
+										<i class="fas fa-window-close"></i>
 									</button>
 								</div>
 							</div>
 						</form>
-
+						
 					</div>
 				</div>
 			</div>

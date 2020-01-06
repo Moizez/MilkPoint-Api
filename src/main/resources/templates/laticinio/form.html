@@ -15,7 +15,7 @@
 				width="72" height="72">
 			<div class="container">
 				<h1 class="jumbotron-heading">Milk Point</h1>
-				<p class="lead text-muted">CADASTRO DE PRODUTORES</p>
+				<p class="lead text-muted">CADASTRO DE LATICÍNIOS</p>
 			</div>
 		</section>
 
@@ -27,7 +27,7 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 
-						<form th:action="@{/produtor/save}" th:object="${produtor}" method="POST" class="was-validated">
+						<form th:action="@{/laticinio/save}" th:object="${laticinio}" method="POST" class="was-validated">
 							
 							<div class="mb-3">
 								<label for="nome">Nome Completo</label>
@@ -40,33 +40,25 @@
 							</div>
 							
 							<div class="mb-3">
-								<label for="nome">Apelido</label>
+								<label for="nome">Nome Fantasia</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="apelido" placeholder="insira seu apelido" 
+									<input type="text" class="form-control" id="nomeFantasia" placeholder="insira seu nome fantasia" 
 											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{apelido}" required />
-									<div class="invalid-feedback">Apelido é requerido.</div>
+										    th:field="*{nomeFantasia}" required />
+									<div class="invalid-feedback">Nome fantasia é requerido.</div>
 								</div>
 							</div>
 							
 							<div class="mb-3">
-								<label for="nome">CPF</label>
+								<label for="nome">CPF/CNPJ</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="cpf" placeholder="insira seu CPF" 
+									<input type="text" class="form-control" id="cnpj" placeholder="insira seu CPF/CNPJ" 
 											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{cpf}" required />
-									<div class="invalid-feedback">CPF é requerido.</div>
+										    th:field="*{cnpj}" required />
+									<div class="invalid-feedback">CPF/CNPJ é requerido.</div>
 								</div>
 							</div>
 							<hr/>
-							<div class="mb-3">
-								<label for="textarea">Descrição</label>
-								<div class="input-group">
-									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
-										th:field="*{descricao}"/></textarea>
-								</div>
-							</div>
-							
 							<div class="mb-3">
 								<label for="email">E-mail</label>
 								<div class="input-group">
@@ -86,6 +78,14 @@
 								<input type="password" class="form-control" id="senha" maxlength="6"
 									placeholder="Insira sua senha de acesso" th:field="*{password}" required />
 								<div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
+							</div>
+							
+							<div class="mb-3">
+								<label for="textarea">Descrição</label>
+								<div class="input-group">
+									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
+										th:field="*{descricao}"/></textarea>
+								</div>
 							</div>							
 
 							<input type="hidden" th:field="*{id}"> 

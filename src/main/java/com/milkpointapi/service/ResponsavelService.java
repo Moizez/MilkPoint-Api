@@ -33,5 +33,9 @@ public class ResponsavelService {
     public Responsavel buscaLogin(String email) {
     	return repository.findByEmailIgnoreCaseContaining(email);
     }
+    
+    public List<Responsavel> findByNome(String nome) {
+		return repository.findByNomeIgnoreCaseContaining(nome);
+	}
 
 }

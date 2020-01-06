@@ -42,9 +42,9 @@ public class ProdutorController {
 		return findAll();
 	}
 
-	@GetMapping("/listar")
+	@GetMapping("/list")
 	private ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView("produtor/listar");
+		ModelAndView mv = new ModelAndView("produtor/list");
 		mv.addObject("produtores", produtorService.findAll());
 		return mv;
 	}
@@ -63,7 +63,7 @@ public class ProdutorController {
 
 	@GetMapping("/buscar/nome")
 	public ModelAndView findByFilme(@RequestParam("nome") String nome) {
-		ModelAndView mv = new ModelAndView("produtor/listar");
+		ModelAndView mv = new ModelAndView("produtor/list");
 		mv.addObject("produtores", produtorService.findByNome(nome));
 		return mv;
 	}
