@@ -49,9 +49,6 @@ public class Laticinio implements Serializable {
 	private String logradouro;
 	
 	@Column
-	private int numero;
-
-	@Column
 	private String complemento;
 
 	@Column
@@ -172,14 +169,6 @@ public class Laticinio implements Serializable {
 		this.logradouro = logradouro;
 	}
 	
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
 	public String getComplemento() {
 		return complemento;
 	}
