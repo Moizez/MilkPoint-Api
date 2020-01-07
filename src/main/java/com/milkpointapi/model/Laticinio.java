@@ -39,7 +39,7 @@ public class Laticinio implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataCriacao;
 
-	@Column(length = 18)
+	@Column(name = "cnpj", unique = true, length = 18, nullable = false)
 	private String cnpj;
 
 	@Column
@@ -60,7 +60,7 @@ public class Laticinio implements Serializable {
 	@Column
 	private String uf;
 
-	@Column
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@Column

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.milkpointapi.model.Produtor;
 import com.milkpointapi.service.ProdutorService;
 
@@ -35,11 +34,12 @@ public class ProdutorController {
 	public ModelAndView save(@Valid Produtor produtor, BindingResult result) throws IOException {
 
 		if (result.hasErrors()) {
-			return add(produtor);
+			return new ModelAndView("produtor/form").addObject("produtor", produtor)
+					.addObject("falha", "E-mail ou CPF já existentem!");
+		} else {
+			produtorService.save(produtor);
+			return new ModelAndView("produtor/list").addObject("produtor", produtor);
 		}
-		produtorService.save(produtor);
-
-		return findAll();
 	}
 
 	@GetMapping("/list")

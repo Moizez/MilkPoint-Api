@@ -101,6 +101,13 @@
 									</button>
 								</div>
 							</div>
+							
+							<th:block th:if="${falha != null}">
+							<div class="alert alert-danger">
+								<span th:text="${falha}"></span>
+						</div>
+						</th:block>
+							
 						</form>
 						
 					</div>
