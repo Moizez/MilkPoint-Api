@@ -33,12 +33,16 @@ public class ProdutorController {
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Produtor produtor, BindingResult result) throws IOException {
 
-		if (result.hasErrors()) {
-			return new ModelAndView("produtor/form").addObject("produtor", produtor)
-					.addObject("falha", "E-mail ou CPF já existentem!");
-		} else {
-			produtorService.save(produtor);
-			return new ModelAndView("produtor/list").addObject("produtor", produtor);
+		try {
+			if (result.hasErrors()) {
+				return add(produtor);
+			} else {
+				produtorService.save(produtor);
+				return findAll();
+			}
+		} catch (Exception e) {
+			return new ModelAndView("produtor/form").addObject("produtor", produtor).addObject("falha",
+					"E-mail ou CPF já existentem!");
 		}
 	}
 

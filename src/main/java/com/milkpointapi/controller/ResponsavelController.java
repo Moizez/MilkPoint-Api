@@ -34,11 +34,17 @@ public class ResponsavelController {
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Responsavel responsavel, BindingResult result) throws IOException {
 
-		if (result.hasErrors()) {
-			return add(responsavel);
+		try {
+			if (result.hasErrors()) {
+				return add(responsavel);
+			} else {
+				responsavelService.save(responsavel);
+				return findAll();
+			}
+		} catch (Exception e) {
+			return new ModelAndView("responsavel/form").addObject("responsavel", responsavel).addObject("falha",
+					"E-mail ou CPF já existentem!");
 		}
-		responsavelService.save(responsavel);
-		return findAll();
 	}
 
 	@GetMapping("/list")
@@ -58,7 +64,7 @@ public class ResponsavelController {
 		responsavelService.delete(id);
 		return findAll();
 	}
-	
+
 	@GetMapping("/buscar/nome")
 	public ModelAndView findByFilme(@RequestParam("nome") String nome) {
 		ModelAndView mv = new ModelAndView("responsavel/list");

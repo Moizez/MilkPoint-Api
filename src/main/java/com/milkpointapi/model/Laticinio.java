@@ -36,6 +36,7 @@ public class Laticinio implements Serializable {
 	@Column
 	private String nomeFantasia;
 
+	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataCriacao;
 

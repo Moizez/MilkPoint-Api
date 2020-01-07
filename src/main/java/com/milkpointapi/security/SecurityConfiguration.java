@@ -40,7 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeRequests().antMatchers("/**").permitAll()
-		.antMatchers("/user/**").hasAnyRole("USER")
 		.antMatchers("/admin/**").hasAnyRole("ADMIN")
 		.and().formLogin()
 		.loginPage("/")
@@ -49,7 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.passwordParameter("password")
 		.defaultSuccessUrl("/redirectdashboard")
 		.failureUrl("/loginfailure")
-		.and().exceptionHandling().accessDeniedPage("/accessdenied");
+		.and().exceptionHandling().accessDeniedPage("/accessdenied")
+		.and().rememberMe();
 	}
 
 }

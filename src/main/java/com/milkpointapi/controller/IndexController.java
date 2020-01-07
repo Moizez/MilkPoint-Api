@@ -29,13 +29,13 @@ public class IndexController {
 	
 	@GetMapping("/guiaapi")
 	public String guiaApi(Model model) {
-		return "/guiadaapi/guiaapi";
+		return "guiadaapi/guiaapi";
 	}
 	
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("user", new UserInfo());
-		return "/admin/register";
+		return "admin/register";
 	}
 
 	@GetMapping("/loginfailure")

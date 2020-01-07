@@ -34,13 +34,17 @@ public class LaticinioController {
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Laticinio laticinio, BindingResult result) throws IOException {
 
-		if (result.hasErrors()) {
-			return add(laticinio);
+		try {
+			if (result.hasErrors()) {
+				return add(laticinio);
+			} else {
+				laticinioService.save(laticinio);
+				return findAll();
+			}
+		} catch (Exception e) {
+			return new ModelAndView("laticinio/form").addObject("laticinio", laticinio).addObject("falha",
+					"E-mail ou CPF já existentem!");
 		}
-
-		laticinioService.save(laticinio);
-
-		return findAll();
 	}
 
 	@GetMapping("/list")
@@ -61,7 +65,7 @@ public class LaticinioController {
 		laticinioService.delete(id);
 		return findAll();
 	}
-	
+
 	@GetMapping("/buscar/nome")
 	public ModelAndView findByFilme(@RequestParam("nome") String nome) {
 		ModelAndView mv = new ModelAndView("laticinio/list");

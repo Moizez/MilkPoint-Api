@@ -1,6 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,11 +38,33 @@ public class Produtor implements Serializable {
 	@Column(name = "cpf", unique = true, length = 14, nullable = false)
 	private String cpf;
 
+	@Column
+	private String cep;
+
+	@Column
+	private String logradouro;
+
+	@Column
+	private String complemento;
+
+	@Column
+	private String bairro;
+
+	@Column
+	private String localidade;
+
+	@Column
+	private String uf;
+
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@Column
 	private String password;
+
+	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataNascimento;
 
 	@Column
 	private int perfil = 1;
@@ -70,6 +95,54 @@ public class Produtor implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public String getDescricao() {
@@ -126,6 +199,14 @@ public class Produtor implements Serializable {
 
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public static long getSerialversionuid() {

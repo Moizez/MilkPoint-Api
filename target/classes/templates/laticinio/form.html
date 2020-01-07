@@ -29,6 +29,7 @@
 
 						<p class="lead text-muted">Dados Cadastrais</p>
 						<hr/>
+						
 						<form th:action="@{/laticinio/save}" th:object="${laticinio}" method="POST" class="was-validated">
 							
 							<div class="form-group row col-md-7" style="float: left;">
@@ -62,7 +63,7 @@
 							</div>
 							
 							<div class="form-group row col-md-5" style="margin-left: auto;">
-	                        	<label for="dataNascimento">Data da Fundação</label>
+	                        	<label for="dataFuncacao">Data da Fundação</label>
 		                        <input type="date" class="form-control" id="dataCriacao" th:field="*{dataCriacao}"
 		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'" required />
 		                        <div class="invalid-feedback">A data de fundação é requerido.<span th:errors="*{dataCriacao}"></span>
