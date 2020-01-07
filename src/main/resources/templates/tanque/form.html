@@ -32,7 +32,7 @@
 							<div class="mb-3">
 								<label for="nome">Nome</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="nome" placeholder="Insira seu nome" 
+									<input type="text" class="form-control" id="nome" placeholder="Insira seu nome do tanque" 
 											aria-describedby="validationTooltipUsernamePrepend"
 										    th:field="*{nome}" required />
 									<div class="invalid-feedback">Nome é requerido.</div>
@@ -42,7 +42,7 @@
 							<div class="mb-3">
 								<label for="nome">Localização</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="localizacao" placeholder="Insira o local" 
+									<input type="text" class="form-control" id="localizacao" placeholder="Insira o local do tanque" 
 											aria-describedby="validationTooltipUsernamePrepend"
 										    th:field="*{localizacao}" required />
 									<div class="invalid-feedback">A localização é requerida.</div>
@@ -50,11 +50,16 @@
 							</div>
 							
 							<div class="form-group row col-md-6" style="float: left;">
-								<label for="nome">Capacidade</label>
-								<input type="number" class="form-control" id="capacidade" placeholder="Insira a capacidade" 
-											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{capacidade}" required />
-							</div>
+	                        <label for="capacidade">Capacidade</label>
+	                        <select id="capacidade" class="form-control" th:field="*{capacidade}"
+	                                th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'">
+	                            <option value="">Selecione...</option>
+	                            <option th:each="capacidade : ${capacidades}" th:value="${capacidade}" th:text="${capacidade.descricao}"></option>
+	                        </select>
+	                        <div class="invalid-feedback">
+								<span th:errors="*{capacidade}"></span>
+	                        </div>
+	                    </div>
 							
 							<div class="form-group row col-md-6" style="margin-left: auto;">
 								<label for="nome">Qtd. Atual</label>

@@ -16,6 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.milkpointapi.jobs.Capacidade;
 import com.milkpointapi.jobs.Status;
 
 @Entity
@@ -28,7 +29,7 @@ public class Tanque implements Serializable {
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, unique = true, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
 	
@@ -46,9 +47,9 @@ public class Tanque implements Serializable {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataCriacao;
-
+	
 	@Column
-	private Long capacidade;
+	private Capacidade capacidade = Capacidade.ZERO;
 
 	@ManyToOne
 	public Responsavel responsavel;
@@ -104,11 +105,11 @@ public class Tanque implements Serializable {
 		this.responsavel = responsavel;
 	}
 
-	public Long getCapacidade() {
+	public Capacidade getCapacidade() {
 		return capacidade;
 	}
 
-	public void setCapacidade(Long capacidade) {
+	public void setCapacidade(Capacidade capacidade) {
 		this.capacidade = capacidade;
 	}
 
