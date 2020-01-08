@@ -16,8 +16,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.milkpointapi.jobs.Capacidade;
-import com.milkpointapi.jobs.Status;
+import com.milkpointapi.enums.Capacidade;
+import com.milkpointapi.enums.Status;
+import com.milkpointapi.enums.Tipo;
 
 @Entity
 public class Tanque implements Serializable {
@@ -32,7 +33,7 @@ public class Tanque implements Serializable {
 	@Column(nullable = false, unique = true, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
-	
+
 	@Column
 	private String descricao;
 
@@ -41,18 +42,27 @@ public class Tanque implements Serializable {
 
 	@Column
 	private float qtdAtual = 0;
+	
+	@Column
+	private String comunidade;
+	
+	@Column
+	private String complemento;
 
 	@Column
 	private float qtdRestante;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataCriacao;
-	
-	@Column
-	private Capacidade capacidade = Capacidade.ZERO;
 
 	@ManyToOne
 	public Responsavel responsavel;
+
+	@Column
+	private Capacidade capacidade;
+
+	@Column
+	private Tipo tipo = Tipo.BOVINO;
 
 	@Column
 	private Status status = Status.INATIVO;
@@ -60,11 +70,11 @@ public class Tanque implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "tanque")
 	private List<Retirada> retiradas;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "tanque")
 	private List<Deposito> depositos;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -129,6 +139,14 @@ public class Tanque implements Serializable {
 		this.qtdRestante = qtdRestante;
 	}
 
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
 	public Status getStatus() {
 		return status;
 	}
@@ -139,6 +157,22 @@ public class Tanque implements Serializable {
 
 	public String getLocalizacao() {
 		return localizacao;
+	}
+	
+	public String getComunidade() {
+		return comunidade;
+	}
+
+	public void setComunidade(String comunidade) {
+		this.comunidade = comunidade;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public List<Deposito> getDepositos() {
@@ -152,7 +186,7 @@ public class Tanque implements Serializable {
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
-	
+
 	public List<Retirada> getRetiradas() {
 		return retiradas;
 	}

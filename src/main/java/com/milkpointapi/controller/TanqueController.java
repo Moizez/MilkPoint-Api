@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.milkpointapi.jobs.Capacidade;
+import com.milkpointapi.enums.Capacidade;
+import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.ResponsavelService;
 import com.milkpointapi.service.TanqueService;
@@ -36,6 +37,7 @@ public class TanqueController {
 		ModelAndView mv = new ModelAndView("tanque/form");
 		mv.addObject("responsaveis", responsavelService.findAll());
 		mv.addObject("tanque", tanque);
+		mv.addObject("tipos", Tipo.values());
 
 		return mv;
 	}
@@ -47,8 +49,6 @@ public class TanqueController {
 			if (result.hasErrors()) {
 				return add(tanque);
 
-			} else if (tanque.getCapacidade() == Capacidade.ZERO) {
-				tanque.setQtdRestante(0 - tanque.getQtdAtual());
 			} else if (tanque.getCapacidade() == Capacidade.MIL) {
 				tanque.setQtdRestante(1000 - tanque.getQtdAtual());
 			} else if (tanque.getCapacidade() == Capacidade.DOISMIL) {
@@ -60,7 +60,7 @@ public class TanqueController {
 			} else if (tanque.getCapacidade() == Capacidade.QUATROMILEQUINHENTOS) {
 				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
 			}
-
+			
 			tanqueService.save(tanque);
 			return findAll();
 
@@ -105,6 +105,11 @@ public class TanqueController {
 		ModelAndView mv = new ModelAndView("tanque/list");
 		mv.addObject("tanques", tanqueService.findByNome(nome));
 		return mv;
+	}
+
+	@ModelAttribute("tipos")
+	public Tipo[] getTipos() {
+		return Tipo.values();
 	}
 
 	@ModelAttribute("capacidades")
