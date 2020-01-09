@@ -14,7 +14,7 @@
 				width="72" height="72">
 			<div class="container">
 				<h1 class="jumbotron-heading">Milk Point</h1>
-				<p class="lead text-muted">LISTA DE PRODUTORES</p>
+				<p class="lead text-muted">LISTA DE ADMINISTRADORES</p>
 			</div>
 		</section>
 
@@ -24,7 +24,7 @@
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 style="float: left;">Produtores Cadastrados</h2>
+						<h2 style="float: left;">Administradores Cadastrados</h2>
 						<form class="form-inline" method="get" th:action="@{/produtor/buscar/nome}">
 	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do produtor"
 	                    		th:name="nome" style="margin-left: auto;"/>
@@ -39,32 +39,22 @@
 							<thead class="thead-dark">
 								<tr class="text-center">
 									<th scope="col">ID</th>
-									<th scope="col">Nome Completo</th>
-									<th scope="col">Apelido</th>
-									<th scope="col">CPF</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Sobrenome</th>
 									<th scope="col">E-mail</th>
-									<th scope="col">Descrição</th>
 									<th scope="col">Ações</th>								
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="text-center" th:each="produtor : ${produtores}">
-									<td th:text="${produtor.id}"></td>
-									<td th:text="${produtor.nome}"></td>
-									<td th:text="${produtor.apelido}"></td>
-									<td th:text="${produtor.cpf}"></td>
-									<td th:text="${produtor.email}"></td>
-									<td>
-		                            	<button type="button" class="btn btn-secondary btn-sm" data-container="body"
-		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(
-			                                    produtor.descricao)}">		                                
-		                                	<i class="fa fa-eye" aria-hidden="true"></i>
-		                            	</button>
-		                        	</td>
+								<tr class="text-center" th:each="user : ${users}">
+									<td th:text="${user.id}"></td>
+									<td th:text="${user.firstName}"></td>
+									<td th:text="${user.lastName}"></td>
+									<td th:text="${user.email}"></td>
 									<td>
 										<div class="btn-group pull-right">
-									   		<a class="btn btn-sm btn-primary" th:href="@{/produtor/edit/{id}(id=${produtor.id})}" >Editar</a>
-									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/produtor/delete/{id}(id=${produtor.id})}">Excluir</a>
+									   		<a class="btn btn-sm btn-primary" th:href="@{/user/edit/{id}(id=${user.id})}" >Editar</a>
+									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/user/delete/{id}(id=${user.id})}">Excluir</a>
 									   </div>
 									</td>
 								</tr>
@@ -73,7 +63,7 @@
 					</div>
 				</div>				
 				<div class="panel-footer">
-					<a class="btn btn-sm btn-success" th:href="@{/produtor/add}" >Adicionar Novo</a>
+					<a class="btn btn-sm btn-success" th:href="@{/register}" >Adicionar Novo</a>
 				</div>				
 			</div>
 		</div>

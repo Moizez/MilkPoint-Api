@@ -47,4 +47,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByRoleAdmin();
 	}
 
+	@Override
+	public Object findAll() {
+		return userRepository.findAll();
+	}
+
 }

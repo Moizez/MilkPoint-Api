@@ -13,4 +13,7 @@ public interface UserService {
 	void update(UserInfo userInfo);
 
 	public UserInfo findByRoleAdmin();
+
+	Object findAll();
+
 }
