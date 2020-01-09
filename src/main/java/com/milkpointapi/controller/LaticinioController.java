@@ -67,7 +67,7 @@ public class LaticinioController {
 	}
 
 	@GetMapping("/buscar/nome")
-	public ModelAndView findByFilme(@RequestParam("nome") String nome) {
+	public ModelAndView findByLaticinio(@RequestParam("nome") String nome) {
 		ModelAndView mv = new ModelAndView("laticinio/list");
 		mv.addObject("laticinios", laticinioService.findByNome(nome));
 		return mv;

@@ -1,5 +1,7 @@
 package com.milkpointapi.service;
 
+import java.util.List;
+
 import com.milkpointapi.model.UserInfo;
 
 public interface UserService {
@@ -15,5 +17,7 @@ public interface UserService {
 	public UserInfo findByRoleAdmin();
 
 	Object findAll();
+
+	List<UserInfo> findByNome(String firstName);
 
 }

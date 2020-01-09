@@ -101,7 +101,7 @@ public class TanqueController {
 	}
 
 	@GetMapping("/buscar/nome")
-	public ModelAndView findByFilme(@RequestParam("nome") String nome) {
+	public ModelAndView findByTanque(@RequestParam("nome") String nome) {
 		ModelAndView mv = new ModelAndView("tanque/list");
 		mv.addObject("tanques", tanqueService.findByNome(nome));
 		return mv;

@@ -1,5 +1,6 @@
 package com.milkpointapi.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -19,5 +20,8 @@ public interface UserRepository extends CrudRepository<UserInfo, Long> {
 
 	@Query(value = "SELECT * FROM user u where u.role = \"ADMIN\";", nativeQuery = true)
 	UserInfo findByRoleAdmin();
+	
+	@Query
+	public List<UserInfo> findByFirstNameIgnoreCaseContaining(String firstName);
 
 }

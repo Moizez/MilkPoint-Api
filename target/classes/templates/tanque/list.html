@@ -45,6 +45,7 @@
 									<th scope="col">Qtd. Atual</th>
 									<th scope="col">Qtd. Restante</th>
 									<th scope="col">Responsável do Tanque</th>
+									<th scope="col">Tipo</th>
 									<th scope="col">Descrição</th>
 									<th scope="col">Ações</th>								
 								</tr>
@@ -54,7 +55,7 @@
 									<td th:text="${tanque.id}"></td>
 									<td th:text="${tanque.nome}"></td>
 									<td th:text="${tanque.localizacao}"></td>
-									<td th:text="${tanque.capacidade}"></td>
+									<td th:text="${tanque.capacidade.descricao}"></td>
 									<td th:text="${tanque.qtdAtual}"></td>
 									<td th:text="${tanque.qtdRestante}"></td>
 									<td>
@@ -62,6 +63,7 @@
 											<div th:text= "${responsavel.nome}"></div>								
 										</div>
 									</td>
+									<td th:text="${tanque.tipo.valor}"></td>
 									<td>
 		                            	<button type="button" class="btn btn-secondary btn-sm" data-container="body"
 		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(

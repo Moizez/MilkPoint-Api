@@ -26,14 +26,14 @@
 
 						<h2 style="float: left;">Responsáveis Cadastrados</h2>
 						<form class="form-inline" method="get" th:action="@{/responsavel/buscar/nome}">
-	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do responsável"
+	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do responsavel"
 	                    		th:name="nome" style="margin-left: auto;"/>
 	                        <button class="btn btn-dark"data-toggle="tooltip" data-placement="right" title="Buscar">
 								<i class="fas fa-search"></i>
 							</button>
 	                    </form>
 	                    
-						<table id="table-produtores"
+						<table id="table-responsaveis"
 							class="table table-sm table-striped table-bordered nowrap"
 							style="width: 100%">
 							<thead class="thead-dark">
@@ -81,7 +81,7 @@
 		</main>
 		
 	</section>
-	<script	th:src="@{/js/produtor.js(v=${version})}" th:fragment="js"></script>
+	<script	th:src="@{/js/responsavel.js(v=${version})}" th:fragment="js"></script>
 	<script th:inline="javascript" th:fragment="inlinescript"></script>
 </body>
 </html>
