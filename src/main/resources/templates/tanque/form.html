@@ -55,7 +55,7 @@
 							<div class="form-group row col-md-6" style="float: left;">
 								<label for="comunidade">Comunidade</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="comunidade" placeholder="insira o nome da sua comunidade" 
+									<input type="text" class="form-control" id="comunidade" placeholder="Insira o nome da sua comunidade" 
 											aria-describedby="validationTooltipUsernamePrepend" th:field="*{comunidade}" required/>
 									<div class="invalid-feedback">A comunidade é requerida</div>
 								</div>
@@ -64,49 +64,52 @@
 							<div class="form-group row col-md-6" style="margin-left: auto;">
 								<label for="complemento">Complemento</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="complemento" placeholder="insira um complemento" 
-											aria-describedby="validationTooltipUsernamePrepend" th:field="*{complemento}" required/>
+									<input type="text" class="form-control" id="complemento" placeholder="Insira um complemento" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{complemento}"/>
 									<div class="invalid-feedback">O complemento é requerido</div>
 								</div>
 							</div>
 							
+							<br>
 							<p class="lead text-muted">Caracteristicas do Tanque</p>
 							<hr/>
 							
 							<div class="form-group row col-md-6" style="float: left;">
 	                        <label for="capacidade">Capacidade Total do Tanque</label>
 	                        <select id="capacidade" class="form-control" th:field="*{capacidade}"
-	                                th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'">
+	                                th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'" required>
 	                            <option value="">Selecione...</option>
 	                            <option th:each="capacidade : ${capacidades}" th:value="${capacidade}" th:text="${capacidade.descricao}"></option>
 	                        </select>
-	                        <div class="invalid-feedback">
+	                        <div class="invalid-feedback"> A capacidade é requerida
 								<span th:errors="*{capacidade}"></span>
 	                        </div>
 	                    </div>
 							
 							<div class="form-group row col-md-6" style="margin-left: auto;">
 								<label for="nome">Volume Atual do Tanque (em litros)</label>
-								<input type="number" class="form-control" id="qtdAtual" placeholder="Insira a quantidade atual, caso aja" 
+								<input type="number" class="form-control" id="qtdAtual" placeholder="Insira a quantidade atual, caso haja" 
 									aria-describedby="validationTooltipUsernamePrepend" th:field="*{qtdAtual}"/>
 							</div>
 							
+							<br>
 							<div class="form-group row col-md-6" style="float: left;">
 	                        	<label for="dataNascimento">Data da Criação</label>
 		                        <input type="date" class="form-control" id="dataCriacao" th:field="*{dataCriacao}"
-		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'" />
-		                        <div class="invalid-feedback">
+		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'" required/>
+		                        <div class="invalid-feedback"> A data de criação é requerida
 									<span th:errors="*{dataCriacao}"></span>
 	                        	</div>
 	            			</div>
 	            			
 	            			<div class="form-group row col-md-6" style="margin-left: auto;">
 	            			<label for="responsavel">Responsável pelo Tanque</label>
-								<select th:field="*{responsavel}" class="form-control">
-									<option selected value="-1">Selecione um Responsável</option>
+								<select th:field="*{responsavel}" class="form-control" required>
+									<option value="">Selecione um Responsável</option>
 									<option th:each="responsavel : ${responsaveis}"
 										th:value="${responsavel.id}" th:text="${responsavel.nome}"></option>
 								</select>
+								<div class="invalid-feedback"> O responsável é requerido </div>
 							</div>
 							
 							<div class="mb-3">

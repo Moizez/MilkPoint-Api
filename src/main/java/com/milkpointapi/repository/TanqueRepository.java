@@ -10,8 +10,8 @@ import com.milkpointapi.model.Tanque;
 
 @Repository
 public interface TanqueRepository extends JpaRepository<Tanque, Long> {
-	
+
 	@Query
 	public List<Tanque> findByNomeIgnoreCaseContaining(String nome);
-	
+
 }

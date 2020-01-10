@@ -20,7 +20,7 @@ import com.milkpointapi.model.UserInfo;
 import com.milkpointapi.service.UserService;
 
 @Controller
-public class RegistrationController {
+public class AdminController {
 
 	@Autowired
 	private UserService userService;

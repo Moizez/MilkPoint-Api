@@ -35,7 +35,7 @@
 							<div class="form-group row col-md-7" style="float: left;">
 								<label for="nome">Nome</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="nome" placeholder="insira seu nome completo" 
+									<input type="text" class="form-control" id="nome" placeholder="Insira seu nome completo" 
 											aria-describedby="validationTooltipUsernamePrepend"
 										    th:field="*{nome}" required />
 									<div class="invalid-feedback">Nome é requerido.</div>
@@ -45,7 +45,7 @@
 							<div class="form-group row col-md-5" style="margin-left: auto;">
 								<label for="nome">Nome Fantasia</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="nomeFantasia" placeholder="insira seu nome fantasia" 
+									<input type="text" class="form-control" id="nomeFantasia" placeholder="Insira seu nome fantasia" 
 											aria-describedby="validationTooltipUsernamePrepend"
 										    th:field="*{nomeFantasia}" required />
 									<div class="invalid-feedback">Nome fantasia é requerido.</div>
@@ -55,7 +55,7 @@
 							<div class="form-group row col-md-7" style="float: left;">
 								<label for="nome">CPF/CNPJ</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="cnpj" placeholder="insira seu CPF/CNPJ" 
+									<input type="text" class="form-control" id="cnpj" placeholder="Insira seu CPF/CNPJ" 
 											aria-describedby="validationTooltipUsernamePrepend"
 										    th:field="*{cnpj}" required />
 									<div class="invalid-feedback">CPF/CNPJ é requerido.</div>
@@ -77,7 +77,7 @@
 								<label for="cep">CEP</label>
 								<div class="input-group">
 								<input type="text" class="form-control" id="cep" autofocus="autofocus" onkeydown="javascript: fMasc( this, mCEP );"
-									onblur="pesquisacep(this.value);" placeholder="insira seu CEP" maxlength="9" th:field="*{cep}" required />
+									onblur="pesquisacep(this.value);" placeholder="Insira seu CEP" maxlength="9" th:field="*{cep}" required />
 									<div class="invalid-feedback">CEP é requerido.</div>
 								</div>
 							</div>							
@@ -85,7 +85,7 @@
 							<div class="form-group row col-md-5" style="margin-left: auto;">
 								<label for="uf">Estado</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="uf" placeholder="insira seu estado" 
+									<input type="text" class="form-control" id="uf" placeholder="Insira seu estado" 
 											aria-describedby="validationTooltipUsernamePrepend" th:field="*{uf}" required />
 									<div class="invalid-feedback">O estado é requerido.</div>
 								</div>
@@ -94,7 +94,7 @@
 							<div class="form-group row col-md-7" style="float: left;">
 								<label for="cidade">Cidade</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="localidade" placeholder="insira sua cidade" 
+									<input type="text" class="form-control" id="localidade" placeholder="Insira sua cidade" 
 											aria-describedby="validationTooltipUsernamePrepend" th:field="*{localidade}" required />
 									<div class="invalid-feedback">A cidade é requerida.</div>
 								</div>
@@ -103,7 +103,7 @@
 							<div class="form-group row col-md-5" style="margin-left: auto;">
 								<label for="bairro">Bairro</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="bairro" placeholder="insira seu bairro" 
+									<input type="text" class="form-control" id="bairro" placeholder="Insira seu bairro" 
 											aria-describedby="validationTooltipUsernamePrepend" th:field="*{bairro}" required />
 									<div class="invalid-feedback">O bairro é requerido.</div>
 								</div>
@@ -112,7 +112,7 @@
 							<div class="form-group row col-md-7" style="float: left;">
 								<label for="logradouro">Rua</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="logradouro" placeholder="insira sua rua" 
+									<input type="text" class="form-control" id="logradouro" placeholder="Insira sua rua" 
 											aria-describedby="validationTooltipUsernamePrepend" th:field="*{logradouro}" required />
 									<div class="invalid-feedback">A rua é requerida.</div>
 								</div>
@@ -121,11 +121,13 @@
 							<div class="form-group row col-md-5" style="margin-left: auto;">
 								<label for="complemento">Complemento</label>
 								<div class="input-group">
-									<input type="text" class="form-control" id="complemento" placeholder="insira um complemento" 
-											aria-describedby="validationTooltipUsernamePrepend" th:field="*{complemento}" required/>
+									<input type="text" class="form-control" id="complemento" placeholder="Insira um complemento" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{complemento}"/>
 									<div class="invalid-feedback">O complemento é requerido</div>
 								</div>
 							</div>
+							
+							<br>
 							
 							<p class="lead text-muted">E-mail e Senha</p>
 							<hr/>

@@ -16,4 +16,5 @@ public interface ResponsavelRepository extends JpaRepository<Responsavel, Long>{
 	
 	@Query
 	public List<Responsavel> findByNomeIgnoreCaseContaining(String nome);
+
 }

@@ -37,6 +37,7 @@
 							  			th:field="*{firstName}" placeholder="Insira seu nome" required />
 							  		<input type="text" aria-label="Last name" class="form-control"
 							  			th:field="*{lastName}" placeholder="Insira seu sobrenome" required />
+							  			<div class="invalid-feedback">O nome e sobrenome são requeridos.</div>
 							</div>
 							
 							<div class="mb-3">
@@ -49,7 +50,7 @@
 									<input type="email" class="form-control" id="email"
 										    th:field="*{email}" placeholder="Exemplo: nome@provedor.com"
 										    aria-describedby="validationTooltipUsernamePrepend" required />
-									<div class="invalid-feedback">Email é requerido.</div>
+									<div class="invalid-feedback">E-mail é requerido.</div>
 								</div>
 							</div>
 							

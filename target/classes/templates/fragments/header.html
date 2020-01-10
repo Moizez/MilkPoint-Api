@@ -19,9 +19,9 @@
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tanque</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
 							<a class="dropdown-item" th:href="@{/tanque/add}">Cadastrar Tanque</a>
+							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/tanque/list}">Listar Tanques</a> 
-							<hr/>
-							<a class="dropdown-item" th:href="@{/tanque/detalhes}">Detalhes dos Tanques</a>
+						
 						</div>
 					</li>
 					<li class="nav-item dropdown"><a
@@ -29,6 +29,7 @@
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtor</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown02">
 							<a class="dropdown-item" th:href="@{/produtor/add}">Cadastrar Produtor</a>
+							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/produtor/list}">Listar Produtores</a>
 						</div>
 					</li>
@@ -37,6 +38,7 @@
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Responsável</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown03">
 							<a class="dropdown-item" th:href="@{/responsavel/add}">Cadastrar Responsável</a>
+							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/responsavel/list}">Listar Responsáveis</a>
 						</div>
 					</li>
@@ -44,7 +46,8 @@
 						class="btn btn-dark dropdown-toggle" href="#" id="dropdown04"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laticínio</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" th:href="@{/laticinio/add}">Cadastrar Laticínio</a> 
+							<a class="dropdown-item" th:href="@{/laticinio/add}">Cadastrar Laticínio</a>
+							<div class="dropdown-divider"></div> 
 							<a class="dropdown-item" th:href="@{/laticinio/list}">Listar Laticínios</a>
 						</div>
 					</li>
@@ -68,12 +71,12 @@
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" th:href="@{/admin/register}">Editar Senha</a>
+							<a class="dropdown-item fas fa-edit" th:href="@{/admin/password_edit}"> Editar Senha</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" th:href="@{/register}">Cadastrar ADMIN</a>
-							<a class="dropdown-item" th:href="@{/admin/list}">Listar ADMIN</a>
+							<a class="dropdown-item fas fa-plus-square" th:href="@{/register}"> Cadastrar ADMIN</a>
+							<a class="dropdown-item fas fa-list-alt" th:href="@{/admin/list}"> Listar ADMIN</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" th:href="@{/logout}">Sair</a>
+							<a class="dropdown-item fas fa-sign-out-alt" th:href="@{/logout}"> Sair</a>
 						</div>
 					</div>
 				</form>

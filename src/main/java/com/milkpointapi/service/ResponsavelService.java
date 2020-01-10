@@ -10,31 +10,31 @@ import com.milkpointapi.repository.ResponsavelRepository;
 
 @Service
 public class ResponsavelService {
-	
+
 	@Autowired
 	private ResponsavelRepository repository;
-	
-	public Responsavel save(Responsavel Responsavel) {
-        return repository.saveAndFlush(Responsavel);
-    }
 
-	public List<Responsavel> findAll(){
+	public Responsavel save(Responsavel Responsavel) {
+		return repository.saveAndFlush(Responsavel);
+	}
+
+	public List<Responsavel> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Responsavel findOne(Long id) {
-        return repository.getOne(id);
-    }
-     
-    public void delete(Long id) {
-        repository.deleteById(id);
-    }
-    
-    public Responsavel buscaLogin(String email) {
-    	return repository.findByEmailIgnoreCaseContaining(email);
-    }
-    
-    public List<Responsavel> findByNome(String nome) {
+		return repository.getOne(id);
+	}
+
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
+	public Responsavel buscaLogin(String email) {
+		return repository.findByEmailIgnoreCaseContaining(email);
+	}
+
+	public List<Responsavel> findByNome(String nome) {
 		return repository.findByNomeIgnoreCaseContaining(nome);
 	}
 

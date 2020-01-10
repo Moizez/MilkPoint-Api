@@ -89,7 +89,7 @@ public class TanqueController {
 	@GetMapping("/details/{id}")
 	public ModelAndView details(@PathVariable("id") Long id) {
 
-		ModelAndView mv = new ModelAndView("Tanque/detalhes");
+		ModelAndView mv = new ModelAndView("tanque/detalhes");
 		mv.addObject("tanque", tanqueService.findOne(id));
 		return mv;
 	}

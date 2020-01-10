@@ -73,7 +73,8 @@
 		                        	</td>
 									<td>
 										<div class="btn-group pull-right">
-									   		<a class="btn btn-sm btn-primary" th:href="@{/tanque/edit/{id}(id=${tanque.id})}" >Editar</a>
+											<a class="btn btn-sm btn-warning" th:href="@{/tanque/details/{id}(id=${tanque.id})}" >Detalhes</a>
+									   		<a class="btn btn-sm btn-primary" style="margin-left: 5px" th:href="@{/tanque/edit/{id}(id=${tanque.id})}" >Editar</a>
 									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/tanque/delete/{id}(id=${tanque.id})}">Excluir</a>
 									   </div>
 									</td>

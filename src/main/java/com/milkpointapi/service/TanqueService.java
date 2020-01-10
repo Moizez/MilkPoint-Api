@@ -29,7 +29,7 @@ public class TanqueService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
-	
+
 	public List<Tanque> findByNome(String nome) {
 		return repository.findByNomeIgnoreCaseContaining(nome);
 	}
