@@ -26,7 +26,7 @@
 
 						<h2 style="float: left;">Responsáveis Cadastrados</h2>
 						<form class="form-inline" method="get" th:action="@{/responsavel/buscar/nome}">
-	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do responsavel"
+	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do responsável"
 	                    		th:name="nome" style="margin-left: auto;"/>
 	                        <button class="btn btn-dark"data-toggle="tooltip" data-placement="right" title="Buscar">
 								<i class="fas fa-search"></i>
@@ -55,7 +55,7 @@
 									<td th:text="${responsavel.cpf}"></td>
 									<td th:text="${responsavel.email}"></td>
 									<td>
-		                            	<button type="button" class="btn btn-secondary btn-sm" data-container="body"
+		                            	<button type="button" class="btn btn-info" data-container="body"
 		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(
 			                                    responsavel.descricao)}">		                                
 		                                	<i class="fa fa-eye" aria-hidden="true"></i>
@@ -63,8 +63,14 @@
 		                        	</td>
 									<td>
 										<div class="btn-group pull-right">
-									   		<a class="btn btn-sm btn-primary" th:href="@{/responsavel/edit/{id}(id=${responsavel.id})}" >Editar</a>
-									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/responsavel/delete/{id}(id=${responsavel.id})}">Excluir</a>
+											<button type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/responsavel/edit/{id}(id=${responsavel.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Editar">						
+												<i class="fas fa-pen-square"></i>
+											</button>
+											<button type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|window.location.href='@{/responsavel/delete/{id}(id=${responsavel.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Excluir">						
+												<i class="fas fa-trash-alt"></i>
+											</button>
 									   </div>
 									</td>
 								</tr>
@@ -72,9 +78,10 @@
 						</table>
 					</div>
 				</div>				
-				<div class="panel-footer">
-					<a class="btn btn-sm btn-success" th:href="@{/responsavel/add}" >Adicionar Novo</a>
-				</div>				
+				<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/responsavel/add}'|"  
+					data-toggle="tooltip" data-placement="right" title="Adicionar">						
+					<i class="fas fa-plus-square"></i>
+				</button>				
 			</div>
 		</div>
 

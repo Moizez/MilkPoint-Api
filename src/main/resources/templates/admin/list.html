@@ -53,8 +53,14 @@
 									<td th:text="${user.email}"></td>
 									<td>
 										<div class="btn-group pull-right">
-									   		<a class="btn btn-sm btn-primary" th:href="@{/user/edit/{id}(id=${user.id})}" >Editar</a>
-									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/user/delete/{id}(id=${user.id})}">Excluir</a>
+											<button type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/user/edit/{id}(id=${user.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Editar">						
+												<i class="fas fa-pen-square"></i>
+											</button>
+											<button type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|window.location.href='@{/user/delete/{id}(id=${user.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Excluir">						
+												<i class="fas fa-trash-alt"></i>
+											</button>
 									   </div>
 									</td>
 								</tr>
@@ -62,9 +68,10 @@
 						</table>
 					</div>
 				</div>				
-				<div class="panel-footer">
-					<a class="btn btn-sm btn-success" th:href="@{/register}" >Adicionar Novo</a>
-				</div>				
+				<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/register}'|"  
+					data-toggle="tooltip" data-placement="right" title="Adicionar">						
+					<i class="fas fa-plus-square"></i>
+				</button>				
 			</div>
 		</div>
 
