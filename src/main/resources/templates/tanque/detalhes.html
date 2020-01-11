@@ -45,11 +45,11 @@
 					
 				</div>
 				
-				<div class="form-group row">
-					<a class="btn btn-sm btn-info" th:href="@{/tanque/list}" >Voltar</a>
-				</div>
-
-			
+				<button type="submit" class="btn btn-dark" th:onClick="|window.location.href='@{/tanque/list}'|"  
+					data-toggle="tooltip" data-placement="right" title="Voltar">						
+					<i class="fas fa-arrow-circle-left"></i>
+				</button>
+				
 		</div>
 		</div>
 		</main>

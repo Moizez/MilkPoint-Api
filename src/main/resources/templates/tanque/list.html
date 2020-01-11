@@ -65,7 +65,7 @@
 									</td>
 									<td th:text="${tanque.tipo.valor}"></td>
 									<td>
-		                            	<button type="button" class="btn btn-secondary btn-sm" data-container="body"
+		                            	<button type="button" class="btn btn-info" data-container="body"
 		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(
 			                                    tanque.descricao)}">		                                
 		                                	<i class="fa fa-eye" aria-hidden="true"></i>
@@ -73,19 +73,30 @@
 		                        	</td>
 									<td>
 										<div class="btn-group pull-right">
-											<a class="btn btn-sm btn-warning" th:href="@{/tanque/details/{id}(id=${tanque.id})}" >Detalhes</a>
-									   		<a class="btn btn-sm btn-primary" style="margin-left: 5px" th:href="@{/tanque/edit/{id}(id=${tanque.id})}" >Editar</a>
-									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/tanque/delete/{id}(id=${tanque.id})}">Excluir</a>
+											<button type="submit" class="btn btn-secondary" th:onClick="|window.location.href='@{/tanque/details/{id}(id=${tanque.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Detalhes">						
+												<i class="fas fa-chart-line"></i>
+											</button>
+											<button type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/tanque/edit/{id}(id=${tanque.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Editar">						
+												<i class="fas fa-pen-square"></i>
+											</button>
+											<button type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|window.location.href='@{/tanque/delete/{id}(id=${tanque.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Excluir">						
+												<i class="fas fa-trash-alt"></i>
+											</button>
 									   </div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>				
-				<div class="panel-footer">
-					<a class="btn btn-sm btn-success" th:href="@{/tanque/add}" >Adicionar Novo</a>
-				</div>				
+				</div>
+				<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/add}'|"  
+					data-toggle="tooltip" data-placement="right" title="Adicionar">						
+					<i class="fas fa-plus-square"></i>
+				</button>
+								
 			</div>
 		</div>
 

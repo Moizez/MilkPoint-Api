@@ -71,12 +71,13 @@
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item fas fa-edit" th:href="@{/admin/password_edit}"> Editar Senha</a>
+							<h6 class="dropdown-header">Opções de Administrador</h6>
+							<a class="dropdown-item" th:href="@{/register}"><i class="fas fa-plus-square"></i> Novo Administrador</a>
+							<a class="dropdown-item" th:href="@{/admin/list}"><i class="fas fa-list-alt"></i> Listar Administradores</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item fas fa-plus-square" th:href="@{/register}"> Cadastrar ADMIN</a>
-							<a class="dropdown-item fas fa-list-alt" th:href="@{/admin/list}"> Listar ADMIN</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item fas fa-sign-out-alt" th:href="@{/logout}"> Sair</a>
+							<h6 class="dropdown-header">Configurações</h6>
+							<a class="dropdown-item" th:href="@{/admin/password_edit}"><i class="fas fa-edit"></i> Editar Senha</a>
+							<a class="dropdown-item" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Sair</a>
 						</div>
 					</div>
 				</form>
