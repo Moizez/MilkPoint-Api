@@ -55,7 +55,7 @@
 									<td th:text="${laticinio.cnpj}"></td>
 									<td th:text="${laticinio.email}"></td>
 									<td>
-		                            	<button type="button" class="btn btn-secondary btn-sm" data-container="body"
+		                            	<button type="button" class="btn btn-info" data-container="body"
 		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(
 			                                    laticinio.descricao)}">		                                
 		                                	<i class="fa fa-eye" aria-hidden="true"></i>
@@ -63,8 +63,14 @@
 		                        	</td>
 									<td>
 										<div class="btn-group pull-right">
-									   		<a class="btn btn-sm btn-primary" th:href="@{/laticinio/edit/{id}(id=${laticinio.id})}" >Editar</a>
-									   		<a class="delete btn btn-sm btn-danger" style="margin-left: 5px" th:href="@{/laticinio/delete/{id}(id=${laticinio.id})}">Excluir</a>
+											<button type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/laticinio/edit/{id}(id=${laticinio.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Editar">						
+												<i class="fas fa-pen-square"></i>
+											</button>
+											<button type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|window.location.href='@{/laticinio/delete/{id}(id=${laticinio.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Excluir">						
+												<i class="fas fa-trash-alt"></i>
+											</button>
 									   </div>
 									</td>
 								</tr>
@@ -72,9 +78,10 @@
 						</table>
 					</div>
 				</div>				
-				<div class="panel-footer">
-					<a class="btn btn-sm btn-success" th:href="@{/laticinio/add}" >Adicionar Novo</a>
-				</div>				
+				<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/laticinio/add}'|"  
+					data-toggle="tooltip" data-placement="right" title="Adicionar">						
+					<i class="fas fa-plus-square"></i>
+				</button>				
 			</div>
 		</div>
 
