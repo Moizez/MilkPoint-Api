@@ -1,6 +1,7 @@
 package com.milkpointapi.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -61,6 +62,7 @@ public class TanqueController {
 				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
 			}
 			
+			tanque.setDataCriacao(new Date());
 			tanqueService.save(tanque);
 			return findAll();
 

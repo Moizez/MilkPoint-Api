@@ -1,7 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,10 +35,22 @@ public class Tanque implements Serializable {
 	private String nome;
 
 	@Column
-	private String descricao;
+	private String complemento;
 
 	@Column
-	private String localizacao;
+	private String cep;
+
+	@Column
+	private String logradouro;
+
+	@Column
+	private String bairro;
+
+	@Column
+	private String localidade;
+
+	@Column
+	private String uf;
 
 	@Column
 	private float qtdAtual = 0;
@@ -47,13 +59,10 @@ public class Tanque implements Serializable {
 	private String comunidade;
 	
 	@Column
-	private String complemento;
-
-	@Column
 	private float qtdRestante;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataCriacao;
+	private Date dataCriacao;
 
 	@ManyToOne
 	public Responsavel responsavel;
@@ -91,19 +100,19 @@ public class Tanque implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
-	public LocalDate getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
@@ -155,10 +164,6 @@ public class Tanque implements Serializable {
 		this.status = status;
 	}
 
-	public String getLocalizacao() {
-		return localizacao;
-	}
-	
 	public String getComunidade() {
 		return comunidade;
 	}
@@ -166,13 +171,45 @@ public class Tanque implements Serializable {
 	public void setComunidade(String comunidade) {
 		this.comunidade = comunidade;
 	}
-
-	public String getComplemento() {
-		return complemento;
+	
+	public String getCep() {
+		return cep;
 	}
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public List<Deposito> getDepositos() {
@@ -181,10 +218,6 @@ public class Tanque implements Serializable {
 
 	public void setDepositos(List<Deposito> depositos) {
 		this.depositos = depositos;
-	}
-
-	public void setLocalizacao(String localizacao) {
-		this.localizacao = localizacao;
 	}
 
 	public List<Retirada> getRetiradas() {

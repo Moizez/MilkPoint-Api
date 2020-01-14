@@ -27,7 +27,7 @@
 
 						<div th:replace="fragments/alert :: alerta-sucesso"></div>
 						
-						<p class="lead text-muted">Dados Cadastrais</p>
+						<p class="lead text-muted">Caracteristicas do Tanque</p>
 						<hr/>
 
 						<form th:action="@{/tanque/save}" th:object="${tanque}" method="POST" class="was-validated">
@@ -43,67 +43,7 @@
 							</div>
 							
 							<div class="form-group row col-md-6" style="margin-left: auto;">
-								<label for="localizacao">Localização</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="localizacao" placeholder="Insira o local do tanque" 
-											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{localizacao}" required />
-									<div class="invalid-feedback">A localização é requerida.</div>
-								</div>
-							</div>
-							
-							<div class="form-group row col-md-6" style="float: left;">
-								<label for="comunidade">Comunidade</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="comunidade" placeholder="Insira o nome da sua comunidade" 
-											aria-describedby="validationTooltipUsernamePrepend" th:field="*{comunidade}" required/>
-									<div class="invalid-feedback">A comunidade é requerida</div>
-								</div>
-							</div>
-							
-							<div class="form-group row col-md-6" style="margin-left: auto;">
-								<label for="complemento">Complemento</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="complemento" placeholder="Insira um complemento" 
-											aria-describedby="validationTooltipUsernamePrepend" th:field="*{complemento}"/>
-									<div class="invalid-feedback">O complemento é requerido</div>
-								</div>
-							</div>
-							
-							<br>
-							<p class="lead text-muted">Caracteristicas do Tanque</p>
-							<hr/>
-							
-							<div class="form-group row col-md-6" style="float: left;">
-	                        <label for="capacidade">Capacidade Total do Tanque</label>
-	                        <select id="capacidade" class="form-control" th:field="*{capacidade}"
-	                                th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'" required>
-	                            <option value="">Selecione...</option>
-	                            <option th:each="capacidade : ${capacidades}" th:value="${capacidade}" th:text="${capacidade.descricao}"></option>
-	                        </select>
-	                        <div class="invalid-feedback"> A capacidade é requerida
-								<span th:errors="*{capacidade}"></span>
-	                        </div>
-	                    </div>
-							
-							<div class="form-group row col-md-6" style="margin-left: auto;">
-								<label for="nome">Volume Atual do Tanque (em litros)</label>
-								<input type="number" class="form-control" id="qtdAtual" placeholder="Insira a quantidade atual, caso haja" 
-									aria-describedby="validationTooltipUsernamePrepend" th:field="*{qtdAtual}"/>
-							</div>
-							
-							<br>
-							<div class="form-group row col-md-6" style="float: left;">
-	                        	<label for="dataNascimento">Data da Criação</label>
-		                        <input type="date" class="form-control" id="dataCriacao" th:field="*{dataCriacao}"
-		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'" required/>
-		                        <div class="invalid-feedback"> A data de criação é requerida
-									<span th:errors="*{dataCriacao}"></span>
-	                        	</div>
-	            			</div>
-	            			
-	            			<div class="form-group row col-md-6" style="margin-left: auto;">
-	            			<label for="responsavel">Responsável pelo Tanque</label>
+	            				<label for="responsavel">Responsável pelo Tanque</label>
 								<select th:field="*{responsavel}" class="form-control" required>
 									<option value="">Selecione um Responsável</option>
 									<option th:each="responsavel : ${responsaveis}"
@@ -112,20 +52,109 @@
 								<div class="invalid-feedback"> O responsável é requerido </div>
 							</div>
 							
-							<div class="mb-3">
+							<div class="form-group row col-md-6" style="float: left;">
+		                        <label for="capacidade">Capacidade Total do Tanque</label>
+		                        <select id="capacidade" class="form-control" th:field="*{capacidade}"
+		                                th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'" required>
+		                            <option value="">Selecione a capacidade...</option>
+		                            <option th:each="capacidade : ${capacidades}" th:value="${capacidade}" th:text="${capacidade.descricao}"></option>
+		                        </select>
+		                        <div class="invalid-feedback"> A capacidade é requerida
+									<span th:errors="*{capacidade}"></span>
+		                        </div>
+	                    	</div>
+							
+							<div class="form-group row col-md-6" style="margin-left: auto;">
+								<label for="nome">Volume Atual do Tanque (em litros)</label>
+								<input type="number" class="form-control" id="qtdAtual" placeholder="Insira a quantidade atual, caso haja" 
+									aria-describedby="validationTooltipUsernamePrepend" th:field="*{qtdAtual}"/>
+							</div>
+							
+							<br>
+							
+							<div class="form-group row col-md-6" style="float: left;">
+	                        	<label for="dataNascimento">Data da Criação</label>
+		                        <input type="date" class="form-control" id="dataCriacao" th:field="*{dataCriacao}"
+		                        	   th:classappend="${#fields.hasErrors('dataCriacao')} ? 'is-invalid'"/>
+		                        <div class="invalid-feedback"> A data de criação é requerida
+									<span th:errors="*{dataCriacao}"></span>
+	                        	</div>
+	            			</div>
+	            			
+							<div class="form-group row col-md-6" style="margin-left: auto;">
 								<label for="tipo">Selecione o TIPO do Leite:</label>
-								<br>
-								<div class="custom-control custom-radio custom-control-inline" th:each="tipo : ${tipos}">
-									<input type="radio" class="custom-control-input" th:field="*{tipo}" th:id="defaultInline1+${tipo}" th:value="${tipo}">
-  									<label class="custom-control-label" th:for="defaultInline1+${tipo}" th:text="${tipo}"></label>
+								<div>
+									<div class="custom-control custom-radio custom-control-inline" th:each="tipo : ${tipos}">
+										<input type="radio" class="custom-control-input" th:field="*{tipo}" th:id="defaultInline1+${tipo}" th:value="${tipo}">
+	  									<label class="custom-control-label" th:for="defaultInline1+${tipo}" th:text="${tipo}"></label>
+									</div>
+								</div>
+							</div>
+							
+							<br>
+							
+							<p class="lead text-muted">Endereço</p>
+							<hr/>
+							
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="cep">CEP</label>
+								<div class="input-group">
+								<input type="text" class="form-control" id="cep" autofocus="autofocus" onkeydown="javascript: fMasc( this, mCEP );"
+									onblur="pesquisacep(this.value);" placeholder="Insira seu CEP" maxlength="9" th:field="*{cep}" required />
+									<div class="invalid-feedback">CEP é requerido.</div>
+								</div>
+							</div>							
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+								<label for="uf">Estado</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="uf" placeholder="Insira seu estado" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{uf}" required />
+									<div class="invalid-feedback">O estado é requerido.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="cidade">Cidade</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="localidade" placeholder="Insira sua cidade" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{localidade}" required />
+									<div class="invalid-feedback">A cidade é requerida.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+								<label for="bairro">Bairro</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="bairro" placeholder="Insira seu bairro" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{bairro}" required />
+									<div class="invalid-feedback">O bairro é requerido.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-7" style="float: left;">
+								<label for="logradouro">Rua</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="logradouro" placeholder="Insira sua rua" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{logradouro}" required />
+									<div class="invalid-feedback">A rua é requerida.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-5" style="margin-left: auto;">
+								<label for="comunidade">Comunidade</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="comunidade" placeholder="Insira o nome da sua comunidade" 
+											aria-describedby="validationTooltipUsernamePrepend" th:field="*{comunidade}"/>
+									<div class="invalid-feedback">A comunidade é requerida</div>
 								</div>
 							</div>
 							
 							<div class="mb-3">
-								<label for="textarea">Descrição</label>
+								<label for="textarea">Complemento</label>
 								<div class="input-group">
 									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
-										th:field="*{descricao}"/></textarea>
+										th:field="*{complemento}"/></textarea>
 								</div>
 							</div>							
 
@@ -136,7 +165,7 @@
 										data-toggle="tooltip" data-placement="right" title="Salvar">
 										<i class="fas fa-save"></i>
 									</button>
-									<button type="button" class="btn btn-danger" onClick="window.location='javascript:history.back()';"  
+									<button type="button" class="btn btn-danger" th:onClick="|window.location.href='@{/tanque/list}'|"   
 										data-toggle="tooltip" data-placement="right" title="Cancelar">						
 										<i class="fas fa-window-close"></i>
 									</button>
@@ -152,6 +181,8 @@
 		</main>
 
 	</section>
+	<script th:src="@{/js/maskcpf.js}"></script>
+	<script th:src="@{/js/buscacep.js}"></script>
 	<script	th:src="~{}" th:fragment="js"></script>
 	<script th:inline="javascript" th:fragment="inlinescript"></script>
 </body>
