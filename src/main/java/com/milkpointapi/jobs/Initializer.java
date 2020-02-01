@@ -103,6 +103,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			responsavelService.save(resp);
 
 		}
+
 	}
 
 	private void createLaticinio() {
