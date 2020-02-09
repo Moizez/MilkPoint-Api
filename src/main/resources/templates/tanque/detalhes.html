@@ -39,9 +39,11 @@
 										<hr class="sidebar-divider my-0">
 										<label><b>Responsável:</b></label> <label th:each="responsavel : ${tanque.responsavel}" th:text= "${responsavel.nome}"></label>								
 										<hr class="sidebar-divider my-0">
-										<label><b>Capacidade:</b></label> <label id="capacidade" th:text="${tanque.capacidade.descricao}"></label>
+										<label><b>Capacidade:</b></label> <label th:text="${tanque.capacidade.descricao}"></label>
+										<input type="hidden" id="capacidade" th:value="${tanque.capacidade.valor}">
 										<hr class="sidebar-divider my-0">
-										<label><b>Volume Atual:</b></label> <label id="quantidade" th:text="${tanque.qtdAtual}"></label>
+										<label><b>Volume Atual:</b></label> <label th:text="${tanque.qtdAtual}"></label>
+										<input type="hidden" id="quantidade" th:value="${tanque.qtdAtual}">
 										<hr class="sidebar-divider my-0">
 										<label><b>Data de Criação:</b></label> <label th:text="${tanque.dataCriacao}"></label>
 										<hr class="sidebar-divider my-0">
@@ -88,9 +90,9 @@
 	<!-- Chart code -->
 	<script>
 	
-			var quantidade = document.getElementById("quantidade").innerText;
-			var capacidade = document.getElementById("capacidade").innerText;
-			var percentual = 100*document.getElementById("quantidade").innerText/document.getElementById("capacidade").innerText;
+			var quantidade = document.getElementById("quantidade").value;
+			var capacidade = document.getElementById("capacidade").value;
+			var percentual = quantidade/capacidade*100 - quantidade/capacidade*100%0.01;
 			am4core.ready(function() {
 			
 			// Themes begin
