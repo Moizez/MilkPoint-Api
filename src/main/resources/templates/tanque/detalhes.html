@@ -81,8 +81,16 @@
 		<script	th:src="@{/js/tanque.js(v=${version})}" th:fragment="js"></script>
 		<script th:inline="javascript" th:fragment="inlinescript"></script>
 			
+
+</body>
+</html>
+
 	<!-- Chart code -->
 	<script>
+	
+			var quantidade = document.getElementById("quantidade").innerText;
+			var capacidade = document.getElementById("capacidade").innerText;
+			var percentual = 100*document.getElementById("quantidade").innerText/document.getElementById("capacidade").innerText;
 			am4core.ready(function() {
 			
 			// Themes begin
@@ -92,12 +100,14 @@
 			// Create chart instance
 			var chart = am4core.create("chartdiv", am4charts.XYChart3D);
 			
-			chart.titles.create().text = "Ilustração do Tanque";
+			chart.titles.create().text = "Ilustração do Tanque \n Capacidade " + capacidade + " Litros";
 			
 			// Add data
 			chart.data = [{
-			  "category": "T88",
-			  "value1": document.getElementById("quantidade")
+			  "category":  quantidade + " Litros - " + percentual + "%" ,
+			  "value2": 100,
+			  "value1": percentual,
+			  
 			}];
 			
 			// Create axes
@@ -109,7 +119,7 @@
 			var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 			valueAxis.renderer.grid.template.strokeOpacity = 0;
 			valueAxis.min = 0;
-			valueAxis.max = document.getElementById("capacidade");
+			valueAxis.max = 100;
 			valueAxis.strictMinMax = true;
 			valueAxis.renderer.baseGrid.disabled = true;
 			valueAxis.renderer.labels.template.adapter.add("text", function(text) {
@@ -143,5 +153,3 @@
 			
 			}); // end am4core.ready()
 	</script>
-</body>
-</html>
