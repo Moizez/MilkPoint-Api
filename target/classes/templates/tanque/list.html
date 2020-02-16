@@ -40,13 +40,13 @@
 								<tr class="text-center">
 									<th scope="col">ID</th>
 									<th scope="col">Nome</th>
-									<th scope="col">Localização</th>
+									<th scope="col">Cidade</th>
 									<th scope="col">Capacidade</th>
 									<th scope="col">Qtd. Atual</th>
 									<th scope="col">Qtd. Restante</th>
 									<th scope="col">Responsável do Tanque</th>
-									<th scope="col">Tipo</th>
-									<th scope="col">Descrição</th>
+									<th scope="col">Tipo do Leite</th>
+									<th scope="col">Complemento</th>
 									<th scope="col">Ações</th>								
 								</tr>
 							</thead>
@@ -54,7 +54,7 @@
 								<tr class="text-center" th:each="tanque : ${tanques}">
 									<td th:text="${tanque.id}"></td>
 									<td th:text="${tanque.nome}"></td>
-									<td th:text="${tanque.localizacao}"></td>
+									<td th:text="${tanque.localidade}"></td>
 									<td th:text="${tanque.capacidade.descricao}"></td>
 									<td th:text="${tanque.qtdAtual}"></td>
 									<td th:text="${tanque.qtdRestante}"></td>
@@ -67,7 +67,7 @@
 									<td>
 		                            	<button type="button" class="btn btn-info" data-container="body"
 		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(
-			                                    tanque.descricao)}">		                                
+			                                    tanque.complemento)}" title="Complemento">		                                
 		                                	<i class="fa fa-eye" aria-hidden="true"></i>
 		                            	</button>
 		                        	</td>

@@ -36,6 +36,7 @@
 										<label><b>ID:</b></label> <label th:text="${tanque.id}"></label>
 										<hr class="sidebar-divider my-0">
 										<label><b>Nome do Tanque:</b></label> <label th:text="${tanque.nome}"></label>
+										<input type="hidden" id="nome" th:value="${tanque.nome}">
 										<hr class="sidebar-divider my-0">
 										<label><b>Responsável:</b></label> <label th:each="responsavel : ${tanque.responsavel}" th:text= "${responsavel.nome}"></label>								
 										<hr class="sidebar-divider my-0">
@@ -90,6 +91,7 @@
 	<!-- Chart code -->
 	<script>
 	
+			var nome = document.getElementById("nome").value;
 			var quantidade = document.getElementById("quantidade").value;
 			var capacidade = document.getElementById("capacidade").value;
 			var percentual = quantidade/capacidade*100 - quantidade/capacidade*100%0.01;
@@ -102,11 +104,11 @@
 			// Create chart instance
 			var chart = am4core.create("chartdiv", am4charts.XYChart3D);
 			
-			chart.titles.create().text = "Ilustração do Tanque \n Capacidade " + capacidade + " Litros";
+			chart.titles.create().text = "Nome: " + nome + "\n Capacidade " + capacidade + " Litros";
 			
 			// Add data
 			chart.data = [{
-			  "category":  quantidade + " Litros - " + percentual + "%" ,
+			  "category": quantidade + " Litros - " + percentual + "%" ,
 			  "value2": 100,
 			  "value1": percentual,
 			  

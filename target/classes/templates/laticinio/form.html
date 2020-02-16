@@ -168,7 +168,7 @@
 										data-toggle="tooltip" data-placement="right" title="Salvar">
 										<i class="fas fa-save"></i>
 									</button>
-									<button type="button" class="btn btn-danger" onClick="window.location='javascript:history.back()';"  
+									<button type="button" class="btn btn-danger" th:onClick="|window.location.href='@{/laticinio/list}'|"   
 										data-toggle="tooltip" data-placement="right" title="Cancelar">						
 										<i class="fas fa-window-close"></i>
 									</button>
