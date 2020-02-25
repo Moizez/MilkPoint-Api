@@ -17,4 +17,10 @@ public enum Capacidade {
 	public String getDescricao() {
 		return valor + " Litros";
 	}
+	
+	@Override
+	public String toString() {
+		return valor;
+	}
+	
 }
