@@ -66,9 +66,15 @@ public class ProdutorController {
 	}
 
 	@GetMapping("/buscar/nome")
-	public ModelAndView findByProdutor(@RequestParam("nome") String nome) {
+	public ModelAndView findByProdutor(@RequestParam("nome") String buscar) {
 		ModelAndView mv = new ModelAndView("produtor/list");
-		mv.addObject("produtores", produtorService.findByNome(nome));
+
+		final String nome = buscar;
+		final String apelido = buscar;
+		final String cpf = buscar;
+		final String email = buscar;
+
+		mv.addObject("produtores", produtorService.searchFor(nome, apelido, cpf, email));
 		return mv;
 	}
 

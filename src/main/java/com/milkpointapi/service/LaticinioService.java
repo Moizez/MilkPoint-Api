@@ -34,8 +34,8 @@ public class LaticinioService {
     	return repository.findByEmailIgnoreCaseContaining(email);
     }
     
-    public List<Laticinio> findByNome(String nome) {
-		return repository.findByNomeIgnoreCaseContaining(nome);
+    public List<Laticinio> searchFor(String nome, String apelido, String cnpj, String email) {
+		return repository.findByNomeOrApelidoOrCpfOrEmailLike(nome, apelido, cnpj, email);
 	}
 
 }

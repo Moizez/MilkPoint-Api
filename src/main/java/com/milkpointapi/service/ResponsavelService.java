@@ -29,17 +29,12 @@ public class ResponsavelService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
-	
+
 	public Responsavel buscaLogin(String email) {
 		return repository.findByEmailIgnoreCaseContaining(email);
 	}
 
-	public List<Responsavel> findByNome(String nome) {
-		return repository.findByNomeIgnoreCaseContaining(nome);
+	public List<Responsavel> searchFor(String nome, String apelido, String cpf, String email) {
+		return repository.findByNomeOrApelidoOrCpfOrEmailLike(nome, apelido, cpf, email);
 	}
-	
-	public List<Responsavel> findByApelido(String apelido) {
-		return repository.findByApelidoIgnoreCaseContaining(apelido);
-	}
-
 }

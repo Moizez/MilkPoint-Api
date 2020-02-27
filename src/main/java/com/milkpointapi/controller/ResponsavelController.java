@@ -66,13 +66,15 @@ public class ResponsavelController {
 	}
 
 	@GetMapping("/buscar/nome")
-	public ModelAndView findByResponsavel(@RequestParam("nome") String nome, String apelido) {
+	public ModelAndView findByResponsavel(@RequestParam("nome") String buscar) {
 		ModelAndView mv = new ModelAndView("responsavel/list");
-		if (responsavelService.findByNome(nome) != null) {
-			mv.addObject("responsaveis", responsavelService.findByNome(nome));
-			return mv;
-		}
-		mv.addObject("responsaveis", responsavelService.findByApelido(apelido));
+
+		final String nome = buscar;
+		final String apelido = buscar;
+		final String cpf = buscar;
+		final String email = buscar;
+
+		mv.addObject("responsaveis", responsavelService.searchFor(nome, apelido, cpf, email));
 		return mv;
 	}
 

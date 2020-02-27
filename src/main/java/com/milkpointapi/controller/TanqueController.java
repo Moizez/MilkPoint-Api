@@ -103,9 +103,14 @@ public class TanqueController {
 	}
 
 	@GetMapping("/buscar/nome")
-	public ModelAndView findByTanque(@RequestParam("nome") String nome) {
+	public ModelAndView findByTanque(@RequestParam("nome") String buscar) {
 		ModelAndView mv = new ModelAndView("tanque/list");
-		mv.addObject("tanques", tanqueService.findByNome(nome));
+
+		final String nome = buscar;
+		final String localidade = buscar;
+		final String uf = buscar;
+
+		mv.addObject("tanques", tanqueService.searchFor(nome, localidade, uf));
 		return mv;
 	}
 

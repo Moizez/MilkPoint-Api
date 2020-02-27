@@ -13,11 +13,11 @@ public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> 
 
 	@Query
 	public Responsavel findByEmailIgnoreCaseContaining(String email);
-
-	@Query
-	public List<Responsavel> findByNomeIgnoreCaseContaining(String nome);
-
-	@Query
-	public List<Responsavel> findByApelidoIgnoreCaseContaining(String apelido);
+	
+	@Query(value = "select * from responsavel r where r.apelido like concat('%', ?, '%')\n"
+			+ "	|| r.nome like concat('%', ?, '%')\n" 
+			+ " || r.cpf like concat('%', ?, '%')\n"
+			+ " || r.email like concat('%', ?, '%')\n" + ";", nativeQuery = true)
+	public List<Responsavel> findByNomeOrApelidoOrCpfOrEmailLike(String nome, String apelido, String cpf, String email);
 
 }
