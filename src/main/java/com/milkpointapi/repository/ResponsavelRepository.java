@@ -9,12 +9,15 @@ import org.springframework.stereotype.Repository;
 import com.milkpointapi.model.Responsavel;
 
 @Repository
-public interface ResponsavelRepository extends JpaRepository<Responsavel, Long>{ 
-	
+public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> {
+
 	@Query
 	public Responsavel findByEmailIgnoreCaseContaining(String email);
-	
+
 	@Query
 	public List<Responsavel> findByNomeIgnoreCaseContaining(String nome);
+
+	@Query
+	public List<Responsavel> findByApelidoIgnoreCaseContaining(String apelido);
 
 }

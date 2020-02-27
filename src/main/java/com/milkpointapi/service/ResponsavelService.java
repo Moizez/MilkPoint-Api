@@ -37,5 +37,9 @@ public class ResponsavelService {
 	public List<Responsavel> findByNome(String nome) {
 		return repository.findByNomeIgnoreCaseContaining(nome);
 	}
+	
+	public List<Responsavel> findByApelido(String apelido) {
+		return repository.findByApelidoIgnoreCaseContaining(apelido);
+	}
 
 }
