@@ -72,7 +72,7 @@ public class Responsavel implements Serializable {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "responsavel")
-	private List<Tanque> tanque;
+	private List<Tanque> tanques;
 
 	public Long getId() {
 		return id;
@@ -123,7 +123,7 @@ public class Responsavel implements Serializable {
 	}
 
 	public List<Tanque> getTanque() {
-		return tanque;
+		return tanques;
 	}
 
 	public String getEmail() {
@@ -143,7 +143,7 @@ public class Responsavel implements Serializable {
 	}
 
 	public void setTanque(List<Tanque> tanque) {
-		this.tanque = tanque;
+		this.tanques = tanque;
 	}
 
 	public LocalDate getDataNascimento() {

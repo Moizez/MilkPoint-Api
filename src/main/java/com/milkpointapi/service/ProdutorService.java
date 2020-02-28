@@ -34,8 +34,8 @@ public class ProdutorService {
 		return repository.findByEmailIgnoreCaseContaining(email);
 	}
 	
-	public List<Produtor> searchFor(String nome, String apelido, String cpf, String email) {
-		return repository.findByNomeOrApelidoOrCpfOrEmailLike(nome, apelido, cpf, email);
+	public List<Produtor> findByNome(String nome) {
+		return repository.findByNomeIgnoreCaseContaining(nome);
 	}
 
 }

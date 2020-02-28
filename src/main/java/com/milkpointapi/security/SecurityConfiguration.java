@@ -41,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeRequests().antMatchers("/**").permitAll()
 		.antMatchers("/admin/**").hasAnyRole("ADMIN")
+		.antMatchers("/api/**").permitAll()
 		.and().formLogin()
 		.loginPage("/")
 		.loginProcessingUrl("/login")
@@ -50,6 +51,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.failureUrl("/loginfailure")
 		.and().exceptionHandling().accessDeniedPage("/accessdenied")
 		.and().rememberMe();
+
+		httpSecurity.csrf().disable();
+		httpSecurity.headers().frameOptions().disable();
 	}
 
 }

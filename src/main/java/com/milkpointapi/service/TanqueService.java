@@ -30,8 +30,8 @@ public class TanqueService {
 		repository.deleteById(id);
 	}
 
-	public List<Tanque> searchFor(String nome, String localidade, String uf) {
-		return repository.findByNomeOrLocalidadeOrUfLike(nome, localidade, uf);
+	public List<Tanque> findByNome(String nome) {
+		return repository.findByNomeIgnoreCaseContaining(nome);
 	}
 
 }

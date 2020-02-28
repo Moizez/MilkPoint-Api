@@ -11,18 +11,18 @@ import com.milkpointapi.model.Responsavel;
 public class LoginUserService {
 
 	@Autowired
-	private ProdutorService produtorService;
+	private ProdutorService prodService;
 
 	@Autowired
-	private LaticinioService laticinioService;
+	private LaticinioService latService;
 
 	@Autowired
 	private ResponsavelService responsavelService;
 
 	public Object login(String email, String senha) {
 
-		Produtor produtor = produtorService.buscaLogin(email);
-		Laticinio laticinio = laticinioService.buscaLogin(email);
+		Produtor produtor = prodService.buscaLogin(email);
+		Laticinio laticinio = latService.buscaLogin(email);
 		Responsavel responsavel = responsavelService.buscaLogin(email);
 
 		if (produtor != null) {

@@ -9,15 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.milkpointapi.model.Responsavel;
 
 @Repository
-public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> {
-
+public interface ResponsavelRepository extends JpaRepository<Responsavel, Long>{ 
+	
 	@Query
 	public Responsavel findByEmailIgnoreCaseContaining(String email);
 	
-	@Query(value = "select * from responsavel r where r.apelido like concat('%', ?, '%')\n"
-			+ "	|| r.nome like concat('%', ?, '%')\n" 
-			+ " || r.cpf like concat('%', ?, '%')\n"
-			+ " || r.email like concat('%', ?, '%')\n" + ";", nativeQuery = true)
-	public List<Responsavel> findByNomeOrApelidoOrCpfOrEmailLike(String nome, String apelido, String cpf, String email);
+	@Query
+	public List<Responsavel> findByNomeIgnoreCaseContaining(String nome);
 
 }
