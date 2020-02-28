@@ -11,7 +11,9 @@ import com.milkpointapi.model.Tanque;
 @Repository
 public interface TanqueRepository extends JpaRepository<Tanque, Long> {
 
-	@Query
-	public List<Tanque> findByNomeIgnoreCaseContaining(String nome);
+	@Query(value = "select * from tanque t where t.nome like concat('%', ?, '%')\n"
+			+ "	|| t.localidade like concat('%', ?, '%')\n" 
+			+ " || t.uf like concat('%', ?, '%')\n" + ";", nativeQuery = true)
+	public List<Tanque> findByNomeOrLocalidadeOrUfLike(String nome, String localidade, String uf);
 
 }

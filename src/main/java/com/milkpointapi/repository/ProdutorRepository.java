@@ -14,6 +14,9 @@ public interface ProdutorRepository extends JpaRepository<Produtor, Long> {
 	@Query
 	public Produtor findByEmailIgnoreCaseContaining(String email);
 	
-	@Query
-	public List<Produtor> findByNomeIgnoreCaseContaining(String nome);
+	@Query(value = "select * from produtor p where p.apelido like concat('%', ?, '%')\n"
+			+ "	|| p.nome like concat('%', ?, '%')\n" 
+			+ " || p.cpf like concat('%', ?, '%')\n"
+			+ " || p.email like concat('%', ?, '%')\n" + ";", nativeQuery = true)
+	public List<Produtor> findByNomeOrApelidoOrCpfOrEmailLike(String nome, String apelido, String cpf, String email);
 }
