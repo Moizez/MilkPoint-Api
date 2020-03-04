@@ -84,6 +84,10 @@ public class Tanque implements Serializable {
 	@OneToMany(mappedBy = "tanque")
 	private List<Deposito> depositos;
 
+	public float latidude;
+
+	public float longitude;
+
 	public Long getId() {
 		return id;
 	}

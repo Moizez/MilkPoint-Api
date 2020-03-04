@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.TanqueService;
 
@@ -76,6 +76,21 @@ public class TanqueResource {
 		tanqueService.delete(id);
 		return ResponseEntity.noContent().build();
 
+	}
+	@PutMapping("/tanque/{id}/locationupdate")
+	public ResponseEntity<Tanque> tanque(@RequestParam("latitude") float latitude,
+			@RequestParam("longitude") float longitude,
+			@RequestParam("idResp") Long idResp, @RequestParam("idTanque") Long idTanque) {
+		Tanque tanque = tanqueService.findOne(idTanque);
+		if (tanque == null || tanque.responsavel.getId() != idResp) {
+			return ResponseEntity.notFound().build();
+		} else {
+			tanque.latidude = latitude;
+			tanque.longitude = longitude;
+			tanque = tanqueService.save(tanque);
+			return ResponseEntity.ok(tanque);
+		}
+		
 	}
 
 }
