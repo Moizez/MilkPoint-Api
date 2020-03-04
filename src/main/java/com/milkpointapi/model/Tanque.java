@@ -52,10 +52,10 @@ public class Tanque implements Serializable {
 	private String localidade;
 
 	@Column
-	private String latitude;
+	private double latitude = 0;
 
 	@Column
-	private String longitude;
+	private double longitude = 0;
 
 	@Column
 	private String uf;
@@ -212,19 +212,19 @@ public class Tanque implements Serializable {
 		this.localidade = localidade;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
