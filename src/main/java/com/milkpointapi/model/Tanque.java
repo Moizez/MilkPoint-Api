@@ -84,10 +84,13 @@ public class Tanque implements Serializable {
 	@OneToMany(mappedBy = "tanque")
 	private List<Deposito> depositos;
 
-	public float latidude;
+	@Column
+	private double latitude = 0;
 
-	public float longitude;
+	@Column
+	private double longitude = 0;
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -235,5 +238,22 @@ public class Tanque implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
+	public double getLatitude() {
+		return this.latitude;
+	}
+	
+	public double getLongitude() {
+		return this.longitude;
+	}
+	
 
 }

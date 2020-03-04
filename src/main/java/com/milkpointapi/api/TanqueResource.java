@@ -45,7 +45,6 @@ public class TanqueResource {
 	@GetMapping("/tanque/{id}")
 	public ResponseEntity<Tanque> buscar(@PathVariable Long id) {
 		Tanque tanque = tanqueService.findOne(id);
-
 		if (tanque == null) {
 			return ResponseEntity.notFound().build();
 		}
@@ -77,19 +76,18 @@ public class TanqueResource {
 		return ResponseEntity.noContent().build();
 
 	}
-	@PutMapping("/tanque/{id}/locationupdate")
-	public ResponseEntity<Tanque> tanque(@RequestParam("latitude") float latitude,
-			@RequestParam("longitude") float longitude,
-			@RequestParam("idResp") Long idResp, @RequestParam("idTanque") Long idTanque) {
-		Tanque tanque = tanqueService.findOne(idTanque);
-		if (tanque == null || tanque.responsavel.getId() != idResp) {
-			return ResponseEntity.notFound().build();
-		} else {
-			tanque.latidude = latitude;
-			tanque.longitude = longitude;
-			tanque = tanqueService.save(tanque);
-			return ResponseEntity.ok(tanque);
-		}
+	@PutMapping("/tanque/location/{id}")
+	public ResponseEntity<Object> getLocation(@PathVariable Long id, 
+			@RequestParam("latitude") double latitude,
+			@RequestParam("longitude") double longitude) {
+		Tanque tanque = tanqueService.findOne(id);
+		tanque.setLatitude(latitude);
+		tanque.setLongitude(longitude);
+		tanqueService.save(tanque);
+		Tanque t = new Tanque();
+		BeanUtils.copyProperties(tanque, t);
+		return ResponseEntity.ok(t);
+
 		
 	}
 
