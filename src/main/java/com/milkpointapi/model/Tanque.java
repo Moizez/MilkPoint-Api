@@ -16,11 +16,13 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.milkpointapi.enums.Capacidade;
 import com.milkpointapi.enums.Status;
 import com.milkpointapi.enums.Tipo;
 
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Tanque implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -50,14 +52,20 @@ public class Tanque implements Serializable {
 	private String localidade;
 
 	@Column
+	private String latitude;
+
+	@Column
+	private String longitude;
+
+	@Column
 	private String uf;
 
 	@Column
 	private float qtdAtual = 0;
-	
+
 	@Column
 	private String comunidade;
-	
+
 	@Column
 	private float qtdRestante;
 
@@ -84,13 +92,6 @@ public class Tanque implements Serializable {
 	@OneToMany(mappedBy = "tanque")
 	private List<Deposito> depositos;
 
-	@Column
-	private double latitude = 0;
-
-	@Column
-	private double longitude = 0;
-
-	
 	public Long getId() {
 		return id;
 	}
@@ -178,7 +179,7 @@ public class Tanque implements Serializable {
 	public void setComunidade(String comunidade) {
 		this.comunidade = comunidade;
 	}
-	
+
 	public String getCep() {
 		return cep;
 	}
@@ -211,6 +212,22 @@ public class Tanque implements Serializable {
 		this.localidade = localidade;
 	}
 
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
 	public String getUf() {
 		return uf;
 	}
@@ -238,22 +255,5 @@ public class Tanque implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-	
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
-	
-	public double getLatitude() {
-		return this.latitude;
-	}
-	
-	public double getLongitude() {
-		return this.longitude;
-	}
-	
 
 }

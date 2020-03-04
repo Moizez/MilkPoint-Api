@@ -52,17 +52,17 @@ public class DepositoResource {
 		tanqueService.save(tanque);
 		return add(deposito);
 	}
-	
+
 	@PostMapping("/deposito/confirmacao")
-	public ResponseEntity<Deposito> confirmacao(@RequestParam("confirmacao") boolean confirmacao, 
+	public ResponseEntity<Deposito> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
 			@RequestParam("idDeposito") Long idDeposito) {
-		
+
 		Deposito deposito = service.findOne(idDeposito);
-		
-		if(deposito != null) {
+
+		if (deposito != null) {
 			deposito.setConfirmacao(confirmacao);
-			
-			if(confirmacao) {
+
+			if (confirmacao) {
 				Tanque tanque = deposito.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() + deposito.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() - deposito.getQuantidade());
@@ -72,15 +72,15 @@ public class DepositoResource {
 			service.save(deposito);
 			return ResponseEntity.ok(deposito);
 		}
-		
+
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@GetMapping("/deposito/listatodos")
 	public List<Deposito> listaTodos() {
 		return service.findAll();
 	}
-	
+
 	@GetMapping("/deposito/listapendentes")
 	public List<Deposito> listaPendentes() {
 		return service.buscaPendentes();

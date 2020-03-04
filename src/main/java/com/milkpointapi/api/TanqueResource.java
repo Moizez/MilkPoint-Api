@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.TanqueService;
 
@@ -45,6 +45,7 @@ public class TanqueResource {
 	@GetMapping("/tanque/{id}")
 	public ResponseEntity<Tanque> buscar(@PathVariable Long id) {
 		Tanque tanque = tanqueService.findOne(id);
+
 		if (tanque == null) {
 			return ResponseEntity.notFound().build();
 		}
@@ -76,19 +77,17 @@ public class TanqueResource {
 		return ResponseEntity.noContent().build();
 
 	}
-	@PutMapping("/tanque/location/{id}")
-	public ResponseEntity<Object> getLocation(@PathVariable Long id, 
-			@RequestParam("latitude") double latitude,
-			@RequestParam("longitude") double longitude) {
-		Tanque tanque = tanqueService.findOne(id);
-		tanque.setLatitude(latitude);
-		tanque.setLongitude(longitude);
-		tanqueService.save(tanque);
-		Tanque t = new Tanque();
-		BeanUtils.copyProperties(tanque, t);
-		return ResponseEntity.ok(t);
 
-		
+	@PostMapping("/tanque/location")
+	public ResponseEntity<Tanque> location(@RequestBody Tanque tanque) {
+		Tanque tanque2 = tanqueService.findOne(tanque.getId());
+		if (tanque2 != null) {
+			tanque2.setLatitude(tanque.getLatitude());
+			tanque2.setLongitude(tanque.getLongitude());
+			tanqueService.save(tanque2);
+			return ResponseEntity.ok(tanque2);
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 }
