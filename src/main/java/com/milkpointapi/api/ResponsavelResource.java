@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.milkpointapi.model.Responsavel;
+import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.ResponsavelService;
 
 @RestController
@@ -50,6 +51,16 @@ public class ResponsavelResource {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(responsavel);
+	}
+	
+	@GetMapping("/responsavel/{id}/tanques")
+	public ResponseEntity<List<Tanque>> tanques(@PathVariable Long id) {
+		Responsavel responsavel = responsavelService.findOne(id);
+
+		if (responsavel == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(responsavel.getTanque());
 	}
 
 	@PutMapping("responsavel/{id}")

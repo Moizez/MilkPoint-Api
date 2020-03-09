@@ -15,8 +15,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Responsavel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -68,6 +70,7 @@ public class Responsavel implements Serializable {
 	private String email;
 
 	@Column
+	@JsonIgnore
 	private String password;
 
 	@JsonIgnore
