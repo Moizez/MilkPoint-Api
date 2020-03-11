@@ -76,7 +76,7 @@ public class Retirada implements Serializable {
 		this.confirmacao = confirmacao;
 	}
 
-	public boolean isExcluido() {
+	public boolean getExcluido() {
 		return excluido;
 	}
 

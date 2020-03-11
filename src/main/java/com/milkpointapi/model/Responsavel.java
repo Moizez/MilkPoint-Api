@@ -69,8 +69,8 @@ public class Responsavel implements Serializable {
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
-	@Column
 	@JsonIgnore
+	@Column
 	private String password;
 
 	@JsonIgnore

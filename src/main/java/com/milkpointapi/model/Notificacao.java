@@ -1,51 +1,17 @@
 package com.milkpointapi.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Notificacao implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
-
-	@Column
-	private float quantidade;
-
-	@ManyToOne
-	@JoinColumn(name = "motificacao_produtor")
-	private Produtor produtor;
+public class Notificacao {
 	
-	@ManyToOne
-	@JoinColumn(name = "motificacao_laticinio")
-	private Laticinio laticinio;
+	private float quantidade;
+	
+	private String tipo;
 
-	@ManyToOne
-	@JoinColumn(name = "notificacao_tanque")
-	private Tanque tanque;
+	private String solicitante;
+	
+	private String tanque;
 
-	@Column
 	private boolean confirmacao = false;
 	
-	@Column
 	private boolean excluido = false;
 
 	public float getQuantidade() {
@@ -56,27 +22,27 @@ public class Notificacao implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public Produtor getProdutor() {
-		return produtor;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setProdutor(Produtor produtor) {
-		this.produtor = produtor;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
-	public Laticinio getLaticinio() {
-		return laticinio;
+	public String getSolicitante() {
+		return solicitante;
 	}
 
-	public void setLaticinio(Laticinio laticinio) {
-		this.laticinio = laticinio;
+	public void setSolicitante(String solicitante) {
+		this.solicitante = solicitante;
 	}
 
-	public Tanque getTanque() {
+	public String getTanque() {
 		return tanque;
 	}
 
-	public void setTanque(Tanque tanque) {
+	public void setTanque(String tanque) {
 		this.tanque = tanque;
 	}
 
@@ -95,17 +61,4 @@ public class Notificacao implements Serializable {
 	public void setExcluido(boolean excluido) {
 		this.excluido = excluido;
 	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }
