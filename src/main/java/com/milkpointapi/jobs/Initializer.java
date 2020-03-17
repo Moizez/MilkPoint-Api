@@ -62,7 +62,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 		if (pro == null) {
 			pro = new Produtor();
-			pro.setNome("Antônio Almeida");
+			pro.setNome("Antônio");
 			pro.setApelido("Tony");
 			pro.setCpf("43619901074");
 			pro.setDataNascimento(null);
@@ -86,7 +86,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 		if (resp == null) {
 			resp = new Responsavel();
-			resp.setNome("Leandro Rêgo");
+			resp.setNome("Leandro");
 			resp.setApelido("Léo");
 			resp.setCpf("98736378003");
 			resp.setDataNascimento(null);
@@ -111,7 +111,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 		if (lat == null) {
 			lat = new Laticinio();
-			lat.setNome("Francisco Nascimento");
+			lat.setNome("Francisco");
 			lat.setNomeFantasia("Leite & Cia");
 			lat.setCnpj("66606211000180");
 			lat.setDataCriacao(null);
