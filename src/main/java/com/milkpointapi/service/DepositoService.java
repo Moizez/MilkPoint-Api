@@ -10,12 +10,14 @@ import com.milkpointapi.repository.DepositoRepository;
 
 @Service
 public class DepositoService {
-	
 	@Autowired
 	private DepositoRepository repository;
 	
 	public void save(Deposito deposito) {
 		repository.save(deposito);
+		if(deposito.getTanque().getResponsavel().getSms()) {
+			new SmsService().send(deposito);
+		}
 	}
 	
 	public List<Deposito> findAll() {

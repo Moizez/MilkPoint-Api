@@ -62,7 +62,18 @@ public class ResponsavelResource {
 		}
 		return ResponseEntity.ok(responsavel.getTanque());
 	}
-	
+
+	@GetMapping("/responsavel/{id}/sms/{value}")
+	public Responsavel updateSms(@PathVariable Long id, @PathVariable boolean value) {
+		Responsavel responsavel = responsavelService.findOne(id);
+		if(value == true) {
+			responsavel.setSms(true);
+		} else {
+			responsavel.setSms(false);
+		}
+		responsavel = responsavelService.save(responsavel);
+		return responsavel;
+	}
 	
 	@GetMapping("/responsavel/{id}/notificacoes")
 	public ResponseEntity<List<Notificacao>> notificacoes(@PathVariable Long id) {

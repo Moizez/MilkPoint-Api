@@ -47,6 +47,13 @@ public class Responsavel implements Serializable {
 
 	@Column(name = "cpf", unique = true, length = 14, nullable = false)
 	private String cpf;
+	
+	@Column
+	private String telefone = "";
+
+	@Column
+	private boolean sms = false;
+
 
 	@Column
 	private String cep;
@@ -163,6 +170,22 @@ public class Responsavel implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public boolean getSms() {
+		return sms;
+	}
+	
+	public void setSms(boolean sms) {
+		this.sms = sms;
 	}
 
 	public String getLogradouro() {

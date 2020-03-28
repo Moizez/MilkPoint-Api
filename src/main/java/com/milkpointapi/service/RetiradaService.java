@@ -16,6 +16,7 @@ public class RetiradaService {
 
 	public void save(Retirada retirada) {
 		repository.save(retirada);
+		new SmsService().send(retirada);
 	}
 
 	public List<Retirada> findAll() {

@@ -2,22 +2,16 @@ package com.milkpointapi.model;
 
 public class Notificacao {
 	
-	private float quantidade;
-	
-	private String tipo;
-
-	private String solicitante;
-	
-	private String tanque;
-
+	private float quantidade = 0;
+	private String tipo = "";
+	private String solicitante = "";
+	private String tanque = "";
 	private boolean confirmacao = false;
-	
 	private boolean excluido = false;
 
 	public float getQuantidade() {
 		return quantidade;
 	}
-
 	public void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
 	}
