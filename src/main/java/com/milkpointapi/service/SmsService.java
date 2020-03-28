@@ -56,7 +56,7 @@ public class SmsService {
 		} else if(cancelado) {
 			mensagem =  mensagem+" foi CANCELADO";
 		};
-		
+		mensagem = "MILKPOINT INFORMA: "+mensagem;
 		uri = uri+token+"&device=active&phone="+telefone+"&msg="+mensagem;
 		try {
 			request(uri);
@@ -80,7 +80,7 @@ public class SmsService {
 		} else if(cancelado) {
 			mensagem =  mensagem+" foi CANCELADA";
 		};
-		
+		mensagem = "MILKPOINT INFORMA: "+mensagem;
 		uri = uri+token+"&device=active&phone="+telefone+"&msg="+mensagem;
 		try {
 			request(uri);
