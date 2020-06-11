@@ -1,7 +1,7 @@
 package com.milkpointapi.enums;
 
 public enum Tipo {
-	BOVINO("bovino"), CAPRINO("caprino");
+	bovino("Bovino"), caprino("Caprino");
 	
 	private String valor;
 
