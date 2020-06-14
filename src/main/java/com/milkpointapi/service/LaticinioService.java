@@ -30,6 +30,10 @@ public class LaticinioService {
         repository.deleteById(id);
     }
     
+    public Laticinio findByEmailAndPassword(String email, String senha) {
+		return repository.findByEmailAndPassword(email, senha);
+	}
+    
     public Laticinio buscaLogin(String email) {
     	return repository.findByEmailIgnoreCaseContaining(email);
     }

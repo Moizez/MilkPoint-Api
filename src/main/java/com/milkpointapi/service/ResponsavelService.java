@@ -29,6 +29,10 @@ public class ResponsavelService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public Responsavel findByEmailAndPassword(String email, String senha) {
+		return repository.findByEmailAndPassword(email, senha);
+	}
 
 	public Responsavel buscaLogin(String email) {
 		return repository.findByEmailIgnoreCaseContaining(email);

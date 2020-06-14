@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.milkpointapi.model.Laticinio;
-import com.milkpointapi.model.Produtor;
 
 @Repository
 public interface LaticinioRepository extends JpaRepository<Laticinio, Long> {
