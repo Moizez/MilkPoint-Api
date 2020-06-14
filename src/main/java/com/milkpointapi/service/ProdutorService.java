@@ -29,6 +29,10 @@ public class ProdutorService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public Produtor findByEmailAndPassword(String email, String senha) {
+		return repository.findByEmailAndPassword(email, senha);
+	}
 
 	public Produtor buscaLogin(String email) {
 		return repository.findByEmailIgnoreCaseContaining(email);

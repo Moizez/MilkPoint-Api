@@ -21,7 +21,7 @@ public class LoginUserService {
 
 	public Object login(String email, String senha) {
 
-		Produtor produtor = produtorService.buscaLogin(email);
+		Produtor produtor = produtorService.findByEmailAndPassword(email, senha);
 		Laticinio laticinio = laticinioService.buscaLogin(email);
 		Responsavel responsavel = responsavelService.buscaLogin(email);
 
