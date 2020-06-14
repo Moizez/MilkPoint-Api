@@ -116,6 +116,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			lat.setCnpj("66606211000180");
 			lat.setDataCriacao(null);
 			lat.setEmail("leiteecia@gmail.com");
+			lat.setPassword("123");
 			lat.setCep("59900-000");
 			lat.setUf("RN");
 			lat.setLocalidade("Pau dos Ferros");
