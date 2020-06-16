@@ -54,7 +54,7 @@ public class ResponsavelResource {
 		return ResponseEntity.ok(responsavel);
 	}
 	
-	@GetMapping("/responsavel/{id}/tanque")
+	@GetMapping("/responsavel/{id}/tanques")
 	public ResponseEntity<List<Tanque>> tanques(@PathVariable Long id) {
 		Responsavel responsavel = responsavelService.findOne(id);
 		if (responsavel == null) {
