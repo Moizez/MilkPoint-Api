@@ -1,7 +1,6 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -46,8 +44,11 @@ public class Deposito implements Serializable {
 	@Column
 	private boolean excluido = false;
 
-	@DateTimeFormat(pattern = "dd/MM/uuuu HH:mm")
-	private Date novaData;
+	@Column
+	private String dataNow;
+
+	@Column
+	private String horaNow;
 
 	public float getQuantidade() {
 		return quantidade;
@@ -89,12 +90,20 @@ public class Deposito implements Serializable {
 		this.excluido = excluido;
 	}
 
-	public Date getNovaData() {
-		return novaData;
+	public String getDataNow() {
+		return dataNow;
 	}
 
-	public void setNovaData(Date novaData) {
-		this.novaData = novaData;
+	public void setDataNow(String dataNow) {
+		this.dataNow = dataNow;
+	}
+
+	public String getHoraNow() {
+		return horaNow;
+	}
+
+	public void setHoraNow(String horaNow) {
+		this.horaNow = horaNow;
 	}
 
 	public Long getId() {

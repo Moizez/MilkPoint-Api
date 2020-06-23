@@ -1,6 +1,7 @@
 package com.milkpointapi.api;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,53 +42,68 @@ public class RetiradaResource {
 		return ResponseEntity.notFound().build();
 	}
 
+	public String data() {
+		LocalDateTime agora = LocalDateTime.now();
+		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		String dataFormatada = formatterData.format(agora);
+		return dataFormatada;
+	}
+
+	public String hora() {
+		LocalDateTime agora = LocalDateTime.now();
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		String horaFormatada = formatterHora.format(agora);
+		return horaFormatada;
+	}
+
 	@PostMapping("/retirada")
 	public ResponseEntity<Retirada> retirada(@RequestParam("quantidade") float quantidade,
 			@RequestParam("idLat") Long idLat, @RequestParam("idTanque") Long idTanque) {
 		Tanque tanque = tanqueService.findOne(idTanque);
 		Laticinio laticinio = laticinioService.findOne(idLat);
 		Retirada retirada = new Retirada();
-		retirada.setNovaData(new Date());
+		retirada.setDataNow(data());
+		retirada.setHoraNow(hora());
 		retirada.setLaticinio(laticinio);
 		retirada.setTanque(tanque);
 		retirada.setQuantidade(quantidade);
 		tanqueService.save(tanque);
 		return add(retirada);
 	}
-	
+
 	@PostMapping("/retirada/confirmacao")
-	public ResponseEntity<Retirada> confirmacao(@RequestParam("confirmacao") boolean confirmacao, 
+	public ResponseEntity<Retirada> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
 			@RequestParam("idRetirada") Long idRetirada) {
-		
+
 		Retirada retirada = service.findOne(idRetirada);
-		
-		if(retirada != null) {
+
+		if (retirada != null) {
 			retirada.setConfirmacao(confirmacao);
-			retirada.setNovaData(new Date());
-			
-			if(confirmacao) {
+			retirada.setDataNow(data());
+			retirada.setHoraNow(hora());
+
+			if (confirmacao) {
 				Tanque tanque = retirada.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() - retirada.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() + retirada.getQuantidade());
-			}
-			else {
+			} else {
 				retirada.setExcluido(true);
 			}
 			service.save(retirada);
 			return ResponseEntity.ok(retirada);
 		}
-		
+
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@GetMapping("/retirada/listatodos")
 	public List<Retirada> listAll() {
 		return service.findAll();
 	}
-	
+
 	@GetMapping("/retirada/listapendentes")
 	public List<Retirada> buscaPendentes() {
 		return service.buscaPendentes();
 	}
-	
+
 }
