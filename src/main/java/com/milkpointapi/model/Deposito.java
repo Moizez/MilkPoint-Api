@@ -47,7 +47,7 @@ public class Deposito implements Serializable {
 	@Column
 	private boolean excluido = false;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date novaData;
 
 	public float getQuantidade() {
