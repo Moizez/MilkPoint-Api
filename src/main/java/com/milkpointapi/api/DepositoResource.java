@@ -1,6 +1,6 @@
 package com.milkpointapi.api;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -43,16 +43,16 @@ public class DepositoResource {
 	}
 
 	public String data() {
-		LocalDateTime agora = LocalDateTime.now();
 		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-		String dataFormatada = formatterData.format(agora);
+		String dataFormatada = ZonedDateTime.now().format(formatterData);
+		System.out.println("Data: " + dataFormatada);
 		return dataFormatada;
 	}
 
 	public String hora() {
-		LocalDateTime agora = LocalDateTime.now();
 		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-		String horaFormatada = formatterHora.format(agora);
+		String horaFormatada = ZonedDateTime.now().format(formatterHora);
+		System.out.println("Hora: " + horaFormatada);
 		return horaFormatada;
 	}
 
