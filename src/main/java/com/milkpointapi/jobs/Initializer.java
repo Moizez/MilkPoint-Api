@@ -1,5 +1,9 @@
 package com.milkpointapi.jobs;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -36,6 +40,15 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
+		System.out.println("Data 1: " + new Date());
+		LocalDateTime agora = LocalDateTime.now();
+		System.out.println("Data 2: " + agora);
+		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		String dataFormatada = formatterData.format(agora);
+		System.out.println("Data 3: " + dataFormatada);		
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		String horaFormatada = formatterHora.format(agora);
+		System.out.println("Hora 3: " + horaFormatada);
 
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 	}
