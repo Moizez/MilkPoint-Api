@@ -1,6 +1,7 @@
 package com.milkpointapi.api;
 
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -43,16 +44,14 @@ public class RetiradaResource {
 	}
 
 	public String data() {
-		LocalDateTime agora = LocalDateTime.now();
 		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-		String dataFormatada = formatterData.format(agora);
+		String dataFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterData);
 		return dataFormatada;
 	}
 
 	public String hora() {
-		LocalDateTime agora = LocalDateTime.now();
 		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-		String horaFormatada = formatterHora.format(agora);
+		String horaFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterHora);
 		return horaFormatada;
 	}
 
