@@ -1,6 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -43,6 +46,9 @@ public class Retirada implements Serializable {
 
 	@Column
 	private boolean excluido = false;
+
+	@Temporal(TemporalType.DATE)
+	private Date novaData;
 
 	public float getQuantidade() {
 		return quantidade;
@@ -82,6 +88,14 @@ public class Retirada implements Serializable {
 
 	public void setExcluido(boolean excluido) {
 		this.excluido = excluido;
+	}
+
+	public Date getNovaData() {
+		return novaData;
+	}
+
+	public void setNovaData(Date novaData) {
+		this.novaData = novaData;
 	}
 
 	public Long getId() {

@@ -1,5 +1,6 @@
 package com.milkpointapi.api;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class RetiradaResource {
 		Tanque tanque = tanqueService.findOne(idTanque);
 		Laticinio laticinio = laticinioService.findOne(idLat);
 		Retirada retirada = new Retirada();
+		retirada.setNovaData(new Date());
 		retirada.setLaticinio(laticinio);
 		retirada.setTanque(tanque);
 		retirada.setQuantidade(quantidade);
@@ -61,6 +63,7 @@ public class RetiradaResource {
 		
 		if(retirada != null) {
 			retirada.setConfirmacao(confirmacao);
+			retirada.setNovaData(new Date());
 			
 			if(confirmacao) {
 				Tanque tanque = retirada.getTanque();

@@ -1,5 +1,6 @@
 package com.milkpointapi.api;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class DepositoResource {
 		Tanque tanque = tanqueService.findOne(idTanque);
 		Produtor produtor = produtorService.findOne(idProd);
 		Deposito deposito = new Deposito();
+		deposito.setNovaData(new Date());
 		deposito.setProdutor(produtor);
 		deposito.setTanque(tanque);
 		deposito.setQuantidade(quantidade);
@@ -61,6 +63,7 @@ public class DepositoResource {
 
 		if (deposito != null) {
 			deposito.setConfirmacao(confirmacao);
+			deposito.setNovaData(new Date());
 
 			if (confirmacao) {
 				Tanque tanque = deposito.getTanque();
