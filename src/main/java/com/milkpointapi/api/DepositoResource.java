@@ -73,7 +73,7 @@ public class DepositoResource {
 
 	@PostMapping("/deposito/confirmacao")
 	public ResponseEntity<Deposito> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
-			@RequestParam("idDeposito") Long idDeposito) {
+			@RequestParam("idDeposito") Long idDeposito, @RequestParam("efetuou") String nomeEfetuou) {
 
 		Deposito deposito = service.findOne(idDeposito);
 
@@ -88,6 +88,7 @@ public class DepositoResource {
 				tanque.setQtdRestante(tanque.getQtdRestante() - deposito.getQuantidade());
 			} else {
 				deposito.setExcluido(true);
+				deposito.setEfetuou(nomeEfetuou);
 			}
 			service.save(deposito);
 			return ResponseEntity.ok(deposito);

@@ -45,6 +45,9 @@ public class Deposito implements Serializable {
 	private boolean excluido = false;
 
 	@Column
+	private String efetuou;
+
+	@Column
 	private String dataNow;
 
 	@Column
@@ -88,6 +91,14 @@ public class Deposito implements Serializable {
 
 	public void setExcluido(boolean excluido) {
 		this.excluido = excluido;
+	}
+
+	public String getEfetuou() {
+		return efetuou;
+	}
+
+	public void setEfetuou(String efetuou) {
+		this.efetuou = efetuou;
 	}
 
 	public String getDataNow() {

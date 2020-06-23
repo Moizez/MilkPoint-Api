@@ -73,7 +73,7 @@ public class RetiradaResource {
 
 	@PostMapping("/retirada/confirmacao")
 	public ResponseEntity<Retirada> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
-			@RequestParam("idRetirada") Long idRetirada) {
+			@RequestParam("idRetirada") Long idRetirada, @RequestParam("efetuou") String nomeEfetuou) {
 
 		Retirada retirada = service.findOne(idRetirada);
 
@@ -88,6 +88,7 @@ public class RetiradaResource {
 				tanque.setQtdRestante(tanque.getQtdRestante() + retirada.getQuantidade());
 			} else {
 				retirada.setExcluido(true);
+				retirada.setEfetuou(nomeEfetuou);
 			}
 			service.save(retirada);
 			return ResponseEntity.ok(retirada);
