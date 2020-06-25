@@ -2,6 +2,7 @@ package com.milkpointapi.api;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +43,28 @@ public class DepositoResource {
 		return ResponseEntity.notFound().build();
 	}
 
+	public String data() {
+		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		String dataFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterData);
+		return dataFormatada;
+	}
+
+	public String hora() {
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		String horaFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterHora);
+		return horaFormatada;
+	}
+
 	@PostMapping("/deposito")
 	public ResponseEntity<Deposito> deposito(@RequestParam("quantidade") float quantidade,
 			@RequestParam("idProd") Long idProd, @RequestParam("idTanque") Long idTanque) {
 		Tanque tanque = tanqueService.findOne(idTanque);
 		Produtor produtor = produtorService.findOne(idProd);
 		Deposito deposito = new Deposito();
-		deposito.setDataHoraNow(ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")));
+		deposito.setDataNow(data());
+		deposito.setHoraNow(hora());
 		deposito.setProdutor(produtor);
-		deposito.setTanque(tanque);	
+		deposito.setTanque(tanque);
 		deposito.setQuantidade(quantidade);
 		tanqueService.save(tanque);
 		return add(deposito);
@@ -64,7 +78,8 @@ public class DepositoResource {
 
 		if (deposito != null) {
 			deposito.setConfirmacao(confirmacao);
-			deposito.setDataHoraNow(ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")));
+			deposito.setDataNow(data());
+			deposito.setHoraNow(hora());
 
 			if (confirmacao) {
 				Tanque tanque = deposito.getTanque();

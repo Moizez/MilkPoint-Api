@@ -1,7 +1,6 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +48,10 @@ public class Deposito implements Serializable {
 	private String efetuou;
 
 	@Column
-	private ZonedDateTime dataHoraNow;
+	private String dataNow;
+
+	@Column
+	private String horaNow;
 
 	public float getQuantidade() {
 		return quantidade;
@@ -99,12 +101,20 @@ public class Deposito implements Serializable {
 		this.efetuou = efetuou;
 	}
 
-	public ZonedDateTime getDataHoraNow() {
-		return dataHoraNow;
+	public String getDataNow() {
+		return dataNow;
 	}
 
-	public void setDataHoraNow(ZonedDateTime dataHoraNow) {
-		this.dataHoraNow = dataHoraNow;
+	public void setDataNow(String dataNow) {
+		this.dataNow = dataNow;
+	}
+
+	public String getHoraNow() {
+		return horaNow;
+	}
+
+	public void setHoraNow(String horaNow) {
+		this.horaNow = horaNow;
 	}
 
 	public Long getId() {
