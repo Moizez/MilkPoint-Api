@@ -26,8 +26,8 @@
 
 						<h2 style="float: left;">Tanques Cadastrados</h2>
 						<form class="form-inline" method="get" th:action="@{/tanque/buscar/nome}">
-	                    	<input class="form-control mr-sm-2" type="search" placeholder="Nome do tanque"
-	                    		th:name="nome" style="margin-left: auto;"/>
+	                    	<input class="form-control mr-sm-2" type="search" placeholder="Buscar por nome, cidade ou estado"
+	                    		th:name="nome" style="margin-left: auto; width: 320px;"/>
 	                        <button class="btn btn-dark"data-toggle="tooltip" data-placement="right" title="Buscar">
 								<i class="fas fa-search"></i>
 							</button>
@@ -46,7 +46,8 @@
 									<th scope="col">Qtd. Restante</th>
 									<th scope="col">Responsável do Tanque</th>
 									<th scope="col">Tipo do Leite</th>
-									<th scope="col">Complemento</th>
+									<th scope="col">Latitude</th>
+									<th scope="col">Longitude</th>
 									<th scope="col">Ações</th>								
 								</tr>
 							</thead>
@@ -64,13 +65,8 @@
 										</div>
 									</td>
 									<td th:text="${tanque.tipo.valor}"></td>
-									<td>
-		                            	<button type="button" class="btn btn-info" data-container="body"
-		                                    data-toggle="popover" data-placement="top" th:attr="data-content=${#strings.concat(
-			                                    tanque.complemento)}" title="Complemento">		                                
-		                                	<i class="fa fa-eye" aria-hidden="true"></i>
-		                            	</button>
-		                        	</td>
+									<td th:text="${tanque.latitude}"></td>
+									<td th:text="${tanque.longitude}"></td>
 									<td>
 										<div class="btn-group pull-right">
 											<button type="submit" class="btn btn-secondary" th:onClick="|window.location.href='@{/tanque/details/{id}(id=${tanque.id})}'|"  

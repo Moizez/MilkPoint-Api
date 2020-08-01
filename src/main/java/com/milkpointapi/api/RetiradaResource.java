@@ -2,7 +2,6 @@ package com.milkpointapi.api;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +42,9 @@ public class RetiradaResource {
 		return ResponseEntity.notFound().build();
 	}
 
-	public String data() {
-		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-		String dataFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterData);
-		return dataFormatada;
-	}
-
-	public String hora() {
-		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-		String horaFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterHora);
-		return horaFormatada;
+	public ZonedDateTime data() {
+		ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		return data;
 	}
 
 	@PostMapping("/retirada")
@@ -62,7 +54,6 @@ public class RetiradaResource {
 		Laticinio laticinio = laticinioService.findOne(idLat);
 		Retirada retirada = new Retirada();
 		retirada.setDataNow(data());
-		retirada.setHoraNow(hora());
 		retirada.setLaticinio(laticinio);
 		retirada.setTanque(tanque);
 		retirada.setQuantidade(quantidade);
@@ -72,14 +63,14 @@ public class RetiradaResource {
 
 	@PostMapping("/retirada/confirmacao")
 	public ResponseEntity<Retirada> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
-			@RequestParam("idRetirada") Long idRetirada, @RequestParam("efetuou") String nomeEfetuou) {
+			@RequestParam("idRetirada") Long idRetirada, @RequestParam("efetuou") String nomeEfetuou,
+			@RequestParam("observacao") String observacao) {
 
 		Retirada retirada = service.findOne(idRetirada);
 
 		if (retirada != null) {
 			retirada.setConfirmacao(confirmacao);
 			retirada.setDataNow(data());
-			retirada.setHoraNow(hora());
 
 			if (confirmacao) {
 				Tanque tanque = retirada.getTanque();
@@ -88,6 +79,7 @@ public class RetiradaResource {
 			} else {
 				retirada.setExcluido(true);
 				retirada.setEfetuou(nomeEfetuou);
+				retirada.setObservacao(observacao);
 			}
 			service.save(retirada);
 			return ResponseEntity.ok(retirada);

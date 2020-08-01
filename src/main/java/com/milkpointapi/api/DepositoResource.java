@@ -2,7 +2,6 @@ package com.milkpointapi.api;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +42,9 @@ public class DepositoResource {
 		return ResponseEntity.notFound().build();
 	}
 
-	public String data() {
-		DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-		String dataFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterData);
-		return dataFormatada;
-	}
-
-	public String hora() {
-		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-		String horaFormatada = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).format(formatterHora);
-		return horaFormatada;
+	public ZonedDateTime data() {
+		ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		return data;
 	}
 
 	@PostMapping("/deposito")
@@ -62,7 +54,6 @@ public class DepositoResource {
 		Produtor produtor = produtorService.findOne(idProd);
 		Deposito deposito = new Deposito();
 		deposito.setDataNow(data());
-		deposito.setHoraNow(hora());
 		deposito.setProdutor(produtor);
 		deposito.setTanque(tanque);
 		deposito.setQuantidade(quantidade);
@@ -72,14 +63,15 @@ public class DepositoResource {
 
 	@PostMapping("/deposito/confirmacao")
 	public ResponseEntity<Deposito> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
-			@RequestParam("idDeposito") Long idDeposito, @RequestParam("efetuou") String nomeEfetuou) {
+			@RequestParam("idDeposito") Long idDeposito, @RequestParam("efetuou") String nomeEfetuou,
+			@RequestParam("observacao") String observacao)
+	{
 
 		Deposito deposito = service.findOne(idDeposito);
 
 		if (deposito != null) {
 			deposito.setConfirmacao(confirmacao);
 			deposito.setDataNow(data());
-			deposito.setHoraNow(hora());
 
 			if (confirmacao) {
 				Tanque tanque = deposito.getTanque();
@@ -88,6 +80,7 @@ public class DepositoResource {
 			} else {
 				deposito.setExcluido(true);
 				deposito.setEfetuou(nomeEfetuou);
+				deposito.setObservacao(observacao);
 			}
 			service.save(deposito);
 			return ResponseEntity.ok(deposito);

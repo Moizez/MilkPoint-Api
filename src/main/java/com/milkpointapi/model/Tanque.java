@@ -75,6 +75,9 @@ public class Tanque implements Serializable {
 	@ManyToOne
 	public Responsavel responsavel;
 
+	@ManyToOne
+	public Tecnico tecnico;
+
 	@Column
 	private Capacidade capacidade;
 
@@ -122,6 +125,14 @@ public class Tanque implements Serializable {
 
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+
+	public Tecnico getTecnico() {
+		return tecnico;
+	}
+
+	public void setTecnico(Tecnico tecnico) {
+		this.tecnico = tecnico;
 	}
 
 	public Responsavel getResponsavel() {

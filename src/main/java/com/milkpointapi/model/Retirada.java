@@ -1,6 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Retirada implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -48,10 +46,10 @@ public class Retirada implements Serializable {
 	private String efetuou;
 
 	@Column
-	private String dataNow;
+	private String observacao;
 
 	@Column
-	private String horaNow;
+	private ZonedDateTime dataNow;
 
 	public float getQuantidade() {
 		return quantidade;
@@ -97,24 +95,24 @@ public class Retirada implements Serializable {
 		return efetuou;
 	}
 
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
 	public void setEfetuou(String efetuou) {
 		this.efetuou = efetuou;
 	}
 
-	public String getDataNow() {
+	public ZonedDateTime getDataNow() {
 		return dataNow;
 	}
 
-	public void setDataNow(String dataNow) {
+	public void setDataNow(ZonedDateTime dataNow) {
 		this.dataNow = dataNow;
-	}
-
-	public String getHoraNow() {
-		return horaNow;
-	}
-
-	public void setHoraNow(String horaNow) {
-		this.horaNow = horaNow;
 	}
 
 	public Long getId() {
