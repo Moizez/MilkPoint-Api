@@ -76,6 +76,7 @@ public class RetiradaResource {
 				Tanque tanque = retirada.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() - retirada.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() + retirada.getQuantidade());
+				retirada.setObservacao(observacao);
 			} else {
 				retirada.setExcluido(true);
 				retirada.setEfetuou(nomeEfetuou);
