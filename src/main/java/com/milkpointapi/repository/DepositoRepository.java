@@ -10,7 +10,7 @@ import com.milkpointapi.model.Deposito;
 
 @Repository
 public interface DepositoRepository extends JpaRepository<Deposito, Long> {
-	@Query(value="select * from deposito d where d.excluido = 0 and d.confirmacao = 0", nativeQuery=true)
-	public List<Deposito> buscaPendentes();
 	
+	@Query(value="select * from deposito d where d.excluido = 0 and d.confirmacao = 0 ORDER BY data_now ASC", nativeQuery=true)
+	public List<Deposito> buscaPendentes();
 }

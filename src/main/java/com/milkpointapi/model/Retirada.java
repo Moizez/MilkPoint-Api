@@ -28,6 +28,9 @@ public class Retirada implements Serializable {
 	@Column
 	private float quantidade;
 
+	@Column
+	private double valor = 0;
+
 	@ManyToOne
 	@JoinColumn(name = "retirada_laticinio")
 	private Laticinio laticinio;
@@ -57,6 +60,14 @@ public class Retirada implements Serializable {
 
 	public void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public Laticinio getLaticinio() {

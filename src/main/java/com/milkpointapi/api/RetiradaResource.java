@@ -57,6 +57,7 @@ public class RetiradaResource {
 		retirada.setLaticinio(laticinio);
 		retirada.setTanque(tanque);
 		retirada.setQuantidade(quantidade);
+		retirada.setValor(quantidade * 0.84);
 		tanqueService.save(tanque);
 		return add(retirada);
 	}

@@ -18,9 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Deposito implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,6 +27,9 @@ public class Deposito implements Serializable {
 
 	@Column
 	private float quantidade;
+
+	@Column
+	private double valor = 0;
 
 	@ManyToOne
 	@JoinColumn(name = "deposito_produtor")
@@ -60,6 +60,14 @@ public class Deposito implements Serializable {
 
 	public void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public Produtor getProdutor() {

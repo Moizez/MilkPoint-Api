@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Deposito;
 import com.milkpointapi.model.Produtor;
 import com.milkpointapi.model.Tanque;
@@ -57,6 +58,11 @@ public class DepositoResource {
 		deposito.setProdutor(produtor);
 		deposito.setTanque(tanque);
 		deposito.setQuantidade(quantidade);
+		if (tanque.getTipo() == Tipo.BOVINO) {
+			deposito.setValor(quantidade * 1.10);
+		} else {
+			deposito.setValor(quantidade * 1.65);
+		}
 		tanqueService.save(tanque);
 		return add(deposito);
 	}
