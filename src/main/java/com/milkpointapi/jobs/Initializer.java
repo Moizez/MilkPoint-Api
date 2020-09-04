@@ -21,7 +21,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private TecnicoService tecnicoService;
 
@@ -38,14 +38,14 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		System.out.println("----- Criando Usuários Padrões ------");
 		createUserAdmin();
-		createTecnico();	
+		createTecnico();
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
 
-		System.out.println("----- Usuários Criados com Sucesso! -----");		
-	
-	}	
+		System.out.println("----- Usuários Criados com Sucesso! -----");
+
+	}
 
 	private void createUserAdmin() {
 		UserInfo usuario = userService.findByRoleAdmin();
@@ -62,7 +62,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		}
 
 	}
-	
+
 	private void createTecnico() {
 
 		Tecnico tec = tecnicoService.buscaLogin("jr@gmail.com");

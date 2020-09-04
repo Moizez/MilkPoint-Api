@@ -52,6 +52,12 @@ public class ProdutorResource {
 		return ResponseEntity.ok(produtor);
 	}
 
+	private boolean isObjectNull(Produtor prod) {
+		if (prod.getNome() == null && prod.getCpf() == null && prod.getEmail() == null)
+			return true;
+		return false;
+	}
+
 	@PutMapping("produtor/{id}")
 	public ResponseEntity<Produtor> update(@PathVariable Long id, @RequestBody Produtor produtor) {
 		Produtor prod = produtorService.findOne(id);
@@ -60,7 +66,11 @@ public class ProdutorResource {
 			return ResponseEntity.notFound().build();
 		}
 
-		BeanUtils.copyProperties(produtor, prod, "id");
+		if (isObjectNull(produtor)) {
+			prod.setStatus(produtor.isStatus());
+		} else
+			BeanUtils.copyProperties(produtor, prod, "id");
+
 		prod = produtorService.save(prod);
 		return ResponseEntity.ok(prod);
 	}

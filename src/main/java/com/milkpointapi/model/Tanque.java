@@ -85,7 +85,7 @@ public class Tanque implements Serializable {
 	private Tipo tipo = Tipo.BOVINO;
 
 	@Column
-	private Status status = Status.INATIVO;
+	private Status status = Status.ATIVO;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "tanque")
