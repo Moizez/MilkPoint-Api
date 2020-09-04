@@ -71,7 +71,9 @@ public class RetiradaResource {
 
 		if (retirada != null) {
 			retirada.setConfirmacao(confirmacao);
-			retirada.setDataNow(data());
+			retirada.setDataSolicitacao(retirada.getDataNow());
+			retirada.setDataNow(data());		
+			
 
 			if (confirmacao) {
 				Tanque tanque = retirada.getTanque();

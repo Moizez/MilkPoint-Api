@@ -54,6 +54,9 @@ public class Retirada implements Serializable {
 	@Column
 	private ZonedDateTime dataNow;
 
+	@Column
+	private ZonedDateTime dataSolicitacao;
+
 	public float getQuantidade() {
 		return quantidade;
 	}
@@ -124,6 +127,14 @@ public class Retirada implements Serializable {
 
 	public void setDataNow(ZonedDateTime dataNow) {
 		this.dataNow = dataNow;
+	}
+
+	public ZonedDateTime getDataSolicitacao() {
+		return dataSolicitacao;
+	}
+
+	public void setDataSolicitacao(ZonedDateTime dataSolicitacao) {
+		this.dataSolicitacao = dataSolicitacao;
 	}
 
 	public Long getId() {

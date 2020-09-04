@@ -76,6 +76,7 @@ public class DepositoResource {
 
 		if (deposito != null) {
 			deposito.setConfirmacao(confirmacao);
+			deposito.setDataSolicitacao(deposito.getDataNow());
 			deposito.setDataNow(data());
 
 			if (confirmacao) {

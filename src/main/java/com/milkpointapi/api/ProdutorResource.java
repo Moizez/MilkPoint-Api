@@ -71,6 +71,8 @@ public class ProdutorResource {
 		} else
 			BeanUtils.copyProperties(produtor, prod, "id");
 
+		System.out.println("STATUS: " + prod.isStatus());
+
 		prod = produtorService.save(prod);
 		return ResponseEntity.ok(prod);
 	}
