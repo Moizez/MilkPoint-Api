@@ -16,7 +16,7 @@
 	<description>Api para consumo do app android Milk Point</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
