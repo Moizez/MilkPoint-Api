@@ -54,6 +54,7 @@ public class RetiradaResource {
 		Laticinio laticinio = laticinioService.findOne(idLat);
 		Retirada retirada = new Retirada();
 		retirada.setDataNow(data());
+		retirada.setDataSolicitacao(data());
 		retirada.setLaticinio(laticinio);
 		retirada.setTanque(tanque);
 		retirada.setQuantidade(quantidade);
@@ -71,7 +72,6 @@ public class RetiradaResource {
 
 		if (retirada != null) {
 			retirada.setConfirmacao(confirmacao);
-			retirada.setDataSolicitacao(retirada.getDataNow());
 			retirada.setDataNow(data());		
 			
 

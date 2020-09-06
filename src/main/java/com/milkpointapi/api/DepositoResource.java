@@ -55,6 +55,7 @@ public class DepositoResource {
 		Produtor produtor = produtorService.findOne(idProd);
 		Deposito deposito = new Deposito();
 		deposito.setDataNow(data());
+		deposito.setDataSolicitacao(data());
 		deposito.setProdutor(produtor);
 		deposito.setTanque(tanque);
 		deposito.setQuantidade(quantidade);
@@ -76,7 +77,6 @@ public class DepositoResource {
 
 		if (deposito != null) {
 			deposito.setConfirmacao(confirmacao);
-			deposito.setDataSolicitacao(deposito.getDataNow());
 			deposito.setDataNow(data());
 
 			if (confirmacao) {
