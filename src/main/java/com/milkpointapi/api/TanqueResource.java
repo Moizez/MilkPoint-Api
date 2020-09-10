@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.milkpointapi.enums.Capacidade;
 import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.TanqueService;
 
@@ -27,6 +29,18 @@ public class TanqueResource {
 	@PostMapping("/tanque")
 	public ResponseEntity<Tanque> add(@RequestBody @Valid Tanque tanque) {
 		if (tanque != null) {
+			if (tanque.getCapacidade() == Capacidade.MIL) {
+				tanque.setQtdRestante(1000 - tanque.getQtdAtual());
+			} else if (tanque.getCapacidade() == Capacidade.DOISMIL) {
+				tanque.setQtdRestante(2000 - tanque.getQtdAtual());
+			} else if (tanque.getCapacidade() == Capacidade.TRESMIL) {
+				tanque.setQtdRestante(3000 - tanque.getQtdAtual());
+			} else if (tanque.getCapacidade() == Capacidade.QUATROMIL) {
+				tanque.setQtdRestante(4000 - tanque.getQtdAtual());
+			} else if (tanque.getCapacidade() == Capacidade.QUATROMILEQUINHENTOS) {
+				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
+			}
+
 			tanqueService.save(tanque);
 			return new ResponseEntity<Tanque>(tanque, HttpStatus.CREATED);
 		}
@@ -75,17 +89,16 @@ public class TanqueResource {
 	}
 
 	@PutMapping("/tanque/location/{id}/{latitude}/{longitude}")
-	public ResponseEntity<Tanque> location(@PathVariable Long id,
-			@PathVariable("latitude")double latitude, 
-			@PathVariable("longitude")double longitude){
-			Tanque tanque = tanqueService.findOne(id);
-			if (tanque == null) {
-				return ResponseEntity.notFound().build();
-			}
-			tanque.setLatitude(latitude);
-			tanque.setLongitude(longitude);
-			tanqueService.save(tanque);
-			return ResponseEntity.ok(tanque);
+	public ResponseEntity<Tanque> location(@PathVariable Long id, @PathVariable("latitude") double latitude,
+			@PathVariable("longitude") double longitude) {
+		Tanque tanque = tanqueService.findOne(id);
+		if (tanque == null) {
+			return ResponseEntity.notFound().build();
+		}
+		tanque.setLatitude(latitude);
+		tanque.setLongitude(longitude);
+		tanqueService.save(tanque);
+		return ResponseEntity.ok(tanque);
 	}
 
 }

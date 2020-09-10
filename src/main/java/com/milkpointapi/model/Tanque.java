@@ -35,7 +35,7 @@ public class Tanque implements Serializable {
 	@Column(nullable = false, unique = true, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
-
+	
 	@Column
 	private String complemento;
 
@@ -85,7 +85,7 @@ public class Tanque implements Serializable {
 	private Tipo tipo = Tipo.BOVINO;
 
 	@Column
-	private Status status = Status.ATIVO;
+	private Status status = Status.INATIVO;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "tanque")
