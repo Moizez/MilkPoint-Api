@@ -70,6 +70,18 @@ public class TanqueResource {
 		if (prod == null) {
 			return ResponseEntity.notFound().build();
 		}
+		
+		if (tanque.getCapacidade() == Capacidade.MIL) {
+			tanque.setQtdRestante(1000 - tanque.getQtdAtual());
+		} else if (tanque.getCapacidade() == Capacidade.DOISMIL) {
+			tanque.setQtdRestante(2000 - tanque.getQtdAtual());
+		} else if (tanque.getCapacidade() == Capacidade.TRESMIL) {
+			tanque.setQtdRestante(3000 - tanque.getQtdAtual());
+		} else if (tanque.getCapacidade() == Capacidade.QUATROMIL) {
+			tanque.setQtdRestante(4000 - tanque.getQtdAtual());
+		} else if (tanque.getCapacidade() == Capacidade.QUATROMILEQUINHENTOS) {
+			tanque.setQtdRestante(4500 - tanque.getQtdAtual());
+		}
 
 		BeanUtils.copyProperties(tanque, prod, "id");
 		prod = tanqueService.save(prod);
