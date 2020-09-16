@@ -97,6 +97,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			pro.setNome("Antônio Almeida");
 			pro.setApelido("Antônio");
 			pro.setCpf("43619901074");
+			pro.setPhoneNumber("+5584981690739");
 			pro.setDataNascimento(null);
 			pro.setCep("59905-000");
 			pro.setUf("RN");
@@ -121,6 +122,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			resp.setNome("Leandro Rêgo");
 			resp.setApelido("Leandro");
 			resp.setCpf("98736378003");
+			resp.setPhoneNumber("+5584981690739");
 			resp.setDataNascimento(null);
 			resp.setCep("59900-000");
 			resp.setUf("RN");
@@ -146,6 +148,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			lat.setNome("Francisco Ribeiro");
 			lat.setNomeFantasia("Leite & Cia");
 			lat.setCnpj("66606211000180");
+			lat.setPhoneNumber("+5584981690739");
 			lat.setDataCriacao(null);
 			lat.setEmail("leiteecia@gmail.com");
 			lat.setPassword("123");

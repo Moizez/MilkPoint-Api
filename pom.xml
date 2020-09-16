@@ -111,6 +111,12 @@
     		<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>7.55.1</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

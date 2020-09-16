@@ -17,7 +17,6 @@ public class RetiradaService {
 
 	public void save(Retirada retirada) {
 		repository.save(retirada);
-		new SmsService().send(retirada);
 	}
 
 	public List<Retirada> findAll() {
@@ -31,7 +30,7 @@ public class RetiradaService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
-	
+
 	public List<Retirada> buscaPendentes() {
 		return repository.buscaPendentes();
 	}

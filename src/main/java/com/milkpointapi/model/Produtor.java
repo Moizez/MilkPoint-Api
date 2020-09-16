@@ -36,6 +36,9 @@ public class Produtor implements Serializable {
 	@Column(name = "cpf", unique = true, length = 14, nullable = false)
 	private String cpf;
 
+	@Column(name = "telefone")
+	private String phoneNumber;
+
 	@Column
 	private boolean status = true;
 
@@ -96,6 +99,14 @@ public class Produtor implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public boolean isStatus() {

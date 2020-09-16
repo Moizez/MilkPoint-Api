@@ -3,8 +3,10 @@
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/SmsService.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/api/ProdutorResource.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/api/RetiradaResource.java
+/home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/utils/TwilioConfiguration.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/enums/Status.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/SecurityServiceImpl.java
+/home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/api/SmsResource.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/utils/PasswordUtil.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/UserServiceImpl.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/repository/TanqueRepository.java
@@ -30,6 +32,7 @@
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/repository/TecnicoRepository.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/api/ResponsavelResource.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/TanqueService.java
+/home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/jobs/TwilioInitializer.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/Produtor.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/Laticinio.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/SessionService.java
@@ -39,7 +42,9 @@
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/controller/TanqueController.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/Deposito.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/ResponsavelService.java
+/home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/repository/SmsSender.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/api/LoginUserResource.java
+/home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/SmsRequest.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/Tanque.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/Retirada.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/enums/Tipo.java
@@ -49,6 +54,7 @@
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/SecurityService.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/model/UserInfo.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/security/SecurityConfiguration.java
+/home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/TwilioSmsSender.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/repository/LaticinioRepository.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/service/LoginUserService.java
 /home/moizez/Projetos/milkpointapi/src/main/java/com/milkpointapi/controller/ProdutorController.java

@@ -43,12 +43,15 @@ public class Laticinio implements Serializable {
 	@Column(name = "cnpj", unique = true, length = 18, nullable = false)
 	private String cnpj;
 
+	@Column(name = "telefone")
+	private String phoneNumber;
+
 	@Column
 	private String cep;
 
 	@Column
 	private String logradouro;
-	
+
 	@Column
 	private String complemento;
 
@@ -104,6 +107,14 @@ public class Laticinio implements Serializable {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getNomeFantasia() {
@@ -169,7 +180,7 @@ public class Laticinio implements Serializable {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-	
+
 	public String getComplemento() {
 		return complemento;
 	}
