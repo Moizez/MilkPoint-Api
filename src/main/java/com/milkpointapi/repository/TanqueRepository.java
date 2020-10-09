@@ -15,5 +15,8 @@ public interface TanqueRepository extends JpaRepository<Tanque, Long> {
 			+ "	|| t.localidade like concat('%', ?, '%')\n" + " || t.uf like concat('%', ?, '%')\n"
 			+ ";", nativeQuery = true)
 	public List<Tanque> findByNomeOrLocalidadeOrUfLike(String nome, String localidade, String uf);
+	
+	@Query
+	public Tanque findByNome(String nome);
 
 }

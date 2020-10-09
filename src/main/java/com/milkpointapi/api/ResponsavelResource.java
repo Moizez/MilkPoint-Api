@@ -1,6 +1,5 @@
 package com.milkpointapi.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.milkpointapi.model.Notificacao;
 import com.milkpointapi.model.Responsavel;
 import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.ResponsavelService;
@@ -53,7 +51,7 @@ public class ResponsavelResource {
 		}
 		return ResponseEntity.ok(responsavel);
 	}
-	
+
 	@GetMapping("/responsavel/{id}/tanque")
 	public ResponseEntity<List<Tanque>> tanques(@PathVariable Long id) {
 		Responsavel responsavel = responsavelService.findOne(id);
@@ -61,52 +59,6 @@ public class ResponsavelResource {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(responsavel.getTanque());
-	}
-
-	@GetMapping("/responsavel/{id}/sms/{value}")
-	public Responsavel updateSms(@PathVariable Long id, @PathVariable boolean value) {
-		Responsavel responsavel = responsavelService.findOne(id);
-		if(value == true) {
-			responsavel.setSms(true);
-		} else {
-			responsavel.setSms(false);
-		}
-		responsavel = responsavelService.save(responsavel);
-		return responsavel;
-	}
-	
-	@GetMapping("/responsavel/{id}/notificacoes")
-	public ResponseEntity<List<Notificacao>> notificacoes(@PathVariable Long id) {
-		Responsavel responsavel = responsavelService.findOne(id);
-		if (responsavel == null) {
-			return ResponseEntity.notFound().build();
-		}
-		List<Notificacao> notificacoes = new ArrayList<>();
-		responsavel.getTanque().forEach(tanque -> {
-			tanque.getDepositos().forEach(deposito ->{
-				if(deposito.getConfirmacao() == false && 
-						deposito.getExcluido() == false) {   
-					Notificacao notificacao = new Notificacao();
-					notificacao.setTipo("DEPÓSITO");
-					notificacao.setQuantidade(deposito.getQuantidade());
-					notificacao.setTanque(deposito.getTanque().getNome());
-					notificacao.setSolicitante(deposito.getProdutor().getNome());
-					notificacoes.add(notificacao);
-				}
-			});
-			tanque.getRetiradas().forEach(retirada ->{
-				if(retirada.getConfirmacao() == false && 
-						retirada.getExcluido() == false) {   
-					Notificacao notificacao = new Notificacao();
-					notificacao.setTipo("RETIRADA");
-					notificacao.setQuantidade(retirada.getQuantidade());
-					notificacao.setTanque(retirada.getTanque().getNome());
-					notificacao.setSolicitante(retirada.getLaticinio().getNome());
-					notificacoes.add(notificacao);
-				}
-			});
-		});
-		return ResponseEntity.ok(notificacoes);
 	}
 
 	@PutMapping("responsavel/{id}")

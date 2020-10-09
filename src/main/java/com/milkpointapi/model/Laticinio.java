@@ -1,7 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,10 +35,10 @@ public class Laticinio implements Serializable {
 
 	@Column
 	private String nomeFantasia;
-
+	
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataCriacao;
+	private Date dataCriacao;
 
 	@Column(name = "cnpj", unique = true, length = 18, nullable = false)
 	private String cnpj;
@@ -149,11 +149,11 @@ public class Laticinio implements Serializable {
 		this.perfil = perfil;
 	}
 
-	public LocalDate getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 

@@ -1,7 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -40,7 +40,7 @@ public class Responsavel implements Serializable {
 
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 
 	@Column
 	private String apelido;
@@ -50,9 +50,6 @@ public class Responsavel implements Serializable {
 
 	@Column(name = "telefone")
 	private String phoneNumber;
-
-	@Column
-	private boolean sms = false;
 
 	@Column
 	private String cep;
@@ -163,11 +160,11 @@ public class Responsavel implements Serializable {
 		this.tanque = tanque;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -177,14 +174,6 @@ public class Responsavel implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
-
-	public boolean getSms() {
-		return sms;
-	}
-
-	public void setSms(boolean sms) {
-		this.sms = sms;
 	}
 
 	public String getLogradouro() {

@@ -34,4 +34,16 @@ public class RetiradaService {
 	public List<Retirada> buscaPendentes() {
 		return repository.buscaPendentes();
 	}
+	
+	public List<Retirada> buscaResolvidos() {
+		return repository.buscaResolvidos();
+	}
+	
+	public List<Retirada> buscaConfirmados() {
+		return repository.buscaConfirmados();
+	}
+	
+	public List<Retirada> buscaExcluidos() {
+		return repository.buscaExcluidos();
+	}
 }

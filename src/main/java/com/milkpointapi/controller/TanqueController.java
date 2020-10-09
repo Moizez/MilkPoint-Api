@@ -1,6 +1,8 @@
 package com.milkpointapi.controller;
 
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -31,6 +33,11 @@ public class TanqueController {
 
 	@Autowired
 	private ResponsavelService responsavelService;
+	
+	public ZonedDateTime data() {
+		ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		return data;
+	}
 
 	@GetMapping("/add")
 	public ModelAndView add(Tanque tanque) {

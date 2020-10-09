@@ -54,15 +54,15 @@ public class LaticinioResource {
 
 	@PutMapping("/laticinio/{id}")
 	public ResponseEntity<Laticinio> update(@PathVariable Long id, @Valid @RequestBody Laticinio Laticinio) {
-		Laticinio prod = laticinioService.findOne(id);
+		Laticinio lat = laticinioService.findOne(id);
 
-		if (prod == null) {
+		if (lat == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		BeanUtils.copyProperties(Laticinio, prod, "id");
-		prod = laticinioService.save(prod);
-		return ResponseEntity.ok(prod);
+		BeanUtils.copyProperties(Laticinio, lat, "id");
+		lat = laticinioService.save(lat);
+		return ResponseEntity.ok(lat);
 
 	}
 

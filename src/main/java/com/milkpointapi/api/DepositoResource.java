@@ -83,11 +83,13 @@ public class DepositoResource {
 				Tanque tanque = deposito.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() + deposito.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() - deposito.getQuantidade());
-				deposito.setObservacao(observacao);
 			} else {
 				deposito.setExcluido(true);
 				deposito.setEfetuou(nomeEfetuou);
-				deposito.setObservacao(observacao);
+				if (observacao.isEmpty())
+					deposito.setObservacao("Não informado!");
+				else
+					deposito.setObservacao(observacao);
 			}
 			service.save(deposito);
 			return ResponseEntity.ok(deposito);
@@ -105,4 +107,10 @@ public class DepositoResource {
 	public List<Deposito> listaPendentes() {
 		return service.buscaPendentes();
 	}
+
+	@GetMapping("/deposito/resolvidos")
+	public List<Deposito> buscaResolvidos() {
+		return service.buscaResolvidos();
+	}
+
 }

@@ -1,18 +1,24 @@
 package com.milkpointapi.jobs;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.milkpointapi.enums.Capacidade;
+import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Laticinio;
 import com.milkpointapi.model.Produtor;
 import com.milkpointapi.model.Responsavel;
+import com.milkpointapi.model.Tanque;
 import com.milkpointapi.model.Tecnico;
 import com.milkpointapi.model.UserInfo;
 import com.milkpointapi.service.LaticinioService;
 import com.milkpointapi.service.ProdutorService;
 import com.milkpointapi.service.ResponsavelService;
+import com.milkpointapi.service.TanqueService;
 import com.milkpointapi.service.TecnicoService;
 import com.milkpointapi.service.UserService;
 
@@ -34,14 +40,17 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private LaticinioService laticinioService;
 
+	@Autowired
+	private TanqueService tanqueService;
+
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		System.out.println("----- Criando Usuários Padrões ------");
 		createUserAdmin();
 		createTecnico();
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
+		createTanque();
 
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 
@@ -72,7 +81,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tec.setNome("Ivan Junior");
 			tec.setApelido("Ivan Jr.");
 			tec.setCpf("09643587686");
-			tec.setDataNascimento(null);
+			tec.setDataNascimento(new Date());
 			tec.setCep("63700-000");
 			tec.setUf("CE");
 			tec.setLocalidade("Crateús");
@@ -98,7 +107,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			pro.setApelido("Antônio");
 			pro.setCpf("43619901074");
 			pro.setPhoneNumber("+5584981690739");
-			pro.setDataNascimento(null);
+			pro.setDataNascimento(new Date());
 			pro.setCep("59905-000");
 			pro.setUf("RN");
 			pro.setLocalidade("Encanto");
@@ -123,7 +132,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			resp.setApelido("Leandro");
 			resp.setCpf("98736378003");
 			resp.setPhoneNumber("+5584981690739");
-			resp.setDataNascimento(null);
+			resp.setDataNascimento(new Date());
 			resp.setCep("59900-000");
 			resp.setUf("RN");
 			resp.setLocalidade("Pau dos Ferros");
@@ -149,7 +158,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			lat.setNomeFantasia("Leite & Cia");
 			lat.setCnpj("66606211000180");
 			lat.setPhoneNumber("+5584981690739");
-			lat.setDataCriacao(null);
+			lat.setDataCriacao(new Date());
 			lat.setEmail("leiteecia@gmail.com");
 			lat.setPassword("123");
 			lat.setCep("59900-000");
@@ -161,6 +170,34 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			lat.setDescricao("Laticínio aguardando alvará da prefeitura");
 
 			laticinioService.save(lat);
+
+		}
+	}
+
+	private void createTanque() {
+
+		Tanque tan = tanqueService.findByNome("T-000");
+		Responsavel resp = responsavelService.buscaLogin("leo@gmail.com");
+
+		if (tan == null) {
+			tan = new Tanque();
+			tan.setNome("T-000");
+			tan.setResponsavel(resp);
+			tan.setCapacidade(Capacidade.QUATROMILEQUINHENTOS);
+			tan.setQtdRestante(4500 - tan.getQtdAtual());
+			tan.setDataCriacao(new Date());
+			tan.setTipo(Tipo.BOVINO);
+			tan.setCep("59900-000");
+			tan.setUf("RN");
+			tan.setLocalidade("Pau dos Ferros");
+			tan.setBairro("Riacho do Meio");
+			tan.setLogradouro("Joel Praxedes");
+			tan.setComplemento("Próximo a capela de Santo Antônio");
+			tan.setComunidade("Riacho Doce");
+			tan.setLatitude(-6.113661);
+			tan.setLongitude(-38.223907);
+
+			tanqueService.save(tan);
 
 		}
 	}

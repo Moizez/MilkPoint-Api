@@ -35,7 +35,7 @@ public class Tanque implements Serializable {
 	@Column(nullable = false, unique = true, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
-	
+
 	@Column
 	private String complemento;
 
@@ -69,6 +69,7 @@ public class Tanque implements Serializable {
 	@Column
 	private float qtdRestante;
 
+	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataCriacao;
 
@@ -82,10 +83,10 @@ public class Tanque implements Serializable {
 	private Capacidade capacidade;
 
 	@Column
-	private Tipo tipo = Tipo.BOVINO;
+	private Tipo tipo;
 
 	@Column
-	private Status status = Status.INATIVO;
+	private Status status;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "tanque")
@@ -159,6 +160,14 @@ public class Tanque implements Serializable {
 		this.qtdAtual = f;
 	}
 
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public float getQtdRestante() {
 		return qtdRestante;
 	}
@@ -173,14 +182,6 @@ public class Tanque implements Serializable {
 
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public String getComunidade() {

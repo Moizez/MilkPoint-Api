@@ -33,5 +33,9 @@ public class TanqueService {
 	public List<Tanque> searchFor(String nome, String localidade, String uf) {
 		return repository.findByNomeOrLocalidadeOrUfLike(nome, localidade, uf);
 	}
+	
+	public Tanque findByNome(String nome) {
+		return repository.findByNome(nome);
+	}
 
 }

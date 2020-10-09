@@ -33,4 +33,16 @@ public class DepositoService {
 	public List<Deposito> buscaPendentes() {
 		return repository.buscaPendentes();
 	}
+	
+	public List<Deposito> buscaResolvidos() {
+		return repository.buscaResolvidos();
+	}
+	
+	public List<Deposito> buscaConfirmados() {
+		return repository.buscaConfirmados();
+	}
+	
+	public List<Deposito> buscaExcluidos() {
+		return repository.buscaExcluidos();
+	}
 }

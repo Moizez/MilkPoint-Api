@@ -1,7 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -64,7 +64,7 @@ public class Tecnico implements Serializable {
 
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 
 	@Column
 	private int perfil = 4;
@@ -201,11 +201,11 @@ public class Tecnico implements Serializable {
 		this.apelido = apelido;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

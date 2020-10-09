@@ -72,18 +72,19 @@ public class RetiradaResource {
 
 		if (retirada != null) {
 			retirada.setConfirmacao(confirmacao);
-			retirada.setDataNow(data());		
-			
+			retirada.setDataNow(data());
 
 			if (confirmacao) {
 				Tanque tanque = retirada.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() - retirada.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() + retirada.getQuantidade());
-				retirada.setObservacao(observacao);
 			} else {
 				retirada.setExcluido(true);
 				retirada.setEfetuou(nomeEfetuou);
-				retirada.setObservacao(observacao);
+				if (observacao.isEmpty())
+					retirada.setObservacao("Não informado!");
+				else
+					retirada.setObservacao(observacao);
 			}
 			service.save(retirada);
 			return ResponseEntity.ok(retirada);
@@ -100,6 +101,11 @@ public class RetiradaResource {
 	@GetMapping("/retirada/listapendentes")
 	public List<Retirada> buscaPendentes() {
 		return service.buscaPendentes();
+	}
+
+	@GetMapping("/retirada/resolvidos")
+	public List<Retirada> buscaResolvidos() {
+		return service.buscaResolvidos();
 	}
 
 }
