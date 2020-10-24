@@ -7,11 +7,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,8 +24,7 @@ public class Responsavel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable = false, length = 100)
@@ -53,6 +52,9 @@ public class Responsavel implements Serializable {
 
 	@Column
 	private String cep;
+
+	@Column
+	private boolean status = true;
 
 	@Column
 	private String logradouro;
@@ -174,6 +176,14 @@ public class Responsavel implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public String getLogradouro() {

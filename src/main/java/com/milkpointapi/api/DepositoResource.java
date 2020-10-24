@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Deposito;
 import com.milkpointapi.model.Produtor;
 import com.milkpointapi.model.Tanque;
+import com.milkpointapi.repository.DepositoRepository;
 import com.milkpointapi.service.DepositoService;
 import com.milkpointapi.service.ProdutorService;
 import com.milkpointapi.service.TanqueService;
@@ -32,6 +34,9 @@ public class DepositoResource {
 
 	@Autowired
 	private ProdutorService produtorService;
+
+	@Autowired
+	private DepositoRepository repository;
 
 	public ResponseEntity<Deposito> add(Deposito deposito) {
 
@@ -111,6 +116,11 @@ public class DepositoResource {
 	@GetMapping("/deposito/resolvidos")
 	public List<Deposito> buscaResolvidos() {
 		return service.buscaResolvidos();
+	}
+
+	@GetMapping("/deposito/buscar/{nome}")
+	public List<Deposito> buscaProdutor(@PathVariable("nome") String nome) {
+		return repository.buscaProdutor(nome);
 	}
 
 }

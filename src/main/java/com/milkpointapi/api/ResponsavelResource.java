@@ -63,15 +63,18 @@ public class ResponsavelResource {
 
 	@PutMapping("responsavel/{id}")
 	public ResponseEntity<Responsavel> update(@PathVariable Long id, @RequestBody Responsavel responsavel) {
-		Responsavel resp = responsavelService.findOne(id);
+		Responsavel responsavelAtual = responsavelService.findOne(id);
 
-		if (resp == null) {
+		if (responsavelAtual == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		BeanUtils.copyProperties(responsavel, resp, "id");
-		resp = responsavelService.save(resp);
-		return ResponseEntity.ok(resp);
+		BeanUtils.copyProperties(responsavel, responsavelAtual, "id", "password", "cpf", "email", "nome", "descricao", "apelido",
+				"cpf", "phoneNumber", "cep", "logradouro", "complemento", "bairro", "localidade", "uf",
+				"dataNascimento", "perfil");
+		
+		responsavelAtual = responsavelService.save(responsavelAtual);
+		return ResponseEntity.ok(responsavelAtual);
 	}
 
 	@DeleteMapping("responsavel/{id}")

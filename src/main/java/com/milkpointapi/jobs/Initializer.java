@@ -8,6 +8,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.milkpointapi.enums.Capacidade;
+import com.milkpointapi.enums.Status;
 import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Laticinio;
 import com.milkpointapi.model.Produtor;
@@ -178,12 +179,15 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 		Tanque tan = tanqueService.findByNome("T-000");
 		Responsavel resp = responsavelService.buscaLogin("leo@gmail.com");
+		Tecnico tec = tecnicoService.buscaLogin("jr@gmail.com");
 
 		if (tan == null) {
 			tan = new Tanque();
 			tan.setNome("T-000");
 			tan.setResponsavel(resp);
+			tan.setTecnico(tec);
 			tan.setCapacidade(Capacidade.QUATROMILEQUINHENTOS);
+			tan.setStatus(Status.ATIVO);
 			tan.setQtdRestante(4500 - tan.getQtdAtual());
 			tan.setDataCriacao(new Date());
 			tan.setTipo(Tipo.BOVINO);

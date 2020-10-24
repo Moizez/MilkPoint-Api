@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.milkpointapi.model.Laticinio;
 import com.milkpointapi.model.Retirada;
 import com.milkpointapi.model.Tanque;
+import com.milkpointapi.repository.RetiradaRepository;
 import com.milkpointapi.service.LaticinioService;
 import com.milkpointapi.service.RetiradaService;
 import com.milkpointapi.service.TanqueService;
@@ -31,6 +33,9 @@ public class RetiradaResource {
 
 	@Autowired
 	private LaticinioService laticinioService;
+	
+	@Autowired
+	private RetiradaRepository repository;
 
 	public ResponseEntity<Retirada> add(Retirada retirada) {
 
@@ -106,6 +111,11 @@ public class RetiradaResource {
 	@GetMapping("/retirada/resolvidos")
 	public List<Retirada> buscaResolvidos() {
 		return service.buscaResolvidos();
+	}
+	
+	@GetMapping("/retirada/buscar/{nome}")
+	public List<Retirada> buscaLaticinio(@PathVariable("nome") String nome) {
+		return repository.buscaLaticinio(nome);
 	}
 
 }

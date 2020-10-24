@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.milkpointapi.model.Tanque;
 import com.milkpointapi.model.Tecnico;
 import com.milkpointapi.service.TecnicoService;
 
@@ -50,6 +51,15 @@ public class TecnicoResource {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(tecnico);
+	}
+	
+	@GetMapping("/tecnico/{id}/tanque")
+	public ResponseEntity<List<Tanque>> tanques(@PathVariable Long id) {
+		Tecnico tecnico = tecnicoService.findOne(id);
+		if (tecnico == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(tecnico.getTanques());
 	}
 
 	@PutMapping("tecnico/{id}")

@@ -15,6 +15,9 @@ public interface LaticinioRepository extends JpaRepository<Laticinio, Long> {
 	public Laticinio findByEmailIgnoreCaseContaining(String email);
 	@Query
 	public Laticinio findByEmailAndPassword(String email, String senha);
+	
+	@Query(value = "select * from laticinio l where l.id = ?", nativeQuery = true)
+	public Laticinio getOne(Long id);
 
 	@Query(value = "select * from laticinio l where l.nome_fantasia like concat('%', ?, '%')\n"
 			+ "	|| l.nome like concat('%', ?, '%')\n" 

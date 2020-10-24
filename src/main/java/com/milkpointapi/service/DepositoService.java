@@ -45,4 +45,5 @@ public class DepositoService {
 	public List<Deposito> buscaExcluidos() {
 		return repository.buscaExcluidos();
 	}
+
 }
