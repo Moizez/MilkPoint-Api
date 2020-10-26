@@ -39,11 +39,27 @@ public class RetiradaService {
 		return repository.buscaResolvidos();
 	}
 	
-	public List<Retirada> buscaConfirmados() {
-		return repository.buscaConfirmados();
+	public List<Retirada> buscaConfirmados(Long id) {
+		return repository.buscaConfirmados(id);
 	}
 	
-	public List<Retirada> buscaExcluidos() {
-		return repository.buscaExcluidos();
+	public List<Retirada> buscaLaticinio(String nome) {
+		return repository.buscaLaticinio(nome);
+	}
+	
+	public List<Retirada> buscaCancelados(Long id) {
+		return repository.buscaCancelados(id);
+	}
+	
+	public List<Retirada> buscaTodosConfirmados() {
+		return repository.buscaTodosConfirmados();
+	}
+	
+	public List<Retirada> buscaTodosCancelados() {
+		return repository.buscaTodosCancelados();
+	}
+	
+	public List<Retirada> buscaPendentesPorLaticinio(Long id) {
+		return repository.buscaPendentesPorLaticinio(id);
 	}
 }

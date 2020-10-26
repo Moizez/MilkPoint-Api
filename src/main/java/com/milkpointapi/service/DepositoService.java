@@ -38,12 +38,28 @@ public class DepositoService {
 		return repository.buscaResolvidos();
 	}
 	
-	public List<Deposito> buscaConfirmados() {
-		return repository.buscaConfirmados();
+	public List<Deposito> buscaConfirmados(Long id) {
+		return repository.buscaConfirmados(id);
 	}
 	
-	public List<Deposito> buscaExcluidos() {
-		return repository.buscaExcluidos();
+	public List<Deposito> buscaProdutor(String produtor) {
+		return repository.buscaProdutor(produtor);
+	}
+	
+	public List<Deposito> buscaPendentesPorProdutor(Long id){
+		return repository.buscaPendentesPorProdutor(id);
+	}
+	
+	public List<Deposito> buscaCancelados(Long id) {
+		return repository.buscaCancelados(id);
+	}
+	
+	public List<Deposito> buscaTodosConfirmados() {
+		return repository.buscaTodosConfirmados();
+	}
+	
+	public List<Deposito> buscaTodosCancelados() {
+		return repository.buscaTodosCancelados();
 	}
 
 }

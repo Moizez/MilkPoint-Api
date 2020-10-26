@@ -30,6 +30,7 @@ public class TanqueResource {
 
 	@PostMapping("/tanque")
 	public ResponseEntity<Tanque> add(@RequestBody @Valid Tanque tanque) {
+
 		if (tanque != null) {
 			if (tanque.getCapacidade() == Capacidade.MIL) {
 				tanque.setQtdRestante(1000 - tanque.getQtdAtual());
@@ -42,6 +43,18 @@ public class TanqueResource {
 			} else if (tanque.getCapacidade() == Capacidade.QUATROMILEQUINHENTOS) {
 				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
 			}
+			
+			System.out.println("\nTANQUE DO APP........................");
+			System.out.println("Nome: " + tanque.getNome());
+			System.out.println("Tipo: " + tanque.getTipo());
+			System.out.println("Capacidade: " + tanque.getCapacidade());
+			System.out.println("Qtd. Atual: " + tanque.getQtdAtual());
+			System.out.println("Qtd. Restante: " + tanque.getQtdRestante());
+			System.out.println("Data: " + tanque.getDataCriacao());
+			System.out.println("Responsavel: " + tanque.getResponsavel());
+			System.out.println("Latitude: " + tanque.getLatitude());
+			System.out.println("Longitude: " + tanque.getLongitude());
+			System.out.println("Status: " + tanque.getStatus() + "\n");
 
 			if (tanque.getStatus() == null)
 				tanque.setStatus(Status.ATIVO);

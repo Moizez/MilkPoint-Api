@@ -15,14 +15,26 @@ public interface DepositoRepository extends JpaRepository<Deposito, Long> {
 	@Query(value = "select * from deposito d where d.excluido = 0 and d.confirmacao = 0 ORDER BY data_now ASC", nativeQuery = true)
 	public List<Deposito> buscaPendentes();
 
+	@Query(value = "SELECT * FROM deposito d \n" + "inner join produtor p on (d.deposito_produtor = p.id)\n"
+			+ "where (d.excluido = 0 and d.confirmacao = 0) and (p.id like concat ('%', :id, '%'))ORDER BY data_now ASC", nativeQuery = true)
+	public List<Deposito> buscaPendentesPorProdutor(@Param("id") Long id);
+
 	@Query(value = "select * from deposito d where d.excluido = 1 or d.confirmacao = 1 ORDER BY data_now DESC", nativeQuery = true)
 	public List<Deposito> buscaResolvidos();
 
+	@Query(value = "SELECT * FROM deposito d \n" + "inner join produtor p on (d.deposito_produtor = p.id)\n"
+			+ "where (d.confirmacao = 1) and (p.id like concat ('%', :id, '%'))ORDER BY data_now DESC", nativeQuery = true)
+	public List<Deposito> buscaConfirmados(@Param("id") Long id);
+
+	@Query(value = "SELECT * FROM deposito d \n" + "inner join produtor p on (d.deposito_produtor = p.id)\n"
+			+ "where (d.excluido = 1) and (p.id like concat ('%', :id, '%'))ORDER BY data_now DESC", nativeQuery = true)
+	public List<Deposito> buscaCancelados(@Param("id") Long id);
+
 	@Query(value = "select * from deposito d where d.confirmacao = 1 ORDER BY data_now ASC", nativeQuery = true)
-	public List<Deposito> buscaConfirmados();
+	public List<Deposito> buscaTodosConfirmados();
 
 	@Query(value = "select * from deposito d where d.excluido = 1 ORDER BY data_now ASC", nativeQuery = true)
-	public List<Deposito> buscaExcluidos();
+	public List<Deposito> buscaTodosCancelados();
 
 	@Query(value = "SELECT * FROM deposito d \n" + "inner join produtor p on(d.deposito_produtor = p.id)\n"
 			+ "where (d.confirmacao or d.excluido) and (p.nome like concat('%', :nome, '%')) ORDER BY data_now DESC;", nativeQuery = true)

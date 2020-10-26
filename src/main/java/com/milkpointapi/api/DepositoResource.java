@@ -17,7 +17,6 @@ import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Deposito;
 import com.milkpointapi.model.Produtor;
 import com.milkpointapi.model.Tanque;
-import com.milkpointapi.repository.DepositoRepository;
 import com.milkpointapi.service.DepositoService;
 import com.milkpointapi.service.ProdutorService;
 import com.milkpointapi.service.TanqueService;
@@ -34,9 +33,6 @@ public class DepositoResource {
 
 	@Autowired
 	private ProdutorService produtorService;
-
-	@Autowired
-	private DepositoRepository repository;
 
 	public ResponseEntity<Deposito> add(Deposito deposito) {
 
@@ -56,6 +52,7 @@ public class DepositoResource {
 	@PostMapping("/deposito")
 	public ResponseEntity<Deposito> deposito(@RequestParam("quantidade") float quantidade,
 			@RequestParam("idProd") Long idProd, @RequestParam("idTanque") Long idTanque) {
+		
 		Tanque tanque = tanqueService.findOne(idTanque);
 		Produtor produtor = produtorService.findOne(idProd);
 		Deposito deposito = new Deposito();
@@ -118,9 +115,34 @@ public class DepositoResource {
 		return service.buscaResolvidos();
 	}
 
+	@GetMapping("/deposito/confirmados/{id}")
+	public List<Deposito> buscaConfirmados(@PathVariable("id") Long id) {
+		return service.buscaConfirmados(id);
+	}
+
+	@GetMapping("/deposito/cancelados/{id}")
+	public List<Deposito> buscaCancelados(@PathVariable("id") Long id) {
+		return service.buscaCancelados(id);
+	}
+
 	@GetMapping("/deposito/buscar/{nome}")
 	public List<Deposito> buscaProdutor(@PathVariable("nome") String nome) {
-		return repository.buscaProdutor(nome);
+		return service.buscaProdutor(nome);
+	}
+	
+	@GetMapping("/deposito/pendentes/{id}")
+	public List<Deposito> buscaPendentesPorProdutor(@PathVariable("id") Long id) {
+		return service.buscaPendentesPorProdutor(id);
+	}
+	
+	@GetMapping("/deposito/confirmados")
+	public List<Deposito> buscaTodosConfirmados() {
+		return service.buscaTodosConfirmados();
+	}
+	
+	@GetMapping("/deposito/cancelados")
+	public List<Deposito> buscaTodosCancelados() {
+		return service.buscaTodosCancelados();
 	}
 
 }

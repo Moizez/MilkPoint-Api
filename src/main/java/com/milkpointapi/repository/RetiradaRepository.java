@@ -11,17 +11,30 @@ import com.milkpointapi.model.Retirada;
 
 @Repository
 public interface RetiradaRepository extends JpaRepository<Retirada, Long> {
+	
 	@Query(value = "select * from retirada r where r.excluido = 0 and r.confirmacao = 0 ORDER BY data_now ASC;", nativeQuery = true)
 	public List<Retirada> buscaPendentes();
+	
+	@Query(value = "SELECT * FROM retirada r \n" + "inner join laticinio l on (r.retirada_laticinio = l.id)\n"
+			+ "where (r.excluido = 0 and r.confirmacao = 0) and (l.id like concat ('%', :id, '%'))ORDER BY data_now DESC", nativeQuery = true)
+	public List<Retirada> buscaPendentesPorLaticinio(@Param("id") Long id);
 
 	@Query(value = "select * from retirada r where r.excluido = 1 or r.confirmacao = 1 ORDER BY data_now DESC", nativeQuery = true)
 	public List<Retirada> buscaResolvidos();
 
+	@Query(value = "SELECT * FROM retirada r \n" + "inner join laticinio l on (r.retirada_laticinio = l.id)\n"
+			+ "where (r.confirmacao = 1) and (l.id like concat ('%', :id, '%'))ORDER BY data_now DESC", nativeQuery = true)
+	public List<Retirada> buscaConfirmados(@Param("id") Long id);
+
+	@Query(value = "SELECT * FROM retirada r \n" + "inner join laticinio l on (r.retirada_laticinio = l.id)\n"
+			+ "where (r.excluido = 1) and (l.id like concat ('%', :id, '%'))ORDER BY data_now DESC", nativeQuery = true)
+	public List<Retirada> buscaCancelados(@Param("id") Long id);
+	
 	@Query(value = "select * from retirada r where r.confirmacao = 1 ORDER BY data_now ASC", nativeQuery = true)
-	public List<Retirada> buscaConfirmados();
+	public List<Retirada> buscaTodosConfirmados();
 
 	@Query(value = "select * from retirada r where r.excluido = 1 ORDER BY data_now ASC", nativeQuery = true)
-	public List<Retirada> buscaExcluidos();
+	public List<Retirada> buscaTodosCancelados();
 
 	@Query(value = "SELECT * FROM retirada r \n" + "inner join laticinio l on(r.retirada_laticinio = l.id) \n"
 			+ "where (r.confirmacao or r.excluido) and (l.nome like concat('%', :nome, '%') \n"

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.milkpointapi.model.Laticinio;
 import com.milkpointapi.model.Retirada;
 import com.milkpointapi.model.Tanque;
-import com.milkpointapi.repository.RetiradaRepository;
 import com.milkpointapi.service.LaticinioService;
 import com.milkpointapi.service.RetiradaService;
 import com.milkpointapi.service.TanqueService;
@@ -34,9 +33,6 @@ public class RetiradaResource {
 	@Autowired
 	private LaticinioService laticinioService;
 	
-	@Autowired
-	private RetiradaRepository repository;
-
 	public ResponseEntity<Retirada> add(Retirada retirada) {
 
 		if (retirada != null) {
@@ -113,9 +109,35 @@ public class RetiradaResource {
 		return service.buscaResolvidos();
 	}
 	
+	@GetMapping("/retirada/confirmados/{id}")
+	public List<Retirada> buscaConfirmados(@PathVariable("id") Long id) {
+		return service.buscaConfirmados(id);
+	}
+
+	@GetMapping("/retirada/cancelados/{id}")
+	public List<Retirada> buscaCancelados(@PathVariable("id") Long id) {
+		return service.buscaCancelados(id);
+	}
+	
 	@GetMapping("/retirada/buscar/{nome}")
 	public List<Retirada> buscaLaticinio(@PathVariable("nome") String nome) {
-		return repository.buscaLaticinio(nome);
+		return service.buscaLaticinio(nome);
 	}
+	
+	@GetMapping("/retirada/confirmados")
+	public List<Retirada> buscaTodosConfirmados() {
+		return service.buscaTodosConfirmados();
+	}
+	
+	@GetMapping("/retirada/cancelados")
+	public List<Retirada> buscaTodosCancelados() {
+		return service.buscaTodosCancelados();
+	}
+	
+	@GetMapping("/retirada/pendentes/{id}")
+	public List<Retirada> buscaPendentesPorLaticinio(@PathVariable("id") Long id) {
+		return service.buscaPendentesPorLaticinio(id);
+	}
+
 
 }
