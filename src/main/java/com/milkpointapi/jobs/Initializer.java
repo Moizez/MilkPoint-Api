@@ -50,7 +50,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
-		createTanque();
+		//createTanque();
 
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 
@@ -217,7 +217,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		}
 	}
 
-	private void createTanque() {
+	/*private void createTanque() {
 
 		Tanque tan = tanqueService.findByNome("T-000");
 		Tanque tan2 = tanqueService.findByNome("T-001");
@@ -275,6 +275,6 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tanqueService.save(tan2);
 
 		}
-	}
+	}*/
 
 }
