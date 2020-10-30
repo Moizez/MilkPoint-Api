@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.milkpointapi.enums.Capacidade;
-import com.milkpointapi.enums.Status;
 import com.milkpointapi.model.Tanque;
 import com.milkpointapi.service.TanqueService;
 
@@ -43,7 +42,7 @@ public class TanqueResource {
 			} else if (tanque.getCapacidade() == Capacidade.QUATROMILEQUINHENTOS) {
 				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
 			}
-			
+
 			System.out.println("\nTANQUE DO APP........................");
 			System.out.println("Nome: " + tanque.getNome());
 			System.out.println("Tipo: " + tanque.getTipo());
@@ -54,10 +53,7 @@ public class TanqueResource {
 			System.out.println("Responsavel: " + tanque.getResponsavel());
 			System.out.println("Latitude: " + tanque.getLatitude());
 			System.out.println("Longitude: " + tanque.getLongitude());
-			System.out.println("Status: " + tanque.getStatus() + "\n");
-
-			if (tanque.getStatus() == null)
-				tanque.setStatus(Status.ATIVO);
+			System.out.println("Status: " + tanque.isStatus() + "\n");
 
 			tanqueService.save(tanque);
 			return new ResponseEntity<Tanque>(tanque, HttpStatus.CREATED);
@@ -82,34 +78,30 @@ public class TanqueResource {
 	}
 
 	@PutMapping("/tanque/{id}")
-	public ResponseEntity<Tanque> update(@PathVariable Long id, @Valid @RequestBody Tanque tanque) {
+	public ResponseEntity<Tanque> update(@PathVariable Long id, @RequestBody Tanque tanque) {
 		Tanque tanqueAtual = tanqueService.findOne(id);
-
-		System.out.println("\nTANQUE DO APP........................");
-		System.out.println("Nome: " + tanque.getNome());
-		System.out.println("Tipo: " + tanque.getTipo());
-		System.out.println("Capacidade: " + tanque.getCapacidade());
-		System.out.println("Qtd. Atual: " + tanque.getQtdAtual());
-		System.out.println("Qtd. Restante: " + tanque.getQtdRestante());
-		System.out.println("Latitude: " + tanque.getLatitude());
-		System.out.println("Longitude: " + tanque.getLongitude());
-		System.out.println("Status: " + tanque.getStatus() + "\n");
 
 		if (tanqueAtual == null)
 			return ResponseEntity.notFound().build();
 
 		// CARACTERISTICAS
-		if (tanque.getNome() == "")
+		if (tanque.getNome() == null || tanque.getNome() == "")
 			tanque.setNome(tanqueAtual.getNome());
 
 		if (tanque.getTipo() == null)
 			tanque.setTipo(tanqueAtual.getTipo());
 
-		if (tanque.getStatus() == null)
-			tanque.setStatus(tanqueAtual.getStatus());
-
 		if (tanque.getResponsavel() == null)
 			tanque.setResponsavel(tanqueAtual.getResponsavel());
+
+		if (tanque.getTecnico() == null)
+			tanque.setTecnico(tanqueAtual.getTecnico());
+
+		if (tanque.getQtdAtual() == 0)
+			tanque.setQtdAtual(tanqueAtual.getQtdAtual());
+
+		if (tanque.getQtdRestante() == 0)
+			tanque.setQtdRestante(tanqueAtual.getQtdRestante());
 
 		if (tanque.getCapacidade() == null)
 			tanque.setCapacidade(tanqueAtual.getCapacidade());
@@ -127,25 +119,25 @@ public class TanqueResource {
 		}
 
 		// ENDEREÇO
-		if (tanque.getCep() == "")
+		if (tanque.getCep() == null)
 			tanque.setCep(tanqueAtual.getCep());
 
-		if (tanque.getUf() == "")
+		if (tanque.getUf() == null)
 			tanque.setUf(tanqueAtual.getUf());
 
-		if (tanque.getLocalidade() == "")
+		if (tanque.getLocalidade() == null)
 			tanque.setLocalidade(tanqueAtual.getLocalidade());
 
-		if (tanque.getBairro() == "")
+		if (tanque.getBairro() == null)
 			tanque.setBairro(tanqueAtual.getBairro());
 
-		if (tanque.getLogradouro() == "")
+		if (tanque.getLogradouro() == null)
 			tanque.setLogradouro(tanqueAtual.getLogradouro());
 
-		if (tanque.getComunidade() == "")
+		if (tanque.getComunidade() == null)
 			tanque.setComunidade(tanqueAtual.getComunidade());
 
-		if (tanque.getComplemento() == "")
+		if (tanque.getComplemento() == null)
 			tanque.setComplemento(tanqueAtual.getComplemento());
 
 		if (tanque.getLatitude() == 0 || tanque.getLongitude() == 0) {
@@ -153,7 +145,7 @@ public class TanqueResource {
 			tanque.setLongitude(tanqueAtual.getLongitude());
 		}
 
-		BeanUtils.copyProperties(tanque, tanqueAtual, "id");
+		BeanUtils.copyProperties(tanque, tanqueAtual, "id", "capacidade", "dataCriacao");
 		tanqueAtual = tanqueService.save(tanqueAtual);
 		return ResponseEntity.ok(tanqueAtual);
 	}
@@ -180,6 +172,26 @@ public class TanqueResource {
 		tanque.setLongitude(longitude);
 		tanqueService.save(tanque);
 		return ResponseEntity.ok(tanque);
+	}
+
+	@GetMapping("/tanque/ativos")
+	public List<Tanque> buscaTanqueAtivos() {
+		return tanqueService.buscaTanqueAtivos();
+	}
+
+	@GetMapping("/tanque/inativos")
+	public List<Tanque> buscaTanqueInativos() {
+		return tanqueService.buscaTanqueInativos();
+	}
+
+	@GetMapping("/tanque/ativos/{idTecnico}")
+	public List<Tanque> buscaTanquesAtivosPorTecnico(@PathVariable("idTecnico") Long id) {
+		return tanqueService.buscaTanquesAtivosPorTecnico(id);
+	}
+
+	@GetMapping("/tanque/inativos/{idTecnico}")
+	public List<Tanque> buscaTanquesInativosPorTecnico(@PathVariable("idTecnico") Long id) {
+		return tanqueService.buscaTanquesInativosPorTecnico(id);
 	}
 
 }

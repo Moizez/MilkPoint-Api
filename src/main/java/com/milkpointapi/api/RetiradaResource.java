@@ -32,7 +32,7 @@ public class RetiradaResource {
 
 	@Autowired
 	private LaticinioService laticinioService;
-	
+
 	public ResponseEntity<Retirada> add(Retirada retirada) {
 
 		if (retirada != null) {
@@ -59,6 +59,8 @@ public class RetiradaResource {
 		retirada.setLaticinio(laticinio);
 		retirada.setTanque(tanque);
 		retirada.setQuantidade(quantidade);
+		tanque.setRetCount(tanque.getRetCount() + 1);
+		tanque.setRetPendenteCount(tanque.getRetPendenteCount() + 1);
 		retirada.setValor(quantidade * 0.84);
 		tanqueService.save(tanque);
 		return add(retirada);
@@ -79,9 +81,12 @@ public class RetiradaResource {
 				Tanque tanque = retirada.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() - retirada.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() + retirada.getQuantidade());
+				tanque.setRetPendenteCount(tanque.getRetPendenteCount() - 1);
 			} else {
+				Tanque tanque = retirada.getTanque();
 				retirada.setExcluido(true);
 				retirada.setEfetuou(nomeEfetuou);
+				tanque.setRetPendenteCount(tanque.getRetPendenteCount() - 1);
 				if (observacao.isEmpty())
 					retirada.setObservacao("Não informado!");
 				else
@@ -108,7 +113,7 @@ public class RetiradaResource {
 	public List<Retirada> buscaResolvidos() {
 		return service.buscaResolvidos();
 	}
-	
+
 	@GetMapping("/retirada/confirmados/{id}")
 	public List<Retirada> buscaConfirmados(@PathVariable("id") Long id) {
 		return service.buscaConfirmados(id);
@@ -118,26 +123,30 @@ public class RetiradaResource {
 	public List<Retirada> buscaCancelados(@PathVariable("id") Long id) {
 		return service.buscaCancelados(id);
 	}
-	
+
 	@GetMapping("/retirada/buscar/{nome}")
 	public List<Retirada> buscaLaticinio(@PathVariable("nome") String nome) {
 		return service.buscaLaticinio(nome);
 	}
-	
+
 	@GetMapping("/retirada/confirmados")
 	public List<Retirada> buscaTodosConfirmados() {
 		return service.buscaTodosConfirmados();
 	}
-	
+
 	@GetMapping("/retirada/cancelados")
 	public List<Retirada> buscaTodosCancelados() {
 		return service.buscaTodosCancelados();
 	}
-	
+
 	@GetMapping("/retirada/pendentes/{id}")
 	public List<Retirada> buscaPendentesPorLaticinio(@PathVariable("id") Long id) {
 		return service.buscaPendentesPorLaticinio(id);
 	}
 
+	@GetMapping("/retirada/pendentes/tanque/{idTanque}")
+	public List<Retirada> buscaRetiradasPendentesPorTanque(@PathVariable("idTanque") Long id) {
+		return service.buscaRetiradasPendentesPorTanque(id);
+	}
 
 }

@@ -8,7 +8,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.milkpointapi.enums.Capacidade;
-import com.milkpointapi.enums.Status;
 import com.milkpointapi.enums.Tipo;
 import com.milkpointapi.model.Laticinio;
 import com.milkpointapi.model.Produtor;
@@ -97,7 +96,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tecnicoService.save(tec);
 
 		}
-		
+
 		if (tec2 == null) {
 			tec2 = new Tecnico();
 			tec2.setNome("Jeferson Queiroga");
@@ -169,7 +168,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			responsavelService.save(resp);
 
 		}
-		
+
 		if (resp2 == null) {
 			resp2 = new Responsavel();
 			resp2.setNome("Iêda Carolina");
@@ -233,8 +232,8 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tan.setResponsavel(resp);
 			tan.setTecnico(tec);
 			tan.setCapacidade(Capacidade.QUATROMILEQUINHENTOS);
-			tan.setStatus(Status.ATIVO);
-			tan.setQtdAtual((float)2500);
+			tan.setStatus(true);
+			tan.setQtdAtual((float) 2500);
 			tan.setQtdRestante(4500 - tan.getQtdAtual());
 			tan.setDataCriacao(new Date());
 			tan.setTipo(Tipo.BOVINO);
@@ -251,15 +250,15 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tanqueService.save(tan);
 
 		}
-		
+
 		if (tan2 == null) {
 			tan2 = new Tanque();
 			tan2.setNome("T-001");
 			tan2.setResponsavel(resp2);
 			tan2.setTecnico(tec2);
 			tan2.setCapacidade(Capacidade.TRESMIL);
-			tan2.setStatus(Status.ATIVO);
-			tan2.setQtdAtual((float)1500);
+			tan2.setStatus(true);
+			tan2.setQtdAtual((float) 1500);
 			tan2.setQtdRestante(3000 - tan2.getQtdAtual());
 			tan2.setDataCriacao(new Date());
 			tan2.setTipo(Tipo.CAPRINO);

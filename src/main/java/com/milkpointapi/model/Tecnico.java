@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -66,12 +65,12 @@ public class Tecnico implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataNascimento;
 
-	@Column
-	private int perfil = 4;
-
 	@JsonIgnore
 	@OneToMany(mappedBy = "tecnico")
 	private List<Tanque> tanques;
+
+	@Column
+	private int perfil = 4;
 
 	public Long getId() {
 		return id;
@@ -189,14 +188,6 @@ public class Tecnico implements Serializable {
 		this.perfil = perfil;
 	}
 
-	public List<Tanque> getTanques() {
-		return tanques;
-	}
-
-	public void setTanques(List<Tanque> tanques) {
-		this.tanques = tanques;
-	}
-
 	public void setApelido(String apelido) {
 		this.apelido = apelido;
 	}
@@ -207,6 +198,14 @@ public class Tecnico implements Serializable {
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public List<Tanque> getTanques() {
+		return tanques;
+	}
+
+	public void setTanques(List<Tanque> tanques) {
+		this.tanques = tanques;
 	}
 
 	public static long getSerialversionuid() {

@@ -62,4 +62,8 @@ public class RetiradaService {
 	public List<Retirada> buscaPendentesPorLaticinio(Long id) {
 		return repository.buscaPendentesPorLaticinio(id);
 	}
+	
+	public List<Retirada> buscaRetiradasPendentesPorTanque(Long id) {
+		return repository.buscaRetiradasPendentesPorTanque(id);
+	}
 }

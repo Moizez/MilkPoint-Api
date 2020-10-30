@@ -18,7 +18,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.milkpointapi.enums.Capacidade;
-import com.milkpointapi.enums.Status;
 import com.milkpointapi.enums.Tipo;
 
 @Entity
@@ -69,15 +68,24 @@ public class Tanque implements Serializable {
 	@Column
 	private float qtdRestante;
 
+	@Column(name = "dep_pendentes_contador")
+	private int depPendenteCount = 0;
+
+	@Column(name = "dep_contador")
+	private int depCount = 0;
+
+	@Column(name = "ret_pendentes_contador")
+	private int retPendenteCount = 0;
+
+	@Column(name = "ret_contador")
+	private int retCount = 0;
+
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataCriacao;
 
 	@ManyToOne
 	public Responsavel responsavel;
-
-	@ManyToOne
-	public Tecnico tecnico;
 
 	@Column
 	private Capacidade capacidade;
@@ -86,7 +94,10 @@ public class Tanque implements Serializable {
 	private Tipo tipo;
 
 	@Column
-	private Status status;
+	private boolean status;
+
+	@ManyToOne
+	public Tecnico tecnico;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "tanque")
@@ -128,14 +139,6 @@ public class Tanque implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public Tecnico getTecnico() {
-		return tecnico;
-	}
-
-	public void setTecnico(Tecnico tecnico) {
-		this.tecnico = tecnico;
-	}
-
 	public Responsavel getResponsavel() {
 		return responsavel;
 	}
@@ -160,11 +163,11 @@ public class Tanque implements Serializable {
 		this.qtdAtual = f;
 	}
 
-	public Status getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
@@ -224,6 +227,14 @@ public class Tanque implements Serializable {
 		this.localidade = localidade;
 	}
 
+	public Tecnico getTecnico() {
+		return tecnico;
+	}
+
+	public void setTecnico(Tecnico tecnico) {
+		this.tecnico = tecnico;
+	}
+
 	public double getLatitude() {
 		return latitude;
 	}
@@ -264,8 +275,40 @@ public class Tanque implements Serializable {
 		this.retiradas = retiradas;
 	}
 
+	public int getDepCount() {
+		return depCount;
+	}
+
+	public void setDepCount(int depCount) {
+		this.depCount = depCount;
+	}
+
+	public int getRetCount() {
+		return retCount;
+	}
+
+	public void setRetCount(int retCount) {
+		this.retCount = retCount;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public int getDepPendenteCount() {
+		return depPendenteCount;
+	}
+
+	public void setDepPendenteCount(int depPendenteCount) {
+		this.depPendenteCount = depPendenteCount;
+	}
+
+	public int getRetPendenteCount() {
+		return retPendenteCount;
+	}
+
+	public void setRetPendenteCount(int retPendenteCount) {
+		this.retPendenteCount = retPendenteCount;
 	}
 
 }

@@ -40,4 +40,8 @@ public interface RetiradaRepository extends JpaRepository<Retirada, Long> {
 			+ "where (r.confirmacao or r.excluido) and (l.nome like concat('%', :nome, '%') \n"
 			+ "|| l.nome_fantasia like concat('%', :nome, '%')) ORDER BY data_now DESC;", nativeQuery = true)
 	public List<Retirada> buscaLaticinio(@Param("nome") String nome);
+
+	@Query(value = "SELECT * FROM retirada r where (r.retirada_tanque like concat('%', :id, '%'))\n"
+			+ "and r.excluido = 0 and r.confirmacao = 0", nativeQuery = true)
+	public List<Retirada> buscaRetiradasPendentesPorTanque(@Param("id") Long id);
 }

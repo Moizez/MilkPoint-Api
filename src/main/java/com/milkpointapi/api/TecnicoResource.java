@@ -52,7 +52,7 @@ public class TecnicoResource {
 		}
 		return ResponseEntity.ok(tecnico);
 	}
-	
+
 	@GetMapping("/tecnico/{id}/tanque")
 	public ResponseEntity<List<Tanque>> tanques(@PathVariable Long id) {
 		Tecnico tecnico = tecnicoService.findOne(id);

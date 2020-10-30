@@ -33,9 +33,25 @@ public class TanqueService {
 	public List<Tanque> searchFor(String nome, String localidade, String uf) {
 		return repository.findByNomeOrLocalidadeOrUfLike(nome, localidade, uf);
 	}
-	
+
 	public Tanque findByNome(String nome) {
 		return repository.findByNome(nome);
+	}
+
+	public List<Tanque> buscaTanqueAtivos() {
+		return repository.buscaTanqueAtivos();
+	}
+
+	public List<Tanque> buscaTanqueInativos() {
+		return repository.buscaTanqueInativos();
+	}
+
+	public List<Tanque> buscaTanquesAtivosPorTecnico(Long id) {
+		return repository.buscaTanquesAtivosPorTecnico(id);
+	}
+
+	public List<Tanque> buscaTanquesInativosPorTecnico(Long id) {
+		return repository.buscaTanquesInativosPorTecnico(id);
 	}
 
 }

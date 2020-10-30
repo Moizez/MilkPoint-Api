@@ -39,5 +39,9 @@ public interface DepositoRepository extends JpaRepository<Deposito, Long> {
 	@Query(value = "SELECT * FROM deposito d \n" + "inner join produtor p on(d.deposito_produtor = p.id)\n"
 			+ "where (d.confirmacao or d.excluido) and (p.nome like concat('%', :nome, '%')) ORDER BY data_now DESC;", nativeQuery = true)
 	public List<Deposito> buscaProdutor(@Param("nome") String nome);
+	
+	@Query(value = "SELECT * FROM deposito d where (d.deposito_tanque like concat('%', :id, '%'))\n"
+			+ "and d.excluido = 0 and d.confirmacao = 0", nativeQuery = true)
+	public List<Deposito> buscaDepositosPendentesPorTanque(@Param("id") Long id);
 
 }

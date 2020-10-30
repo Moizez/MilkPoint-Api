@@ -61,5 +61,9 @@ public class DepositoService {
 	public List<Deposito> buscaTodosCancelados() {
 		return repository.buscaTodosCancelados();
 	}
+	
+	public List<Deposito> buscaDepositosPendentesPorTanque(Long id){
+		return repository.buscaDepositosPendentesPorTanque(id);
+	}
 
 }

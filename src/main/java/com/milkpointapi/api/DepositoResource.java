@@ -52,7 +52,7 @@ public class DepositoResource {
 	@PostMapping("/deposito")
 	public ResponseEntity<Deposito> deposito(@RequestParam("quantidade") float quantidade,
 			@RequestParam("idProd") Long idProd, @RequestParam("idTanque") Long idTanque) {
-		
+
 		Tanque tanque = tanqueService.findOne(idTanque);
 		Produtor produtor = produtorService.findOne(idProd);
 		Deposito deposito = new Deposito();
@@ -61,6 +61,8 @@ public class DepositoResource {
 		deposito.setProdutor(produtor);
 		deposito.setTanque(tanque);
 		deposito.setQuantidade(quantidade);
+		tanque.setDepCount(tanque.getDepCount() + 1);
+		tanque.setDepPendenteCount(tanque.getDepPendenteCount() + 1);
 		if (tanque.getTipo() == Tipo.BOVINO) {
 			deposito.setValor(quantidade * 1.10);
 		} else {
@@ -85,9 +87,12 @@ public class DepositoResource {
 				Tanque tanque = deposito.getTanque();
 				tanque.setQtdAtual(tanque.getQtdAtual() + deposito.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() - deposito.getQuantidade());
+				tanque.setDepPendenteCount(tanque.getDepPendenteCount() - 1);
 			} else {
+				Tanque tanque = deposito.getTanque();
 				deposito.setExcluido(true);
 				deposito.setEfetuou(nomeEfetuou);
+				tanque.setDepPendenteCount(tanque.getDepPendenteCount() - 1);
 				if (observacao.isEmpty())
 					deposito.setObservacao("Não informado!");
 				else
@@ -129,20 +134,25 @@ public class DepositoResource {
 	public List<Deposito> buscaProdutor(@PathVariable("nome") String nome) {
 		return service.buscaProdutor(nome);
 	}
-	
+
 	@GetMapping("/deposito/pendentes/{id}")
 	public List<Deposito> buscaPendentesPorProdutor(@PathVariable("id") Long id) {
 		return service.buscaPendentesPorProdutor(id);
 	}
-	
+
 	@GetMapping("/deposito/confirmados")
 	public List<Deposito> buscaTodosConfirmados() {
 		return service.buscaTodosConfirmados();
 	}
-	
+
 	@GetMapping("/deposito/cancelados")
 	public List<Deposito> buscaTodosCancelados() {
 		return service.buscaTodosCancelados();
+	}
+
+	@GetMapping("/deposito/pendentes/tanque/{idTanque}")
+	public List<Deposito> buscaDepositosPendentesPorTanque(@PathVariable("idTanque") Long id) {
+		return service.buscaDepositosPendentesPorTanque(id);
 	}
 
 }
