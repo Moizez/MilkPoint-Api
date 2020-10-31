@@ -1,6 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Retirada implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,6 +27,9 @@ public class Retirada implements Serializable {
 
 	@Column
 	private float quantidade;
+
+	@Column
+	private double valor = 0;
 
 	@ManyToOne
 	@JoinColumn(name = "retirada_laticinio")
@@ -44,12 +45,32 @@ public class Retirada implements Serializable {
 	@Column
 	private boolean excluido = false;
 
+	@Column
+	private String efetuou;
+
+	@Column
+	private String observacao;
+
+	@Column
+	private ZonedDateTime dataNow;
+
+	@Column
+	private ZonedDateTime dataSolicitacao;
+
 	public float getQuantidade() {
 		return quantidade;
 	}
 
 	public void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public Laticinio getLaticinio() {
@@ -82,6 +103,38 @@ public class Retirada implements Serializable {
 
 	public void setExcluido(boolean excluido) {
 		this.excluido = excluido;
+	}
+
+	public String getEfetuou() {
+		return efetuou;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public void setEfetuou(String efetuou) {
+		this.efetuou = efetuou;
+	}
+
+	public ZonedDateTime getDataNow() {
+		return dataNow;
+	}
+
+	public void setDataNow(ZonedDateTime dataNow) {
+		this.dataNow = dataNow;
+	}
+
+	public ZonedDateTime getDataSolicitacao() {
+		return dataSolicitacao;
+	}
+
+	public void setDataSolicitacao(ZonedDateTime dataSolicitacao) {
+		this.dataSolicitacao = dataSolicitacao;
 	}
 
 	public Long getId() {

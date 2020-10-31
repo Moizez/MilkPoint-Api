@@ -13,6 +13,8 @@ public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> 
 
 	@Query
 	public Responsavel findByEmailIgnoreCaseContaining(String email);
+	@Query
+	public Responsavel findByEmailAndPassword(String email, String senha);
 	
 	@Query(value = "select * from responsavel r where r.apelido like concat('%', ?, '%')\n"
 			+ "	|| r.nome like concat('%', ?, '%')\n" 

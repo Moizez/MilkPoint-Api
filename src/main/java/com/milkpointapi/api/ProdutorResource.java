@@ -54,15 +54,18 @@ public class ProdutorResource {
 
 	@PutMapping("produtor/{id}")
 	public ResponseEntity<Produtor> update(@PathVariable Long id, @RequestBody Produtor produtor) {
-		Produtor prod = produtorService.findOne(id);
+		Produtor produtorAtual = produtorService.findOne(id);
 
-		if (prod == null) {
+		if (produtorAtual == null) {
 			return ResponseEntity.notFound().build();
-		}
+		}	
 
-		BeanUtils.copyProperties(produtor, prod, "id");
-		prod = produtorService.save(prod);
-		return ResponseEntity.ok(prod);
+		BeanUtils.copyProperties(produtor, produtorAtual, "id", "password", "cpf", "email", "nome",
+				"descricao", "apelido", "cpf", "phoneNumber", "cep", "logradouro", "complemento", "bairro",
+				"localidade", "uf", "dataNascimento", "perfil");
+
+		produtorAtual = produtorService.save(produtorAtual);
+		return ResponseEntity.ok(produtorAtual);
 	}
 
 	@DeleteMapping("produtor/{id}")

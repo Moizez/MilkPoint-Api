@@ -53,16 +53,19 @@ public class LaticinioResource {
 	}
 
 	@PutMapping("/laticinio/{id}")
-	public ResponseEntity<Laticinio> update(@PathVariable Long id, @Valid @RequestBody Laticinio Laticinio) {
-		Laticinio prod = laticinioService.findOne(id);
+	public ResponseEntity<Laticinio> update(@PathVariable Long id, @RequestBody Laticinio laticinio) {
+		Laticinio laticinioAtual = laticinioService.findOne(id);
 
-		if (prod == null) {
+		if (laticinioAtual == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		BeanUtils.copyProperties(Laticinio, prod, "id");
-		prod = laticinioService.save(prod);
-		return ResponseEntity.ok(prod);
+		BeanUtils.copyProperties(laticinio, laticinioAtual, "id", "password", "cpf", "email", "nome",
+				"descricao", "cnpj", "phoneNumber", "cep", "logradouro", "complemento", "bairro",
+				"localidade", "uf", "dataNascimento", "perfil", "nomeFantasia");
+		
+		laticinioAtual = laticinioService.save(laticinioAtual);
+		return ResponseEntity.ok(laticinioAtual);
 
 	}
 

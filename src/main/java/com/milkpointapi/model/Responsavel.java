@@ -1,17 +1,17 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,8 +24,7 @@ public class Responsavel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable = false, length = 100)
@@ -40,23 +39,22 @@ public class Responsavel implements Serializable {
 
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 
 	@Column
 	private String apelido;
 
 	@Column(name = "cpf", unique = true, length = 14, nullable = false)
 	private String cpf;
-	
-	@Column
-	private String telefone = "";
 
-	@Column
-	private boolean sms = false;
-
+	@Column(name = "telefone")
+	private String phoneNumber;
 
 	@Column
 	private String cep;
+
+	@Column
+	private boolean status = true;
 
 	@Column
 	private String logradouro;
@@ -132,6 +130,14 @@ public class Responsavel implements Serializable {
 		this.cpf = cpf;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	public List<Tanque> getTanque() {
 		return tanque;
 	}
@@ -156,11 +162,11 @@ public class Responsavel implements Serializable {
 		this.tanque = tanque;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -172,20 +178,12 @@ public class Responsavel implements Serializable {
 		this.cep = cep;
 	}
 
-	public String getTelefone() {
-		return telefone;
-	}
-	
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public boolean isStatus() {
+		return status;
 	}
 
-	public boolean getSms() {
-		return sms;
-	}
-	
-	public void setSms(boolean sms) {
-		this.sms = sms;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public String getLogradouro() {

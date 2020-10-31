@@ -1,17 +1,17 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,8 +22,7 @@ public class Laticinio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable = false, length = 100)
@@ -38,17 +37,23 @@ public class Laticinio implements Serializable {
 
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataCriacao;
+	private Date dataCriacao;
 
 	@Column(name = "cnpj", unique = true, length = 18, nullable = false)
 	private String cnpj;
+
+	@Column(name = "telefone")
+	private String phoneNumber;
 
 	@Column
 	private String cep;
 
 	@Column
+	private boolean status = true;
+
+	@Column
 	private String logradouro;
-	
+
 	@Column
 	private String complemento;
 
@@ -106,6 +111,14 @@ public class Laticinio implements Serializable {
 		this.cnpj = cnpj;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
@@ -130,6 +143,14 @@ public class Laticinio implements Serializable {
 		this.password = password;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public int getPerfil() {
 		return perfil;
 	}
@@ -138,11 +159,11 @@ public class Laticinio implements Serializable {
 		this.perfil = perfil;
 	}
 
-	public LocalDate getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
@@ -169,7 +190,7 @@ public class Laticinio implements Serializable {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-	
+
 	public String getComplemento() {
 		return complemento;
 	}
