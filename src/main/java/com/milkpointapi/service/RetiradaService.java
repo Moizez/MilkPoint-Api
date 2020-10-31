@@ -66,4 +66,8 @@ public class RetiradaService {
 	public List<Retirada> buscaRetiradasPendentesPorTanque(Long id) {
 		return repository.buscaRetiradasPendentesPorTanque(id);
 	}
+	
+	public List<Retirada> buscaRetiradasPorTanqueResponsavel(Long id) {
+		return repository.buscaRetiradasPorTanqueResponsavel(id);
+	}
 }

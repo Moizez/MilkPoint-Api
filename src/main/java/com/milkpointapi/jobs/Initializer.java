@@ -129,6 +129,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			pro.setCpf("43619901074");
 			pro.setPhoneNumber("+5584981690739");
 			pro.setDataNascimento(new Date());
+			pro.setStatus(true);
 			pro.setCep("59905-000");
 			pro.setUf("RN");
 			pro.setLocalidade("Encanto");
@@ -157,6 +158,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			resp.setDataNascimento(new Date());
 			resp.setCep("59900-000");
 			resp.setUf("RN");
+			resp.setStatus(true);
 			resp.setLocalidade("Pau dos Ferros");
 			resp.setBairro("Manoel Deodato");
 			resp.setLogradouro("Bala Trocada");
@@ -178,6 +180,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			resp2.setDataNascimento(new Date());
 			resp2.setCep("59900-000");
 			resp2.setUf("RN");
+			resp2.setStatus(true);
 			resp2.setLocalidade("Pau dos Ferros");
 			resp2.setBairro("Centro");
 			resp2.setLogradouro("13 de Maio");
@@ -205,6 +208,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			lat.setEmail("leiteecia@gmail.com");
 			lat.setPassword("123");
 			lat.setCep("59900-000");
+			lat.setStatus(true);
 			lat.setUf("RN");
 			lat.setLocalidade("Pau dos Ferros");
 			lat.setBairro("Centro");
@@ -217,7 +221,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		}
 	}
 
-	/*private void createTanque() {
+	private void createTanque() {
 
 		Tanque tan = tanqueService.findByNome("T-000");
 		Tanque tan2 = tanqueService.findByNome("T-001");
@@ -275,6 +279,6 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tanqueService.save(tan2);
 
 		}
-	}*/
+	}
 
 }
