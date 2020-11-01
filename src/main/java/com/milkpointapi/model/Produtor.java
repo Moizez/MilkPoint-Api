@@ -40,7 +40,7 @@ public class Produtor implements Serializable {
 	private String phoneNumber;
 
 	@Column
-	private boolean status = true;
+	private boolean status;
 
 	@Column
 	private String cep;

@@ -68,6 +68,11 @@ public class ResponsavelResource {
 		if (responsavelAtual == null) {
 			return ResponseEntity.notFound().build();
 		}
+		
+		if (responsavel.isStatus() == false)
+			responsavel.setStatus(true);
+		else
+			responsavel.setStatus(false);
 
 		BeanUtils.copyProperties(responsavel, responsavelAtual, "id", "password", "cpf", "email", "nome", "descricao", "apelido",
 				"cpf", "phoneNumber", "cep", "logradouro", "complemento", "bairro", "localidade", "uf",
