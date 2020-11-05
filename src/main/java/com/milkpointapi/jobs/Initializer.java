@@ -209,8 +209,8 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			resp.setStatus(true);
 			resp.setLocalidade("Pau dos Ferros");
 			resp.setBairro("Manoel Deodato");
-			resp.setLogradouro("Bala Trocada");
-			resp.setComplemento("Próximo ao bar do rasga bucho");
+			resp.setLogradouro("Rua da Libertação");
+			resp.setComplemento("Próximo a quadra de esportes");
 			resp.setEmail("leo@gmail.com");
 			resp.setPassword("123");
 			resp.setDescricao("Responsável em fase de testes");
@@ -299,7 +299,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			lat.setLocalidade("Pau dos Ferros");
 			lat.setBairro("Centro");
 			lat.setLogradouro("13 de Maio");
-			lat.setComplemento("Próximo a capela");
+			lat.setComplemento("Próximo a capela Santa Tereza");
 			lat.setDescricao("Laticínio aguardando alvará da prefeitura");
 			laticinioService.save(lat);
 		}
@@ -372,7 +372,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tan.setLocalidade("Pau dos Ferros");
 			tan.setBairro("Riacho do Meio");
 			tan.setLogradouro("Joel Praxedes");
-			tan.setComplemento("Próximo a capela de Santo Antônio");
+			tan.setComplemento("Próximo a farmácia Padre Carlos");
 			tan.setComunidade("Riacho Doce");
 			tan.setLatitude(-6.113661);
 			tan.setLongitude(-38.223907);
@@ -397,7 +397,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tan2.setLocalidade("Crateús");
 			tan2.setBairro("Riacho do Meio");
 			tan2.setLogradouro("Joel Praxedes");
-			tan2.setComplemento("Próximo a capela de Santo Antônio");
+			tan2.setComplemento("Próximo ao sorvete KiDelicia");
 			tan2.setComunidade("Riacho Doce");
 			tan2.setLatitude(-5.192423);
 			tan2.setLongitude(-40.676846);
