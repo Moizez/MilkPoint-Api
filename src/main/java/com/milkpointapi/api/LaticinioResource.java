@@ -59,6 +59,11 @@ public class LaticinioResource {
 		if (laticinioAtual == null) {
 			return ResponseEntity.notFound().build();
 		}
+		
+		if (laticinio.isStatus() == false)
+			laticinio.setStatus(true);
+		else
+			laticinio.setStatus(false);
 
 		BeanUtils.copyProperties(laticinio, laticinioAtual, "id", "password", "cpf", "email", "nome",
 				"descricao", "cnpj", "phoneNumber", "cep", "logradouro", "complemento", "bairro",

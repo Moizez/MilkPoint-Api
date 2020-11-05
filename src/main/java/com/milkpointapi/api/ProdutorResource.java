@@ -58,11 +58,16 @@ public class ProdutorResource {
 
 		if (produtorAtual == null) {
 			return ResponseEntity.notFound().build();
-		}	
+		}
 
-		BeanUtils.copyProperties(produtor, produtorAtual, "id", "password", "cpf", "email", "nome",
-				"descricao", "apelido", "cpf", "phoneNumber", "cep", "logradouro", "complemento", "bairro",
-				"localidade", "uf", "dataNascimento", "perfil");
+		if (produtor.isStatus() == false)
+			produtor.setStatus(true);
+		else
+			produtor.setStatus(false);
+
+		BeanUtils.copyProperties(produtor, produtorAtual, "id", "password", "cpf", "email", "nome", "descricao",
+				"apelido", "cpf", "phoneNumber", "cep", "logradouro", "complemento", "bairro", "localidade", "uf",
+				"dataNascimento", "perfil");
 
 		produtorAtual = produtorService.save(produtorAtual);
 		return ResponseEntity.ok(produtorAtual);

@@ -154,5 +154,10 @@ public class DepositoResource {
 	public List<Deposito> buscaDepositosPendentesPorTanque(@PathVariable("idTanque") Long id) {
 		return service.buscaDepositosPendentesPorTanque(id);
 	}
+	
+	@GetMapping("/deposito/resolvidos/responsavel/{id}")
+	public List<Deposito> buscaDepositosPorTanqueResponsavel(@PathVariable("id") Long id) {
+		return service.buscaDepositosPorTanqueResponsavel(id);
+	}
 
 }

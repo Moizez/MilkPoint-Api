@@ -148,5 +148,10 @@ public class RetiradaResource {
 	public List<Retirada> buscaRetiradasPendentesPorTanque(@PathVariable("idTanque") Long id) {
 		return service.buscaRetiradasPendentesPorTanque(id);
 	}
+	
+	@GetMapping("/retirada/resolvidos/responsavel/{id}")
+	public List<Retirada> buscaRetiradasPorTanqueResponsavel(@PathVariable("id") Long id) {
+		return service.buscaRetiradasPorTanqueResponsavel(id);
+	}
 
 }

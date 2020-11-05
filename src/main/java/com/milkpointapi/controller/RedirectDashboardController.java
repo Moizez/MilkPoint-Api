@@ -22,7 +22,7 @@ public class RedirectDashboardController {
 		UserInfo dbUser = userService.findByEmail(principal.getName());
 		if (dbUser != null && StringUtils.hasText(dbUser.getRole())) {
 			if (dbUser.getRole().equalsIgnoreCase("ADMIN")) {
-				redirecturl = "redirect:/home";
+				redirecturl = "redirect:/dashboard";
 			}
 		}
 		return redirecturl;

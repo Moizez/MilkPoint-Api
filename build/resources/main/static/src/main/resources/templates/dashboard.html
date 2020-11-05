@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layout}" sec:authorize="hasRole('ROLE_ADMIN')"> 
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<main role="main">
+
+		<section class="jumbotron text-center">
+		<h3 style="float: left">Painel de Controle</h3>
+		</section>
+		
+		<div class="album py-5 bg-light">
+			<div class="container" >
+
+				<div class="row">
+					<div class="col-md-6">
+						<h3 style="float: left;">Tanques</h3>
+						<table id="table-tanques"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Cidade</th>
+									<th scope="col">Tipo do Leite</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="tanque : ${tanques}">
+									<td th:text="${tanque.id}"></td>
+									<td th:text="${tanque.nome}"></td>
+									<td th:text="${tanque.localidade}"></td>
+									<td th:text="${tanque.tipo.valor}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar Tanques
+						</button>
+						<hr>
+					</div>
+					<div class="col-md-6">
+
+						<h3 style="float: left;">Técnicos</h3>
+						<table id="table-tecnicos"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Apelido</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="tecnico : ${tecnicos}">
+									<td th:text="${tecnico.id}"></td>
+									<td th:text="${tecnico.nome}"></td>
+									<td th:text="${tecnico.apelido}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar Técnicos
+						</button>
+						<hr>
+					</div>
+					
+					<div class="col-md-6">
+						<h3 style="float: left;">Depositos Pendentes</h3>
+						<table id="table-tanques"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">ID</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tanque</th>
+									<th scope="col">Produtor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="deposito : ${depositos}">
+									<td th:text="${deposito.id}"></td>
+									<td th:text="${deposito.quantidade}"></td>
+									<td th:text="${deposito.tanque.nome}"></td>
+									<td th:text="${deposito.produtor.nome}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+					<div class="col-md-6">
+						<h3 style="float: left;">Retiradas Pendentes</h3>
+						<table id="table-tanques"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">ID</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tanque</th>
+									<th scope="col">Laticínio]</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="retirada : ${retirada}">
+									<td th:text="${retirada.id}"></td>
+									<td th:text="${retirada.quantidade}"></td>
+									<td th:text="${retirada.tanque.nome}"></td>
+									<td th:text="${retirada.laticinio.nome}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+
+		
+		</main>
+	</section>
+	<script th:src="~{}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript"></script>
+</body>
+</html>

@@ -1,7 +1,6 @@
 package com.milkpointapi.api;
 
 import java.util.List;
-import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.Random;
 
 import com.milkpointapi.enums.Capacidade;
 import com.milkpointapi.model.Tanque;
@@ -27,8 +27,13 @@ public class TanqueResource {
 	@Autowired
 	private TanqueService tanqueService;
 
+	@SuppressWarnings("unused")
 	@PostMapping("/tanque")
-	public ResponseEntity<Tanque> add(@RequestBody @Valid Tanque tanque) {
+	public ResponseEntity<Tanque> add(@RequestBody Tanque tanque) {
+		Tanque tanqueAtual = tanqueService.findByNome(tanque.getNome());
+
+		Random aleatorio = new Random();
+		int valor = aleatorio.nextInt(1000);
 
 		if (tanque != null) {
 			if (tanque.getCapacidade() == Capacidade.MIL) {
@@ -43,17 +48,8 @@ public class TanqueResource {
 				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
 			}
 
-			System.out.println("\nTANQUE DO APP........................");
-			System.out.println("Nome: " + tanque.getNome());
-			System.out.println("Tipo: " + tanque.getTipo());
-			System.out.println("Capacidade: " + tanque.getCapacidade());
-			System.out.println("Qtd. Atual: " + tanque.getQtdAtual());
-			System.out.println("Qtd. Restante: " + tanque.getQtdRestante());
-			System.out.println("Data: " + tanque.getDataCriacao());
-			System.out.println("Responsavel: " + tanque.getResponsavel());
-			System.out.println("Latitude: " + tanque.getLatitude());
-			System.out.println("Longitude: " + tanque.getLongitude());
-			System.out.println("Status: " + tanque.isStatus() + "\n");
+			if (tanque.getNome().equals(tanqueAtual.getNome()))
+				tanque.setNome("T-" + valor + "A");
 
 			tanqueService.save(tanque);
 			return new ResponseEntity<Tanque>(tanque, HttpStatus.CREATED);

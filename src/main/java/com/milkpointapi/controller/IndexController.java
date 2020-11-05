@@ -6,18 +6,28 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.milkpointapi.model.UserInfo;
 import com.milkpointapi.service.SessionService;
+import com.milkpointapi.service.TanqueService;
+import com.milkpointapi.service.TecnicoService;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	private SessionService<UserInfo> sessionService;
-
+	
 	@GetMapping("/")
 	public String index(Model model) {
+	
+		model.addAttribute("user", new UserInfo());
+		return "home";
+	}
+	
+	@GetMapping("/login")
+	public String login(Model model) {
 		model.addAttribute("user", new UserInfo());
 		return "login";
 	}

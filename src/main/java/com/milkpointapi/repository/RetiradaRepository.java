@@ -44,4 +44,9 @@ public interface RetiradaRepository extends JpaRepository<Retirada, Long> {
 	@Query(value = "SELECT * FROM retirada r where (r.retirada_tanque like concat('%', :id, '%'))\n"
 			+ "and r.excluido = 0 and r.confirmacao = 0", nativeQuery = true)
 	public List<Retirada> buscaRetiradasPendentesPorTanque(@Param("id") Long id);
+	
+	@Query(value = "SELECT * FROM retirada r \n" + "inner join tanque t on(r.retirada_tanque = t.id)\n"
+			+ "inner join responsavel rs on (t.responsavel_id = rs.id)\n"
+			+ "where (rs.id like concat('%', :id, '%')) and (r.excluido or r.confirmacao) ORDER BY data_now DESC;", nativeQuery = true)
+	public List<Retirada> buscaRetiradasPorTanqueResponsavel(@Param("id") Long id);
 }

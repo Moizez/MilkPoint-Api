@@ -19,6 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.milkpointapi.model.UserInfo;
+import com.milkpointapi.service.DepositoService;
+import com.milkpointapi.service.LaticinioService;
+import com.milkpointapi.service.ProdutorService;
+import com.milkpointapi.service.ResponsavelService;
+import com.milkpointapi.service.RetiradaService;
+import com.milkpointapi.service.TanqueService;
+import com.milkpointapi.service.TecnicoService;
 import com.milkpointapi.service.UserService;
 
 @Controller
@@ -26,7 +33,28 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private TanqueService tanqueService;
+	
+	@Autowired
+	private TecnicoService tecnicoService;
+	
+	@Autowired
+	private DepositoService depositoService;
+	
+	@Autowired
+	private RetiradaService retiradaService;
 
+	@Autowired
+	private ResponsavelService responsavelService;
+
+	@Autowired
+	private ProdutorService produtorService;
+
+	@Autowired
+	private LaticinioService laticinioService;
+	
 	@PostMapping(value = "/register")
 	public String registration(@ModelAttribute UserInfo userInfo, HttpServletRequest request, Model model) {
 		// String password = userInfo.getPassword();
@@ -71,6 +99,19 @@ public class AdminController {
 	public ModelAndView findByAdmin(@RequestParam("firstName") String nome) {
 		ModelAndView mv = new ModelAndView("admin/list");
 		mv.addObject("users", userService.findByNome(nome));
+		return mv;
+	}
+	
+	@RequestMapping("/dashboard")
+	public ModelAndView dashboard() {
+		ModelAndView mv = new ModelAndView("dashboard");
+		mv.addObject("tanques", tanqueService.findAll());
+		mv.addObject("tecnicos", tecnicoService.findAll());
+		mv.addObject("responsaveis", responsavelService.findAll());
+		mv.addObject("produtores", produtorService.findAll());
+		mv.addObject("laticinios", laticinioService.findAll());
+		mv.addObject("depositos", depositoService.buscaPendentes());
+		mv.addObject("retiradas", retiradaService.buscaPendentes());
 		return mv;
 	}
 }

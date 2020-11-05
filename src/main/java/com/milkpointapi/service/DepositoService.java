@@ -33,37 +33,41 @@ public class DepositoService {
 	public List<Deposito> buscaPendentes() {
 		return repository.buscaPendentes();
 	}
-	
+
 	public List<Deposito> buscaResolvidos() {
 		return repository.buscaResolvidos();
 	}
-	
+
 	public List<Deposito> buscaConfirmados(Long id) {
 		return repository.buscaConfirmados(id);
 	}
-	
+
 	public List<Deposito> buscaProdutor(String produtor) {
 		return repository.buscaProdutor(produtor);
 	}
-	
-	public List<Deposito> buscaPendentesPorProdutor(Long id){
+
+	public List<Deposito> buscaPendentesPorProdutor(Long id) {
 		return repository.buscaPendentesPorProdutor(id);
 	}
-	
+
 	public List<Deposito> buscaCancelados(Long id) {
 		return repository.buscaCancelados(id);
 	}
-	
+
 	public List<Deposito> buscaTodosConfirmados() {
 		return repository.buscaTodosConfirmados();
 	}
-	
+
 	public List<Deposito> buscaTodosCancelados() {
 		return repository.buscaTodosCancelados();
 	}
-	
-	public List<Deposito> buscaDepositosPendentesPorTanque(Long id){
+
+	public List<Deposito> buscaDepositosPendentesPorTanque(Long id) {
 		return repository.buscaDepositosPendentesPorTanque(id);
+	}
+
+	public List<Deposito> buscaDepositosPorTanqueResponsavel(Long id) {
+		return repository.buscaDepositosPorTanqueResponsavel(id);
 	}
 
 }

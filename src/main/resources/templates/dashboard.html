@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layout}" sec:authorize="hasRole('ROLE_ADMIN')"> 
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<main role="main">
+
+		<section class="jumbotron text-center">
+		<h3 style="float: left">Painel de Controle</h3>
+		</section>
+		
+		<div class="album py-5 bg-light">
+			<div class="container" >
+
+				<div class="row">
+					<div class="col-md-4">
+						<h3 style="float: left;">Tanques <span th:text="${tanques.size()}"></span> </h3>
+						&nbsp;&nbsp;<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar
+						</button>
+						<hr>
+					</div>
+					<div class="col-md-4">
+						<h3 style="float: left;">Técnicos <span th:text="${tecnicos.size()} "></span> </h3>
+						&nbsp;&nbsp;<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar
+						</button>
+						<hr>
+					</div>
+					<div class="col-md-4">
+						<h3 style="float: left;">Responsáveis <span th:text="${responsaveis.size()} "></span> </h3>
+						&nbsp;&nbsp;<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar
+						</button>
+						<hr>
+					</div>
+					<div class="col-md-4">
+						<h3 style="float: left;">Produtores <span th:text="${produtores.size()} "></span> </h3>
+						&nbsp;&nbsp;<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar
+						</button>
+						<hr>
+					</div>
+					<div class="col-md-4">
+						<h3 style="float: left;">Laticínios <span th:text="${laticinios.size()} "></span> </h3>
+						&nbsp;&nbsp;<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/tanque/list}'|"  
+							data-toggle="tooltip" data-placement="right" title="Lista">						
+							Listar
+						</button>
+						<hr>
+					</div>
+					
+					<div class="col-md-6">
+						<h3 style="float: left;">Depositos Pendentes <span th:text="${depositos.size()} "></span> </h3>
+						<table id="table-tanques"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">ID</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tanque</th>
+									<th scope="col">Produtor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="deposito : ${depositos}">
+									<td th:text="${deposito.id}"></td>
+									<td th:text="${deposito.quantidade}"></td>
+									<td th:text="${deposito.tanque.nome}"></td>
+									<td th:text="${deposito.produtor.nome}"></td>
+									<td>
+										<span th:text="${deposito.dataNow.dayOfMonth}"></span>
+										/ <span th:text="${deposito.dataNow.monthValue}"></span>
+										/ <span th:text="${deposito.dataNow.year}"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+					<div class="col-md-6">
+						<h3 style="float: left;">Retiradas Pendentes <span th:text="${retiradas.size()} "></span> </h3>
+						<table id="table-tanques"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">ID</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Tanque</th>
+									<th scope="col">Laticínio</th>
+									<th scope="col">Data-Hora</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="retirada : ${retiradas}">
+									<td th:text="${retirada.id}"></td>
+									<td th:text="${retirada.quantidade}"></td>
+									<td th:text="${retirada.tanque.nome}"></td>
+									<td th:text="${retirada.laticinio.nome}"></td>
+									<td><small>
+										<span th:text="${retirada.dataNow.dayOfMonth}">
+										</span>/<span th:text="${retirada.dataNow.monthValue}">
+										</span>/<span th:text="${retirada.dataNow.year}">
+										</span>-<span th:text="${retirada.dataNow.hour}">
+										</span>:<span th:text="${retirada.dataNow.minute}"></span>
+									</small></td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+
+		
+		</main>
+	</section>
+	<script th:src="~{}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript"></script>
+</body>
+</html>
