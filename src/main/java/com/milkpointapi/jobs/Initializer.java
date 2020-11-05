@@ -97,7 +97,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 		}
 
-		if (tec2 == null) {
+		/*if (tec2 == null) {
 			tec2 = new Tecnico();
 			tec2.setNome("Jeferson Queiroga");
 			tec2.setApelido("Jeff");
@@ -115,7 +115,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 			tecnicoService.save(tec2);
 
-		}
+		}*/
 	}
 
 	private void createProdutor() {
