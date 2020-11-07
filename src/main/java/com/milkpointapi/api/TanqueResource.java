@@ -1,5 +1,7 @@
 package com.milkpointapi.api;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -26,6 +28,11 @@ public class TanqueResource {
 
 	@Autowired
 	private TanqueService tanqueService;
+	
+	public ZonedDateTime data() {
+		ZonedDateTime data = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
+		return data;
+	}
 
 	@SuppressWarnings("unused")
 	@PostMapping("/tanque")
@@ -141,6 +148,17 @@ public class TanqueResource {
 			tanque.setLongitude(tanqueAtual.getLongitude());
 		}
 
+		if (!tanque.isStatus()) {
+			tanque.setDataInativado(data());
+			if (tanque.getObservacao() == null || tanque.getObservacao().equals("")) {
+				if (tanqueAtual.getObservacao() == null || tanqueAtual.getObservacao().equals("")) {
+					tanque.setObservacao("Motivo não informado");
+				} else {
+					tanque.setObservacao(tanqueAtual.getObservacao());
+				}
+			}
+		}
+		
 		BeanUtils.copyProperties(tanque, tanqueAtual, "id", "capacidade", "dataCriacao");
 		tanqueAtual = tanqueService.save(tanqueAtual);
 		return ResponseEntity.ok(tanqueAtual);

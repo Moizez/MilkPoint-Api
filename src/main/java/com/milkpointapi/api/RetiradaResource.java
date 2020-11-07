@@ -82,16 +82,19 @@ public class RetiradaResource {
 				tanque.setQtdAtual(tanque.getQtdAtual() - retirada.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() + retirada.getQuantidade());
 				tanque.setRetPendenteCount(tanque.getRetPendenteCount() - 1);
+				tanqueService.save(tanque);
 			} else {
 				Tanque tanque = retirada.getTanque();
 				retirada.setExcluido(true);
 				retirada.setEfetuou(nomeEfetuou);
 				tanque.setRetPendenteCount(tanque.getRetPendenteCount() - 1);
+				tanqueService.save(tanque);
 				if (observacao.isEmpty())
 					retirada.setObservacao("Não informado!");
 				else
 					retirada.setObservacao(observacao);
 			}
+			
 			service.save(retirada);
 			return ResponseEntity.ok(retirada);
 		}

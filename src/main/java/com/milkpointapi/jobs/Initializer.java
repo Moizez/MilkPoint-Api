@@ -50,7 +50,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
-		//createTanque();
+		createTanque();
 
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 
@@ -354,7 +354,6 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		Responsavel resp = responsavelService.buscaLogin("leo@gmail.com");
 		Responsavel resp2 = responsavelService.buscaLogin("ieda@gmail.com");
 		Tecnico tec = tecnicoService.buscaLogin("jr@gmail.com");
-		Tecnico tec2 = tecnicoService.buscaLogin("jeff@gmail.com");
 
 		if (tan == null) {
 			tan = new Tanque();
@@ -385,7 +384,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 			tan2 = new Tanque();
 			tan2.setNome("T-001");
 			tan2.setResponsavel(resp2);
-			tan2.setTecnico(tec2);
+			tan2.setTecnico(tec);
 			tan2.setCapacidade(Capacidade.TRESMIL);
 			tan2.setStatus(true);
 			tan2.setQtdAtual((float) 1500);
