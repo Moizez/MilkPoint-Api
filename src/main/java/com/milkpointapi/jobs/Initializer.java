@@ -50,7 +50,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
-		createTanque();
+		//createTanque();
 
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 
