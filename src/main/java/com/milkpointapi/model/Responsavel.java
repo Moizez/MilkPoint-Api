@@ -54,7 +54,7 @@ public class Responsavel implements Serializable {
 	private String cep;
 
 	@Column
-	private boolean status = true;
+	private boolean status;
 
 	@Column
 	private String logradouro;

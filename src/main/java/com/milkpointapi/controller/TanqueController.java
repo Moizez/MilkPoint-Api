@@ -1,6 +1,7 @@
 package com.milkpointapi.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -106,6 +107,23 @@ public class TanqueController {
 	@GetMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
 		tanqueService.delete(id);
+		return findAll();
+	}
+	
+	@GetMapping("/disable/{id}")
+	public ModelAndView desable(@PathVariable("id") Long id) {
+		Tanque tanque = tanqueService.findOne(id);
+		tanque.setStatus(false);
+		tanque.setDataInativado(ZonedDateTime.now());
+		tanqueService.save(tanque);
+		return findAll();
+	}
+	
+	@GetMapping("/enable/{id}")
+	public ModelAndView enable(@PathVariable("id") Long id) {
+		Tanque tanque = tanqueService.findOne(id);
+		tanque.setStatus(true);
+		tanqueService.save(tanque);
 		return findAll();
 	}
 

@@ -20,19 +20,21 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
-	implementation 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.projectlombok:lombok'
+	implementation "org.springframework.boot:spring-boot-starter-mail"
 	implementation 'org.springframework.security:spring-security-core'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+	implementation 'mysql:mysql-connector-java'
+	implementation 'org.projectlombok:lombok'
 	implementation 'org.webjars:webjars-locator-core'
 	implementation 'org.webjars:bootstrap:4.3.1'
 	implementation "org.webjars:jquery:2.0.3-1"
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'com.twilio.sdk:twilio:7.55.1'
-	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	implementation 'com.google.code.gson:gson:2.8.6'
 	implementation "org.json:json:20141113"
+	
 	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -42,3 +44,5 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+apply plugin: "eclipse"

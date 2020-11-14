@@ -1,4 +1,4 @@
-package com.milkpointapi.jobs;
+	package com.milkpointapi.jobs;
 
 import java.util.Date;
 
@@ -45,7 +45,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		createUserAdmin();
+		//createUserAdmin();
 		createTecnico();
 		createResponsavel();
 		createProdutor();

@@ -88,11 +88,13 @@ public class DepositoResource {
 				tanque.setQtdAtual(tanque.getQtdAtual() + deposito.getQuantidade());
 				tanque.setQtdRestante(tanque.getQtdRestante() - deposito.getQuantidade());
 				tanque.setDepPendenteCount(tanque.getDepPendenteCount() - 1);
+				tanqueService.save(tanque);
 			} else {
 				Tanque tanque = deposito.getTanque();
 				deposito.setExcluido(true);
 				deposito.setEfetuou(nomeEfetuou);
 				tanque.setDepPendenteCount(tanque.getDepPendenteCount() - 1);
+				tanqueService.save(tanque);
 				if (observacao.isEmpty())
 					deposito.setObservacao("Não informado!");
 				else

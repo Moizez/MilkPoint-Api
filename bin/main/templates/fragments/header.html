@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" th:href="@{/home}">MILK POINT</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarCollapse" aria-controls="navbarCollapse"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<a class="btn btn-dark" href="/dashboard">Painel</a>
+				<ul class="navbar-nav mr-auto">	
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tanque</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" th:href="@{/tanque/add}">Cadastrar Tanque</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/tanque/list}">Listar Tanques</a> 
+						
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtor</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown02">
+							<a class="dropdown-item" th:href="@{/produtor/add}">Cadastrar Produtor</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/produtor/list}">Listar Produtores</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown03"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Técnico</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown03">
+							<a class="dropdown-item" th:href="@{/tecnico/add}">Cadastrar Técnico</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/tecnico/list}">Listar Técnicos</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown04"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Responsável</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" th:href="@{/responsavel/add}">Cadastrar Responsável</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/responsavel/list}">Listar Responsáveis</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown05"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laticínio</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown05">
+							<a class="dropdown-item" th:href="@{/laticinio/add}">Cadastrar Laticínio</a>
+							<div class="dropdown-divider"></div> 
+							<a class="dropdown-item" th:href="@{/laticinio/list}">Listar Laticínios</a>
+						</div>
+					</li>
+				</ul>
+
+				<form class="form-inline mt-2 mt-md-0">
+					<div class="form-check mb-2 mr-sm-2">
+						<a class="btn btn-outline-light my-2 my-sm-0" role="button"
+							th:href="@{/guiaapi}">GUIA DE USO DA API</a>
+					</div>
+				</form>
+
+				<form class="form-inline mt-2 mt-md-0" method="post" >
+					<div class="btn-group mb-2 mr-sm-2">
+						
+						<button type="button"
+							class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="btn btn-light">
+							<i class="fas fa-user"></i> <span class=""
+								sec:authentication="name"></span>
+							</span>
+						</button>
+						<div class="dropdown-menu">
+							<h6 class="dropdown-header">Opções de Administrador</h6>
+							<a class="dropdown-item" th:href="@{/register}"><i class="fas fa-plus-square"></i> Novo Administrador</a>
+							<a class="dropdown-item" th:href="@{/admin/list}"><i class="fas fa-list-alt"></i> Listar Administradores</a>
+							<div class="dropdown-divider"></div>
+							<h6 class="dropdown-header">Configurações</h6>
+							<a class="dropdown-item" th:href="@{/admin/changepassword}"><i class="fas fa-edit"></i> Editar Senha</a>
+							<a class="dropdown-item" th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</nav>
+	</header>
+</body>
+</html>

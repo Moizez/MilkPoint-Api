@@ -6,6 +6,21 @@ spring:
     password: ''
     url: jdbc:mysql://localhost:3306/milkpointapi?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
     username: root
+  mail:
+    host: smtp.umbler.com
+    port: 587
+    username: milkpoint@serviceapp.net.br
+    password: ifrn@2020
+    properties:
+      mail: 
+        smtp: 
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          enable: true
+        test-connection: true    
+    
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: true
@@ -18,3 +33,5 @@ twilio:
   account_sid: ACe3e94f708134e98ece308001478e1bd9
   auth_token: e24c76178398270f839ceea60d6427df
   trial_number: +13344876914
+  
+  

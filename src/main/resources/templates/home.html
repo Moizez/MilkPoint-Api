@@ -10,8 +10,20 @@
 		<main role="main">
 
 		<section class="jumbotron text-center">
-			<img class="d-block mx-auto mb-4" th:src="@{/image/banner.png}"
-				width="1000" height="451">
+			<div id="dp-container" 
+				th:style="'
+				width:100%; 
+				height:451px; 
+				background-repeat:no-repeat;
+				background-image:url(' + @{/image/banner.png} + ');
+				'" >
+				<a href="https://play.google.com/store/apps/details?id=com.milkpoint">
+					<img th:src="@{/image/qr-code.png}"
+					align="left" width=104 height=150; 
+					style="margin-top:210px; margin-left:180px" />
+				</a>
+			</div>
+			
 			<div class="container">
 				<h1 class="jumbotron-heading">Milk Point</h1>
 				<p class="lead text-muted">O sistema <b>Milk Point</b> propõe melhorar todas as etapas do

@@ -46,8 +46,6 @@
 									<th scope="col">Qtd. Restante</th>
 									<th scope="col">Responsável do Tanque</th>
 									<th scope="col">Tipo do Leite</th>
-									<th scope="col">Latitude</th>
-									<th scope="col">Longitude</th>
 									<th scope="col">Ações</th>								
 								</tr>
 							</thead>
@@ -65,21 +63,30 @@
 										</div>
 									</td>
 									<td th:text="${tanque.tipo.valor}"></td>
-									<td th:text="${tanque.latitude}"></td>
-									<td th:text="${tanque.longitude}"></td>
 									<td>
 										<div class="btn-group pull-right">
-											<button type="submit" class="btn btn-secondary" th:onClick="|window.location.href='@{/tanque/details/{id}(id=${tanque.id})}'|"  
+											<a target="mapa" th:href="'http://maps.google.com/maps?&z=10&q='+${tanque.latitude}+'+'+${tanque.longitude}+'&ll='+${tanque.latitude}+'+'+${tanque.longitude}"
+													class="btn btn-info"
+												data-toggle="tooltip" data-placement="right" title="Mapa">						
+												<i class="fas fa-map-marker-alt"></i>
+											</a>&nbsp;&nbsp;
+											<button th:if="${tanque.status == true}" type="submit" class="btn btn-secondary" th:onClick="|window.location.href='@{/tanque/details/{id}(id=${tanque.id})}'|"  
 												data-toggle="tooltip" data-placement="right" title="Detalhes">						
 												<i class="fas fa-chart-line"></i>
 											</button>
-											<button type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/tanque/edit/{id}(id=${tanque.id})}'|"  
+											<button th:if="${tanque.status == true}" type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/tanque/edit/{id}(id=${tanque.id})}'|"  
 												data-toggle="tooltip" data-placement="right" title="Editar">						
 												<i class="fas fa-pen-square"></i>
 											</button>
-											<button type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|window.location.href='@{/tanque/delete/{id}(id=${tanque.id})}'|"  
-												data-toggle="tooltip" data-placement="right" title="Excluir">						
-												<i class="fas fa-trash-alt"></i>
+											<button th:if="${tanque.status == true}" type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|if(window.confirm('Deseja realmente DESATIVAR o tanque?')) window.location.href='@{/tanque/disable/{id}(id=${tanque.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Desativar">						
+												<i class="fas fa-ban"></i>
+											</button>
+											
+											<button th:unless="${tanque.status == true}" type="submit" class="btn btn-warning" style="margin-left: 5px" th:onClick="|if(window.confirm('Deseja realmente ATIVAR o tanque?')) window.location.href='@{/tanque/enable/{id}(id=${tanque.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Ativar">						
+												<i class="fas fa-check"></i> Ativar
+												<span th:if="${tanque.status == true}" th:text="${tanque.getDataInativado}"></span>
 											</button>
 									   </div>
 									</td>

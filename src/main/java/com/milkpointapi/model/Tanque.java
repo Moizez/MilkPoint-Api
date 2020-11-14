@@ -1,6 +1,7 @@
 package com.milkpointapi.model;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -96,6 +97,12 @@ public class Tanque implements Serializable {
 	@Column
 	private boolean status;
 
+	@Column
+	private String observacao;
+
+	@Column
+	private ZonedDateTime dataInativado;
+
 	@ManyToOne
 	public Tecnico tecnico;
 
@@ -169,6 +176,22 @@ public class Tanque implements Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public ZonedDateTime getDataInativado() {
+		return dataInativado;
+	}
+
+	public void setDataInativado(ZonedDateTime dataInativado) {
+		this.dataInativado = dataInativado;
 	}
 
 	public float getQtdRestante() {

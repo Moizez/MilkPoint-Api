@@ -1,5 +1,6 @@
 package com.milkpointapi.controller;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -112,6 +113,27 @@ public class AdminController {
 		mv.addObject("laticinios", laticinioService.findAll());
 		mv.addObject("depositos", depositoService.buscaPendentes());
 		mv.addObject("retiradas", retiradaService.buscaPendentes());
+		return mv;
+	}
+	
+	@GetMapping("/admin/changepassword")
+	private ModelAndView changePassWord() {
+		return new ModelAndView("admin/changepassword");
+	}
+	
+	@PostMapping("/admin/changepassword")
+	private ModelAndView changePassWord(
+			Principal principal,
+			@RequestParam String password
+			) {	
+
+		UserInfo user = userService.findByEmail(principal.getName());
+		user.setPassword(password);
+		userService.save(user);
+		ModelAndView mv = new ModelAndView("admin/changepassword");
+		mv
+			.addObject("alerta", "success")
+			.addObject("texto", "Senha alterada com Sucesso.");
 		return mv;
 	}
 }
