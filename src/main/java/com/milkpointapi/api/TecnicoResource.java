@@ -64,15 +64,48 @@ public class TecnicoResource {
 
 	@PutMapping("tecnico/{id}")
 	public ResponseEntity<Tecnico> update(@PathVariable Long id, @RequestBody Tecnico tecnico) {
-		Tecnico tec = tecnicoService.findOne(id);
+		Tecnico tecnicoAtual = tecnicoService.findOne(id);
+		
+		System.out.println("UF: " + tecnico.getUf());
+		System.out.println("Localidade: " + tecnico.getLocalidade());
 
-		if (tec == null) {
+		if (tecnicoAtual == null)
 			return ResponseEntity.notFound().build();
-		}
 
-		BeanUtils.copyProperties(tecnico, tec, "id");
-		tec = tecnicoService.save(tec);
-		return ResponseEntity.ok(tec);
+		// DADOS CADASTRAIS
+		if (tecnico.getNome() == null || tecnico.getNome().equals(""))
+			tecnico.setNome(tecnicoAtual.getNome());
+
+		if (tecnico.getApelido() == null || tecnico.getApelido().equals(""))
+			tecnico.setApelido(tecnicoAtual.getApelido());
+
+		// if (tecnico.getEmail() == null || tecnico.getEmail().equals(""))
+		// tecnico.setEmail(tecnicoAtual.getEmail());
+
+		// ENDEREÇO
+		if (tecnico.getCep() == null || tecnico.getCep().equals(""))
+			tecnico.setCep(tecnicoAtual.getCep());
+
+		if (tecnico.getUf() == null || tecnico.getUf().equals(""))
+			tecnico.setUf(tecnicoAtual.getUf());
+
+		if (tecnico.getLocalidade() == null || tecnico.getLocalidade().equals(""))
+			tecnico.setLocalidade(tecnicoAtual.getLocalidade());
+
+		if (tecnico.getBairro() == null || tecnico.getBairro().equals(""))
+			tecnico.setBairro(tecnicoAtual.getBairro());
+
+		if (tecnico.getLogradouro() == null || tecnico.getLogradouro().equals(""))
+			tecnico.setLogradouro(tecnicoAtual.getLogradouro());
+
+		if (tecnico.getComplemento() == null || tecnico.getComplemento().equals(""))
+			tecnico.setComplemento(tecnicoAtual.getComplemento());
+
+		BeanUtils.copyProperties(tecnico, tecnicoAtual, "id", "password", "descricao", "cpf", "email", "phoneNumber",
+				"dataNascimento", "perfil");
+
+		tecnicoAtual = tecnicoService.save(tecnicoAtual);
+		return ResponseEntity.ok(tecnicoAtual);
 	}
 
 	@DeleteMapping("tecnico/{id}")

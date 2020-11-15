@@ -56,19 +56,46 @@ public class LaticinioResource {
 	public ResponseEntity<Laticinio> update(@PathVariable Long id, @RequestBody Laticinio laticinio) {
 		Laticinio laticinioAtual = laticinioService.findOne(id);
 
-		if (laticinioAtual == null) {
+		if (laticinioAtual == null)
 			return ResponseEntity.notFound().build();
-		}
-		
+
+		// DADOS CADASTRAIS
+		if (laticinio.getNome() == null || laticinio.getNome().equals(""))
+			laticinio.setNome(laticinioAtual.getNome());
+
+		if (laticinio.getNomeFantasia() == null || laticinio.getNomeFantasia().equals(""))
+			laticinio.setNomeFantasia(laticinioAtual.getNomeFantasia());
+
+		// if (laticinio.getEmail() == null || laticinio.getEmail().equals(""))
+		// laticinio.setEmail(laticinioAtual.getEmail());
+
 		if (laticinio.isStatus() == false)
 			laticinio.setStatus(true);
 		else
 			laticinio.setStatus(false);
 
-		BeanUtils.copyProperties(laticinio, laticinioAtual, "id", "password", "cpf", "email", "nome",
-				"descricao", "cnpj", "phoneNumber", "cep", "logradouro", "complemento", "bairro",
-				"localidade", "uf", "dataNascimento", "perfil", "nomeFantasia");
-		
+		// ENDEREÇO
+		if (laticinio.getCep() == null || laticinio.getCep().equals(""))
+			laticinio.setCep(laticinioAtual.getCep());
+
+		if (laticinio.getUf() == null || laticinio.getUf().equals(""))
+			laticinio.setUf(laticinioAtual.getUf());
+
+		if (laticinio.getLocalidade() == null || laticinio.getLocalidade().equals(""))
+			laticinio.setLocalidade(laticinioAtual.getLocalidade());
+
+		if (laticinio.getBairro() == null || laticinio.getBairro().equals(""))
+			laticinio.setBairro(laticinioAtual.getBairro());
+
+		if (laticinio.getLogradouro() == null || laticinio.getLogradouro().equals(""))
+			laticinio.setLogradouro(laticinioAtual.getLogradouro());
+
+		if (laticinio.getComplemento() == null || laticinio.getComplemento().equals(""))
+			laticinio.setComplemento(laticinioAtual.getComplemento());
+
+		BeanUtils.copyProperties(laticinio, laticinioAtual, "id", "password", "email", "descricao", "cnpj",
+				"phoneNumber", "dataNascimento", "perfil");
+
 		laticinioAtual = laticinioService.save(laticinioAtual);
 		return ResponseEntity.ok(laticinioAtual);
 

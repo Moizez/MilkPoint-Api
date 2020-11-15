@@ -13,12 +13,12 @@ public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
 
 	@Query
 	public Tecnico findByEmailIgnoreCaseContaining(String email);
-	
-	@Query(value = "select * from tecnico p where p.id =?", nativeQuery = true)
-	public Tecnico getOne(Long id);
 
 	@Query
 	public Tecnico findByEmailAndPassword(String email, String senha);
+	
+	@Query(value = "select * from tecnico p where p.id =?", nativeQuery = true)
+	public Tecnico getOne(Long id);
 
 	@Query(value = "select * from tecnico p where p.apelido like concat('%', ?, '%')\n"
 			+ "	|| p.nome like concat('%', ?, '%')\n" + " || p.cpf like concat('%', ?, '%')\n"

@@ -64,7 +64,7 @@ public class DepositoResource {
 		tanque.setDepCount(tanque.getDepCount() + 1);
 		tanque.setDepPendenteCount(tanque.getDepPendenteCount() + 1);
 		if (tanque.getTipo() == Tipo.BOVINO) {
-			deposito.setValor(quantidade * 1.10);
+			deposito.setValor(quantidade * 1.21);
 		} else {
 			deposito.setValor(quantidade * 1.65);
 		}

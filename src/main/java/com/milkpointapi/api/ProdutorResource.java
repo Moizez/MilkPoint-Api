@@ -56,17 +56,44 @@ public class ProdutorResource {
 	public ResponseEntity<Produtor> update(@PathVariable Long id, @RequestBody Produtor produtor) {
 		Produtor produtorAtual = produtorService.findOne(id);
 
-		if (produtorAtual == null) {
+		if (produtorAtual == null)
 			return ResponseEntity.notFound().build();
-		}
+
+		// DADOS CADASTRAIS
+		if (produtor.getNome() == null || produtor.getNome().equals(""))
+			produtor.setNome(produtorAtual.getNome());
+
+		if (produtor.getApelido() == null || produtor.getApelido().equals(""))
+			produtor.setApelido(produtorAtual.getApelido());
+
+		// if (produtor.getEmail() == null || produtor.getEmail().equals(""))
+		// produtor.setEmail(produtorAtual.getEmail());
 
 		if (produtor.isStatus() == false)
 			produtor.setStatus(true);
 		else
 			produtor.setStatus(false);
 
-		BeanUtils.copyProperties(produtor, produtorAtual, "id", "password", "cpf", "email", "nome", "descricao",
-				"apelido", "cpf", "phoneNumber", "cep", "logradouro", "complemento", "bairro", "localidade", "uf",
+		// ENDEREÇO
+		if (produtor.getCep() == null || produtor.getCep().equals(""))
+			produtor.setCep(produtorAtual.getCep());
+
+		if (produtor.getUf() == null || produtor.getUf().equals(""))
+			produtor.setUf(produtorAtual.getUf());
+
+		if (produtor.getLocalidade() == null || produtor.getLocalidade().equals(""))
+			produtor.setLocalidade(produtorAtual.getLocalidade());
+
+		if (produtor.getBairro() == null || produtor.getBairro().equals(""))
+			produtor.setBairro(produtorAtual.getBairro());
+
+		if (produtor.getLogradouro() == null || produtor.getLogradouro().equals(""))
+			produtor.setLogradouro(produtorAtual.getLogradouro());
+
+		if (produtor.getComplemento() == null || produtor.getComplemento().equals(""))
+			produtor.setComplemento(produtorAtual.getComplemento());
+
+		BeanUtils.copyProperties(produtor, produtorAtual, "id", "password", "descricao", "cpf", "email", "phoneNumber",
 				"dataNascimento", "perfil");
 
 		produtorAtual = produtorService.save(produtorAtual);
