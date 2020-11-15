@@ -13,6 +13,9 @@ public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
 
 	@Query
 	public Tecnico findByEmailIgnoreCaseContaining(String email);
+	
+	@Query(value = "select * from tecnico p where p.id =?", nativeQuery = true)
+	public Tecnico getOne(Long id);
 
 	@Query
 	public Tecnico findByEmailAndPassword(String email, String senha);
