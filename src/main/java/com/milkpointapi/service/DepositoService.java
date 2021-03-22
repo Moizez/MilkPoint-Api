@@ -69,5 +69,13 @@ public class DepositoService {
 	public List<Deposito> buscaDepositosPorTanqueResponsavel(Long id) {
 		return repository.buscaDepositosPorTanqueResponsavel(id);
 	}
+	
+	public List<Deposito> buscaDepositosConfirmadosPorTanqueResponsavel(Long id) {
+		return repository.buscaDepositosConfirmadosPorTanqueResponsavel(id);
+	}
+	
+	public List<Deposito> buscaDepositosCanceladosPorTanqueResponsavel(Long id) {
+		return repository.buscaDepositosCanceladosPorTanqueResponsavel(id);
+	}
 
 }

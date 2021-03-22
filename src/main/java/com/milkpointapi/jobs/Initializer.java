@@ -50,7 +50,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		createResponsavel();
 		createProdutor();
 		createLaticinio();
-		//createTanque();
+		createTanque();
 
 		System.out.println("----- Usuários Criados com Sucesso! -----");
 
@@ -75,7 +75,6 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 	private void createTecnico() {
 
 		Tecnico tec = tecnicoService.buscaLogin("jr@gmail.com");
-		Tecnico tec2 = tecnicoService.buscaLogin("jeff@gmail.com");
 
 		if (tec == null) {
 			tec = new Tecnico();
@@ -97,25 +96,6 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
 		}
 
-		/*if (tec2 == null) {
-			tec2 = new Tecnico();
-			tec2.setNome("Jeferson Queiroga");
-			tec2.setApelido("Jeff");
-			tec2.setCpf("737.896.540-51");
-			tec2.setDataNascimento(new Date());
-			tec2.setCep("63700445");
-			tec2.setUf("CE");
-			tec2.setLocalidade("Crateús");
-			tec2.setBairro("Vaqueiros");
-			tec2.setLogradouro("Rua das Amélias");
-			tec2.setComplemento("Próximo a UFC");
-			tec2.setEmail("jeff@gmail.com");
-			tec2.setPassword("123");
-			tec2.setDescricao("Técinco responsável pela região urbana de Crateús");
-
-			tecnicoService.save(tec2);
-
-		}*/
 	}
 
 	private void createProdutor() {
@@ -287,7 +267,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		if (lat == null) {
 			lat = new Laticinio();
 			lat.setNome("Francisco Ribeiro");
-			lat.setNomeFantasia("Leite & Cia");
+			lat.setApelido("Leite & Cia");
 			lat.setCnpj("10.447.422/0001-63");
 			lat.setPhoneNumber("(84)96101-3384");
 			lat.setDataCriacao(new Date());
@@ -307,7 +287,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		if (lat2 == null) {
 			lat2 = new Laticinio();
 			lat2.setNome("Luciano Max");
-			lat2.setNomeFantasia("Leite da Terra");
+			lat2.setApelido("Leite da Terra");
 			lat2.setCnpj("04.464.269/0001-80");
 			lat2.setPhoneNumber("(88)95707-6975");
 			lat2.setDataCriacao(new Date());
@@ -327,7 +307,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 		if (lat3 == null) {
 			lat3 = new Laticinio();
 			lat3.setNome("Carlos Lima");
-			lat3.setNomeFantasia("NutriLeite");
+			lat3.setApelido("NutriLeite");
 			lat3.setCnpj("68.618.880/0001-06");
 			lat3.setPhoneNumber("(88)95571-2807");
 			lat3.setDataCriacao(new Date());

@@ -1,15 +1,11 @@
 package com.milkpointapi.model;
 
-import javax.validation.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SmsRequest {
 
-	@NotBlank
 	private final String phoneNumber; //Destino
 	
-	@NotBlank
 	private final String message;
 
 	public SmsRequest(@JsonProperty("phoneNumber") String phoneNumber, @JsonProperty("message") String message) {

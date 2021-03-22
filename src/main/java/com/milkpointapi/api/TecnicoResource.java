@@ -2,12 +2,11 @@ package com.milkpointapi.api;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +28,7 @@ public class TecnicoResource {
 	private TecnicoService tecnicoService;
 
 	@PostMapping("/tecnico")
-	public ResponseEntity<Tecnico> add(@RequestBody @Valid Tecnico tecnico) {
+	public ResponseEntity<Tecnico> add(@RequestBody @Validated Tecnico tecnico) {
 		if (tecnico != null) {
 			tecnicoService.save(tecnico);
 			return new ResponseEntity<Tecnico>(tecnico, HttpStatus.CREATED);
@@ -66,9 +65,6 @@ public class TecnicoResource {
 	public ResponseEntity<Tecnico> update(@PathVariable Long id, @RequestBody Tecnico tecnico) {
 		Tecnico tecnicoAtual = tecnicoService.findOne(id);
 		
-		System.out.println("UF: " + tecnico.getUf());
-		System.out.println("Localidade: " + tecnico.getLocalidade());
-
 		if (tecnicoAtual == null)
 			return ResponseEntity.notFound().build();
 

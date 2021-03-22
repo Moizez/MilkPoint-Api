@@ -68,8 +68,8 @@ public class RetiradaResource {
 
 	@PostMapping("/retirada/confirmacao")
 	public ResponseEntity<Retirada> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
-			@RequestParam("idRetirada") Long idRetirada, @RequestParam("efetuou") String nomeEfetuou,
-			@RequestParam("observacao") String observacao) {
+			@RequestParam("idRetirada") Long idRetirada, @RequestParam("whoCanceled") String nameWhoCanceled,
+			@RequestParam("idWhoCanceled") Integer idWhoCanceled, @RequestParam("observacao") String observacao) {
 
 		Retirada retirada = service.findOne(idRetirada);
 
@@ -86,15 +86,16 @@ public class RetiradaResource {
 			} else {
 				Tanque tanque = retirada.getTanque();
 				retirada.setExcluido(true);
-				retirada.setEfetuou(nomeEfetuou);
+				retirada.setWhoCanceled(nameWhoCanceled);
+				retirada.setIdWhoCanceled(idWhoCanceled);
 				tanque.setRetPendenteCount(tanque.getRetPendenteCount() - 1);
 				tanqueService.save(tanque);
 				if (observacao.isEmpty())
-					retirada.setObservacao("Não informado!");
+					retirada.setObservacao(null);
 				else
 					retirada.setObservacao(observacao);
 			}
-			
+
 			service.save(retirada);
 			return ResponseEntity.ok(retirada);
 		}
@@ -151,10 +152,20 @@ public class RetiradaResource {
 	public List<Retirada> buscaRetiradasPendentesPorTanque(@PathVariable("idTanque") Long id) {
 		return service.buscaRetiradasPendentesPorTanque(id);
 	}
-	
+
 	@GetMapping("/retirada/resolvidos/responsavel/{id}")
 	public List<Retirada> buscaRetiradasPorTanqueResponsavel(@PathVariable("id") Long id) {
 		return service.buscaRetiradasPorTanqueResponsavel(id);
+	}
+	
+	@GetMapping("/retirada/confirmados/responsavel/{id}")
+	public List<Retirada> buscaRetiradasConfirmadasPorTanqueResponsavel(@PathVariable("id") Long id) {
+		return service.buscaRetiradasConfirmadasPorTanqueResponsavel(id);
+	}
+	
+	@GetMapping("/retirada/cancelados/responsavel/{id}")
+	public List<Retirada> buscaRetiradasCanceladasPorTanqueResponsavel(@PathVariable("id") Long id) {
+		return service.buscaRetiradasCanceladasPorTanqueResponsavel(id);
 	}
 
 }

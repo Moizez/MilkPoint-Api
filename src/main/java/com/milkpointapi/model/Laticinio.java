@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,14 +25,13 @@ public class Laticinio implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, length = 100)
-	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
 
 	@Column
 	private String descricao;
 
 	@Column
-	private String nomeFantasia;
+	private String apelido;
 
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -119,12 +117,12 @@ public class Laticinio implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getNomeFantasia() {
-		return nomeFantasia;
+	public String getApelido() {
+		return apelido;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
 	}
 
 	public String getEmail() {

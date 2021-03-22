@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +32,6 @@ public class Tanque implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, unique = true, length = 100)
-	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
 
 	@Column

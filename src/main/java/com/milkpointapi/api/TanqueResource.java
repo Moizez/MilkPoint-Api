@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Random;
 
 import com.milkpointapi.enums.Capacidade;
 import com.milkpointapi.model.Tanque;
@@ -34,14 +33,9 @@ public class TanqueResource {
 		return data;
 	}
 
-	@SuppressWarnings("unused")
 	@PostMapping("/tanque")
 	public ResponseEntity<Tanque> add(@RequestBody Tanque tanque) {
-		Tanque tanqueAtual = tanqueService.findByNome(tanque.getNome());
-
-		Random aleatorio = new Random();
-		int valor = aleatorio.nextInt(1000);
-
+		
 		if (tanque != null) {
 			if (tanque.getCapacidade() == Capacidade.MIL) {
 				tanque.setQtdRestante(1000 - tanque.getQtdAtual());
@@ -54,9 +48,6 @@ public class TanqueResource {
 			} else if (tanque.getCapacidade() == Capacidade.QUATROMILEQUINHENTOS) {
 				tanque.setQtdRestante(4500 - tanque.getQtdAtual());
 			}
-
-			if (tanque.getNome().equals(tanqueAtual.getNome()))
-				tanque.setNome("T-" + valor + "A");
 
 			tanqueService.save(tanque);
 			return new ResponseEntity<Tanque>(tanque, HttpStatus.CREATED);
@@ -152,7 +143,7 @@ public class TanqueResource {
 			tanque.setDataInativado(data());
 			if (tanque.getObservacao() == null || tanque.getObservacao().equals("")) {
 				if (tanqueAtual.getObservacao() == null || tanqueAtual.getObservacao().equals("")) {
-					tanque.setObservacao("Motivo não informado");
+					tanque.setObservacao(null);
 				} else {
 					tanque.setObservacao(tanqueAtual.getObservacao());
 				}

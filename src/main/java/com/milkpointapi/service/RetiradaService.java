@@ -70,4 +70,12 @@ public class RetiradaService {
 	public List<Retirada> buscaRetiradasPorTanqueResponsavel(Long id) {
 		return repository.buscaRetiradasPorTanqueResponsavel(id);
 	}
+
+	public List<Retirada> buscaRetiradasConfirmadasPorTanqueResponsavel(Long id) {
+		return repository.buscaRetiradasConfirmadasPorTanqueResponsavel(id);
+	}
+
+	public List<Retirada> buscaRetiradasCanceladasPorTanqueResponsavel(Long id) {
+		return repository.buscaRetiradasCanceladasPorTanqueResponsavel(id);
+	}
 }

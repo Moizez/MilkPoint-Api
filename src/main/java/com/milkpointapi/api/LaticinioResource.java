@@ -2,12 +2,11 @@ package com.milkpointapi.api;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +27,7 @@ public class LaticinioResource {
 	private LaticinioService laticinioService;
 
 	@PostMapping("/laticinio")
-	public ResponseEntity<Laticinio> add(@RequestBody @Valid Laticinio laticinio) {
+	public ResponseEntity<Laticinio> add(@RequestBody @Validated Laticinio laticinio) {
 		if (laticinio != null) {
 			laticinioService.save(laticinio);
 			return new ResponseEntity<Laticinio>(laticinio, HttpStatus.CREATED);
@@ -63,16 +62,16 @@ public class LaticinioResource {
 		if (laticinio.getNome() == null || laticinio.getNome().equals(""))
 			laticinio.setNome(laticinioAtual.getNome());
 
-		if (laticinio.getNomeFantasia() == null || laticinio.getNomeFantasia().equals(""))
-			laticinio.setNomeFantasia(laticinioAtual.getNomeFantasia());
+		if (laticinio.getApelido() == null || laticinio.getApelido().equals(""))
+			laticinio.setApelido(laticinioAtual.getApelido());
 
 		// if (laticinio.getEmail() == null || laticinio.getEmail().equals(""))
 		// laticinio.setEmail(laticinioAtual.getEmail());
 
 		if (laticinio.isStatus() == false)
-			laticinio.setStatus(true);
-		else
 			laticinio.setStatus(false);
+		else
+			laticinio.setStatus(true);
 
 		// ENDEREÇO
 		if (laticinio.getCep() == null || laticinio.getCep().equals(""))

@@ -74,8 +74,8 @@ public class DepositoResource {
 
 	@PostMapping("/deposito/confirmacao")
 	public ResponseEntity<Deposito> confirmacao(@RequestParam("confirmacao") boolean confirmacao,
-			@RequestParam("idDeposito") Long idDeposito, @RequestParam("efetuou") String nomeEfetuou,
-			@RequestParam("observacao") String observacao) {
+			@RequestParam("idDeposito") Long idDeposito, @RequestParam("whoCanceled") String nameWhoCanceled,
+			@RequestParam("idWhoCanceled") Integer idWhoCanceled, @RequestParam("observacao") String observacao) {
 
 		Deposito deposito = service.findOne(idDeposito);
 
@@ -92,11 +92,12 @@ public class DepositoResource {
 			} else {
 				Tanque tanque = deposito.getTanque();
 				deposito.setExcluido(true);
-				deposito.setEfetuou(nomeEfetuou);
+				deposito.setWhoCanceled(nameWhoCanceled);
+				deposito.setIdWhoCanceled(idWhoCanceled);
 				tanque.setDepPendenteCount(tanque.getDepPendenteCount() - 1);
 				tanqueService.save(tanque);
 				if (observacao.isEmpty())
-					deposito.setObservacao("Não informado!");
+					deposito.setObservacao(null);
 				else
 					deposito.setObservacao(observacao);
 			}
@@ -156,10 +157,20 @@ public class DepositoResource {
 	public List<Deposito> buscaDepositosPendentesPorTanque(@PathVariable("idTanque") Long id) {
 		return service.buscaDepositosPendentesPorTanque(id);
 	}
-	
+
 	@GetMapping("/deposito/resolvidos/responsavel/{id}")
 	public List<Deposito> buscaDepositosPorTanqueResponsavel(@PathVariable("id") Long id) {
 		return service.buscaDepositosPorTanqueResponsavel(id);
+	}
+	
+	@GetMapping("/deposito/confirmados/responsavel/{id}")
+	public List<Deposito> buscaDepositosConfirmadosPorTanqueResponsavel(@PathVariable("id") Long id) {
+		return service.buscaDepositosConfirmadosPorTanqueResponsavel(id);
+	}
+	
+	@GetMapping("/deposito/cancelados/responsavel/{id}")
+	public List<Deposito> buscaDepositosCanceladosPorTanqueResponsavel(@PathVariable("id") Long id) {
+		return service.buscaDepositosCanceladosPorTanqueResponsavel(id);
 	}
 
 }

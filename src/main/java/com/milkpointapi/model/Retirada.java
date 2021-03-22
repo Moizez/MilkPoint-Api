@@ -31,6 +31,9 @@ public class Retirada implements Serializable {
 	@Column
 	private double valor = 0;
 
+	@Column
+	private boolean type = false;
+
 	@ManyToOne
 	@JoinColumn(name = "retirada_laticinio")
 	private Laticinio laticinio;
@@ -46,7 +49,10 @@ public class Retirada implements Serializable {
 	private boolean excluido = false;
 
 	@Column
-	private String efetuou;
+	private String whoCanceled;
+
+	@Column
+	private Integer idWhoCanceled;
 
 	@Column
 	private String observacao;
@@ -105,10 +111,6 @@ public class Retirada implements Serializable {
 		this.excluido = excluido;
 	}
 
-	public String getEfetuou() {
-		return efetuou;
-	}
-
 	public String getObservacao() {
 		return observacao;
 	}
@@ -117,8 +119,28 @@ public class Retirada implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public void setEfetuou(String efetuou) {
-		this.efetuou = efetuou;
+	public boolean isType() {
+		return type;
+	}
+
+	public void setType(boolean type) {
+		this.type = type;
+	}
+
+	public String getWhoCanceled() {
+		return whoCanceled;
+	}
+
+	public void setWhoCanceled(String whoCanceled) {
+		this.whoCanceled = whoCanceled;
+	}
+
+	public Integer getIdWhoCanceled() {
+		return idWhoCanceled;
+	}
+
+	public void setIdWhoCanceled(Integer idWhoCanceled) {
+		this.idWhoCanceled = idWhoCanceled;
 	}
 
 	public ZonedDateTime getDataNow() {

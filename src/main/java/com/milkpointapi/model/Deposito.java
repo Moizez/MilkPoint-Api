@@ -31,6 +31,9 @@ public class Deposito implements Serializable {
 	@Column
 	private double valor = 0;
 
+	@Column
+	private boolean type = true;
+
 	@ManyToOne
 	@JoinColumn(name = "deposito_produtor")
 	private Produtor produtor;
@@ -46,7 +49,10 @@ public class Deposito implements Serializable {
 	private boolean excluido = false;
 
 	@Column
-	private String efetuou;
+	private String whoCanceled;
+
+	@Column
+	private Integer idWhoCanceled;
 
 	@Column
 	private String observacao;
@@ -71,6 +77,14 @@ public class Deposito implements Serializable {
 
 	public void setValor(double valor) {
 		this.valor = valor;
+	}
+
+	public boolean isType() {
+		return type;
+	}
+
+	public void setType(boolean type) {
+		this.type = type;
 	}
 
 	public Produtor getProdutor() {
@@ -105,12 +119,20 @@ public class Deposito implements Serializable {
 		this.excluido = excluido;
 	}
 
-	public String getEfetuou() {
-		return efetuou;
+	public String getWhoCanceled() {
+		return whoCanceled;
 	}
 
-	public void setEfetuou(String efetuou) {
-		this.efetuou = efetuou;
+	public void setWhoCanceled(String whoCanceled) {
+		this.whoCanceled = whoCanceled;
+	}
+
+	public Integer getIdWhoCanceled() {
+		return idWhoCanceled;
+	}
+
+	public void setIdWhoCanceled(Integer idWhoCanceled) {
+		this.idWhoCanceled = idWhoCanceled;
 	}
 
 	public String getObservacao() {

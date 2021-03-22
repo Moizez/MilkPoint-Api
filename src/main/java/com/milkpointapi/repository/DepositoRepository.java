@@ -48,5 +48,15 @@ public interface DepositoRepository extends JpaRepository<Deposito, Long> {
 			+ "inner join responsavel r on (t.responsavel_id = r.id)\n"
 			+ "where (r.id like concat('%', :id, '%')) and (d.excluido or d.confirmacao) ORDER BY data_now DESC;", nativeQuery = true)
 	public List<Deposito> buscaDepositosPorTanqueResponsavel(@Param("id") Long id);
+	
+	@Query(value = "SELECT * FROM deposito d \n" + "inner join tanque t on(d.deposito_tanque = t.id)\n"
+			+ "inner join responsavel r on (t.responsavel_id = r.id)\n"
+			+ "where (r.id like concat('%', :id, '%')) and d.confirmacao = 1 ORDER BY data_now DESC;", nativeQuery = true)
+	public List<Deposito> buscaDepositosConfirmadosPorTanqueResponsavel(@Param("id") Long id);
+	
+	@Query(value = "SELECT * FROM deposito d \n" + "inner join tanque t on(d.deposito_tanque = t.id)\n"
+			+ "inner join responsavel r on (t.responsavel_id = r.id)\n"
+			+ "where (r.id like concat('%', :id, '%')) and d.excluido = 1 ORDER BY data_now DESC;", nativeQuery = true)
+	public List<Deposito> buscaDepositosCanceladosPorTanqueResponsavel(@Param("id") Long id);
 
 }

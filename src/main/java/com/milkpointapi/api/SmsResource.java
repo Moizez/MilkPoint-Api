@@ -1,8 +1,7 @@
 package com.milkpointapi.api;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class SmsResource {
 	}
 
 	@PostMapping
-	public void sendSMS(@Valid @RequestBody SmsRequest smsRequest) {
+	public void sendSMS(@Validated @RequestBody SmsRequest smsRequest) {
 		System.out.println("Mensagem enviada!");
 		System.out.println(smsRequest);	
 		smsService.sendSms(smsRequest);

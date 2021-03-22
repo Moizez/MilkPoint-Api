@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,7 +24,6 @@ public class Tecnico implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, length = 100)
-	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
 
 	@Column

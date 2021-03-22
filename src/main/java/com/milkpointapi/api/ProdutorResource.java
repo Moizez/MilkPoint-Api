@@ -2,12 +2,11 @@ package com.milkpointapi.api;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +27,7 @@ public class ProdutorResource {
 	private ProdutorService produtorService;
 
 	@PostMapping("/produtor")
-	public ResponseEntity<Produtor> add(@RequestBody @Valid Produtor produtor) {
+	public ResponseEntity<Produtor> add(@RequestBody @Validated Produtor produtor) {
 		if (produtor != null) {
 			produtorService.save(produtor);
 			return new ResponseEntity<Produtor>(produtor, HttpStatus.CREATED);
@@ -55,7 +54,7 @@ public class ProdutorResource {
 	@PutMapping("produtor/{id}")
 	public ResponseEntity<Produtor> update(@PathVariable Long id, @RequestBody Produtor produtor) {
 		Produtor produtorAtual = produtorService.findOne(id);
-
+		
 		if (produtorAtual == null)
 			return ResponseEntity.notFound().build();
 
@@ -70,9 +69,9 @@ public class ProdutorResource {
 		// produtor.setEmail(produtorAtual.getEmail());
 
 		if (produtor.isStatus() == false)
-			produtor.setStatus(true);
-		else
 			produtor.setStatus(false);
+		else
+			produtor.setStatus(true);
 
 		// ENDEREÇO
 		if (produtor.getCep() == null || produtor.getCep().equals(""))

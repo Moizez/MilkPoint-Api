@@ -2,12 +2,11 @@ package com.milkpointapi.api;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +28,7 @@ public class ResponsavelResource {
 	private ResponsavelService responsavelService;
 
 	@PostMapping("/responsavel")
-	public ResponseEntity<Responsavel> add(@RequestBody @Valid Responsavel responsavel) {
+	public ResponseEntity<Responsavel> add(@RequestBody @Validated Responsavel responsavel) {
 		if (responsavel != null) {
 			responsavelService.save(responsavel);
 			return new ResponseEntity<Responsavel>(responsavel, HttpStatus.CREATED);
@@ -79,9 +78,9 @@ public class ResponsavelResource {
 		// responsavel.setEmail(responsavelAtual.getEmail());
 
 		if (responsavel.isStatus() == false)
-			responsavel.setStatus(true);
-		else
 			responsavel.setStatus(false);
+		else
+			responsavel.setStatus(true);
 
 		// ENDEREÇO
 		if (responsavel.getCep() == null || responsavel.getCep().equals(""))
